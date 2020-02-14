@@ -41,7 +41,7 @@ export class Categories extends Component {
                     <ModalBody>
                         { this.props.categories.map(category =>(
                                 <NavLink key={category.id} 
-                                href={`/items/category/${category.id}`}>
+                                href={`api/v1/items/category/${category.id}/`}>
                                     {category.category_name}
                                 </NavLink>      
                         )) }
