@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getAllItems } from '../../actions/items';
-import Card from '../common/Card'; 
+import ItemCard from '../common/Card'; 
 
 export class Items extends Component {
     static propTypes = {
@@ -21,10 +21,12 @@ export class Items extends Component {
                 <div className="row">
                     {items.map(item => (
                         <div class="col-xs-6 m-2">
-                           <Card 
+                           <ItemCard 
                                 imageSrc={item.src} 
                                 title={item.deal_title}
                                 price={item.price}
+                                oldPrice={item.original_price}
+                                discount={item.discount}
                                 description={item.description}
                                 dealUrl={item.deal_url}
                            />

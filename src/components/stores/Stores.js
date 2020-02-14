@@ -39,7 +39,7 @@ export class Stores extends Component {
                     <ModalHeader toggle={this.toggle}>Stores</ModalHeader>
                     <ModalBody>
                         { this.props.stores.map(store =>(
-                                <NavLink key={store.id} href={`/items/store/${store.id}`}>
+                                <NavLink key={store.id} href={`api/v1/items/store/${store.id}`}>
                                     {store.store_name}
                                 </NavLink>      
                         )) }

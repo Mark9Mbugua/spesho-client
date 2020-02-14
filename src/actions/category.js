@@ -4,7 +4,7 @@ import { GET_CATEGORY } from "./types";
 
 //get category
 export const getCategory = id => dispatch => {
-    const url = `http://127.0.0.1:8000/api/specials/categories/${id}`;
+    const url = `http://127.0.0.1:8000/api/v1/items/categories/${id}`;
     axios
         .get(url)
         .then(res => {

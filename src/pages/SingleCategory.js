@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getItemsByCategory } from './../actions/items';
-import Card from '../components/common/Card';
+import ItemCard from '../components/common/Card';
 
 export class SingleCategory extends Component {
     constructor(props){
@@ -28,7 +28,7 @@ export class SingleCategory extends Component {
                 <div className="row">
                     {items.map(item => (
                         <div class="col-xs-6 m-2">
-                            <Card 
+                            <ItemCard 
                                 imageSrc={item.src} 
                                 title={item.deal_title}
                                 price={item.price}
