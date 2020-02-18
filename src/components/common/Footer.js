@@ -1,5 +1,8 @@
 import React from 'react';
 import { FooterContainer } from './footer.styles';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import TwitterIcon from '@material-ui/icons/Twitter';
 
 const Footer = () => {
   return (
@@ -12,16 +15,13 @@ const Footer = () => {
               <h4>Follow Us</h4>
               <ul className="list-unstyled">
                 <li>
-                    <a href="#">Twitter</a>
+                    <a href="#"><TwitterIcon /> Twitter</a>
                 </li>
                 <li>
-                    <a href="#">Facebook</a>
+                    <a href="#"><FacebookIcon /> Facebook</a>
                 </li>
                 <li>
-                    <a href="#">Instagram</a>
-                </li>
-                <li>
-                    <a href="#">Pintrest</a>
+                    <a href="#"><InstagramIcon /> Instagram</a>
                 </li>
               </ul>
             </div>

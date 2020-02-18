@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from "react";
 import {
-    Modal,
-    ModalHeader,
-    ModalBody,
-    NavLink
-  } from 'reactstrap';
+    NavLink,
+    UncontrolledDropdown,
+    ButtonDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
+} from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getStores } from '../../actions/stores';
@@ -24,27 +26,39 @@ export class Stores extends Component {
 
     toggle = () => {
         this.setState({
-            modal: !this.state.modal
+            dropdownOpen: !this.state.dropdownOpen
         });
     };
+
+    onMouseEnter = () => {
+        this.setState({dropdownOpen: true});
+      }
+    
+    onMouseLeave = () => {
+        this.setState({dropdownOpen: false});
+    }
 
     render() {
         return (
             <Fragment>
-                <NavLink onMouseOver={this.toggle} href='#'>
-                    Stores
-                </NavLink>
-
-                <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>Stores</ModalHeader>
-                    <ModalBody>
+                <UncontrolledDropdown
+                    onMouseOver={this.onMouseEnter} 
+                    isOpen={this.state.dropdownOpen}
+                    onMouseLeave={this.onMouseLeave} 
+                    toggle={this.toggle}>
+                    <DropdownToggle caret color="inherit">
+                        <span style={{color: "white"}}>Stores</span>
+                    </DropdownToggle>
+                    <DropdownMenu>
                         { this.props.stores.map(store =>(
-                                <NavLink key={store.id} href={`api/v1/items/store/${store.id}`}>
-                                    {store.store_name}
-                                </NavLink>      
+                            <DropdownItem key={store.id}>
+                                    <NavLink href="#">
+                                    <span style={{color: "black"}}>{store.store_name}</span>
+                                    </NavLink>      
+                            </DropdownItem>
                         )) }
-                    </ModalBody>
-                </Modal>
+                    </DropdownMenu>
+                </UncontrolledDropdown>
             </Fragment>
         );    
     }
