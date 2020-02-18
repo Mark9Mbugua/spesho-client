@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from "react";
 import {
-    Modal,
-    ModalHeader,
-    ModalBody,
-    NavLink
+    NavLink,
+    UncontrolledDropdown,
+    ButtonDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
   } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -12,7 +14,7 @@ import { getCategories } from '../../actions/categories';
 export class Categories extends Component {
 
     state = {
-        modal: false,
+        dropdownOpen: false,
     };
 
     static propTypes = {
@@ -21,9 +23,17 @@ export class Categories extends Component {
 
     toggle = () => {
         this.setState({
-            modal: !this.state.modal
+            dropdownOpen: !this.state.dropdownOpen
         });
     };
+
+    onMouseEnter = () => {
+        this.setState({dropdownOpen: true});
+      }
+    
+    onMouseLeave = () => {
+        this.setState({dropdownOpen: false});
+      }
 
     componentDidMount() {
         this.props.getCategories();
@@ -32,23 +42,28 @@ export class Categories extends Component {
     render() {
         return (
             <Fragment>
-                <NavLink onMouseOver={this.toggle} href='#'>
-                    Categories
-                </NavLink>
-
-                <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>Categories</ModalHeader>
-                    <ModalBody>
+                <UncontrolledDropdown
+                    onMouseOver={this.onMouseEnter} 
+                    isOpen={this.state.dropdownOpen}
+                    onMouseLeave={this.onMouseLeave} 
+                    toggle={this.toggle}>
+                    <DropdownToggle caret color="inherit">
+                        <span style={{color: "white"}}>Categories</span>
+                    </DropdownToggle>
+                    <DropdownMenu>
                         { this.props.categories.map(category =>(
-                                <NavLink key={category.id} 
-                                href={`api/v1/items/category/${category.id}/`}>
-                                    {category.category_name}
-                                </NavLink>      
+                            <DropdownItem key={category.id}>
+                                    <NavLink href="#">
+                                        <span style={{color: "black"}}>{category.category_name}</span>
+                                    </NavLink>      
+                            </DropdownItem>
                         )) }
-                    </ModalBody>
-                </Modal>
+                    </DropdownMenu>
+                </UncontrolledDropdown>
             </Fragment>
-        );    
+                        
+           
+          );    
     }
 }
 

@@ -9,4 +9,5 @@ export const ItemCardContainer = styled.div`
   justify-content:space-between;
   flex-wrap:wrap;
   margin-bottom: 20%;
+  z-index: -1;
 `;

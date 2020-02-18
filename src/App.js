@@ -6,6 +6,7 @@ import Header from './components/header/Header';
 import SingleCategory from './pages/SingleCategory';
 import SingleStore from './pages/SingleStore';
 import Home from './pages/Home';
+import './App.css';
 
 
 class App extends Component {

@@ -6,10 +6,14 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 
+import { ThemeProvider } from 'styled-components';
+import { theme } from './theme';
 
-ReactDOM.render(
+ReactDOM.render( 
     <BrowserRouter>
-    <App />
+        <ThemeProvider theme={ theme }>
+            <App />
+        </ThemeProvider>
     </BrowserRouter>, 
     document.getElementById('root'));
 
