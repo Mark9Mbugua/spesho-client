@@ -1,15 +1,9 @@
 import React, { Component, Fragment } from "react";
-import {
-    NavLink,
-    UncontrolledDropdown,
-    ButtonDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-} from 'reactstrap';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getStores } from '../../actions/stores';
+import { StoresList } from './stores-styles';
 
 export class Stores extends Component {
     state = {
@@ -17,50 +11,30 @@ export class Stores extends Component {
     };
 
     static propTypes = {
-        categories: PropTypes.array.isRequired
+        stores: PropTypes.array.isRequired
     };
 
     componentDidMount() {
         this.props.getStores();
     }
 
-    toggle = () => {
-        this.setState({
-            dropdownOpen: !this.state.dropdownOpen
-        });
-    };
-
-    onMouseEnter = () => {
-        this.setState({dropdownOpen: true});
-      }
-    
-    onMouseLeave = () => {
-        this.setState({dropdownOpen: false});
-    }
-
     render() {
         return (
-            <Fragment>
-                <UncontrolledDropdown
-                    onMouseOver={this.onMouseEnter} 
-                    isOpen={this.state.dropdownOpen}
-                    onMouseLeave={this.onMouseLeave} 
-                    toggle={this.toggle}>
-                    <DropdownToggle caret color="inherit">
-                        <span style={{color: "white"}}>Stores</span>
-                    </DropdownToggle>
-                    <DropdownMenu>
+            <StoresList>
+                <li className="menu-item">
+                    <Link to="#" className="link">stores</Link> 
+                    <ul className="dropdown-list">
                         { this.props.stores.map(store =>(
-                            <DropdownItem key={store.id}>
-                                    <NavLink href="#">
-                                    <span style={{color: "black"}}>{store.store_name}</span>
-                                    </NavLink>      
-                            </DropdownItem>
+                            <li key={store.id}>
+                                <Link to ="/stores" className="link">
+                                    {store.store_name}    
+                                </Link>      
+                            </li>
                         )) }
-                    </DropdownMenu>
-                </UncontrolledDropdown>
-            </Fragment>
-        );    
+                    </ul>
+                </li>     
+            </StoresList>
+        );
     }
 }
 

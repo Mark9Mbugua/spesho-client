@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import { NavItem } from 'reactstrap';
 import Categories from '../categories/Categories';
 import Stores from '../stores/Stores';
 
-
-const NavLinks = props => { 
+const MobileNavLinks = props => { 
     let tempTabIndex
     if(props.isMobileLink) {
         tempTabIndex = "-1" 
@@ -11,13 +12,13 @@ const NavLinks = props => {
     return (
         <ul className="nav-links">
             <li>
-                <Categories />
+                <Link to="/categories" className="link" tabIndex={tempTabIndex}>categories</Link> 
             </li>
             <li>
-                <Stores />
+                <Link to="/stores" className="link" tabIndex={tempTabIndex}>stores</Link>
             </li>
         </ul>
     )
 }
 
-export default NavLinks
+export default MobileNavLinks
