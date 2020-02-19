@@ -1,39 +1,15 @@
-import React, { Component, Fragment } from "react";
-import {
-    NavLink,
-    UncontrolledDropdown,
-    ButtonDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-  } from 'reactstrap';
+import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getCategories } from '../../actions/categories';
+import { CategoriesList } from './categories-styles';
 
 export class Categories extends Component {
-
-    state = {
-        dropdownOpen: false,
-    };
 
     static propTypes = {
         categories: PropTypes.array.isRequired
     };
-
-    toggle = () => {
-        this.setState({
-            dropdownOpen: !this.state.dropdownOpen
-        });
-    };
-
-    onMouseEnter = () => {
-        this.setState({dropdownOpen: true});
-      }
-    
-    onMouseLeave = () => {
-        this.setState({dropdownOpen: false});
-      }
 
     componentDidMount() {
         this.props.getCategories();
@@ -41,29 +17,21 @@ export class Categories extends Component {
 
     render() {
         return (
-            <Fragment>
-                <UncontrolledDropdown
-                    onMouseOver={this.onMouseEnter} 
-                    isOpen={this.state.dropdownOpen}
-                    onMouseLeave={this.onMouseLeave} 
-                    toggle={this.toggle}>
-                    <DropdownToggle caret color="inherit">
-                        <span style={{color: "white"}}>Categories</span>
-                    </DropdownToggle>
-                    <DropdownMenu>
+            <CategoriesList>
+                <li className="menu-item">
+                    <Link to="#" className="link">categories</Link> 
+                    <ul className="dropdown-list">
                         { this.props.categories.map(category =>(
-                            <DropdownItem key={category.id}>
-                                    <NavLink href="#">
-                                        <span style={{color: "black"}}>{category.category_name}</span>
-                                    </NavLink>      
-                            </DropdownItem>
+                            <li key={category.id}>
+                                <Link to ="/categories" className="link">
+                                    {category.category_name}    
+                                </Link>      
+                            </li>
                         )) }
-                    </DropdownMenu>
-                </UncontrolledDropdown>
-            </Fragment>
-                        
-           
-          );    
+                    </ul>
+                </li>     
+            </CategoriesList>         
+        );    
     }
 }
 
