@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getAllItems } from '../../actions/items';
-import ItemCard from '../common/Card'; 
-import ItemsContainer from './ItemsContainer';
+import ItemCard from '../common/Card';
+import ItemsContainer from './ItemsContainer'; 
 
-export class Items extends Component {
+export class HomePageItems extends Component {
     static propTypes = {
         items: PropTypes.array.isRequired
     };
@@ -15,7 +15,8 @@ export class Items extends Component {
     };
 
     render() {
-        const { items } = this.props
+        let { items } = this.props
+        items = items.filter(item => item.front_page === true)
         
         return <ItemsContainer items={items} />    
     }
@@ -26,4 +27,4 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { getAllItems })
-(Items);  
+(HomePageItems);  
