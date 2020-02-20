@@ -4,7 +4,6 @@ import Footer from '../components/common/Footer';
 
 
 const ItemsPerCategoryPage = (props) => {
-    console.log(props)
     return (
         <div>
             <ItemsPerCategory id={props.match.params.id} />

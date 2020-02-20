@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {  getAllItems } from '../../actions/items';
-import ItemCard from '../common/Card';
 import CustomTitle from '../common/CustomTitle';
 import ItemsContainer from './ItemsContainer';
 
@@ -19,9 +18,16 @@ class ItemsPerStore extends Component {
 
     render() {
         let { items, id } = this.props;
-        items = items.filter(item => item.store.id === id)
+        items = items.filter(item => item.store.id === id);
+        const storeNames = items.map(item => item.store.store_name);
+        const storeName = storeNames[0];
 
-        return <ItemsContainer items={items} />
+        return (
+            <div>
+                <CustomTitle>{ storeName }</CustomTitle>
+                <ItemsContainer items={items} />
+            </div>
+        );
     }
 }
 
