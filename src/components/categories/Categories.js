@@ -16,7 +16,6 @@ export class Categories extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <CategoriesList>
                 <li className="menu-item">
