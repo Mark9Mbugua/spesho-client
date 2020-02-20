@@ -3,8 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import Header from './components/header/Header';
-import SingleCategory from './pages/SingleCategory';
-import SingleStore from './pages/SingleStore';
+import ItemsPerCategoryPage from './pages/ItemsPerCategoryPage';
+import ItemsPerStorePage from './pages/ItemsPerStorePage';
 import Home from './pages/Home';
 import './App.css';
 
@@ -15,11 +15,13 @@ class App extends Component {
             <Provider store={store}>
                 <Header />
                 <Switch>
-                    <Route path="/items/category/:id" component=
-                    {SingleCategory} />
-                    <Route path="/items/store/:id" component=
-                    {SingleStore} />
-                    <Route path="/" component={Home} />
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/items/category/:id" 
+                        component={ItemsPerCategoryPage} 
+                    />
+                    <Route exact path="/items/store/:id" 
+                        component={ItemsPerStorePage} 
+                    />
                 </Switch>
             </Provider>
         );

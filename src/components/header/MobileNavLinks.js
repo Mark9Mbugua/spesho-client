@@ -1,8 +1,5 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { NavItem } from 'reactstrap';
-import Categories from '../categories/Categories';
-import Stores from '../stores/Stores';
 
 const MobileNavLinks = props => { 
     let tempTabIndex

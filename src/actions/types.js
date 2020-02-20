@@ -1,6 +1,7 @@
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_CATEGORY = 'GET_CATEGORY';
 export const GET_STORES = 'GET_STORES';
+export const GET_STORE = 'GET_STORE';
 export const GET_ALL_ITEMS = 'GET_ALL_ITEMS';
 export const GET_ITEMS_BY_CATEGORY = 'GET_ITEMS_BY_CATEGORY';
 export const GET_ITEMS_BY_STORE = 'GET_ITEMS_BY_STORE';
