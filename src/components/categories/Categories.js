@@ -16,6 +16,7 @@ export class Categories extends Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <CategoriesList>
                 <li className="menu-item">
@@ -23,7 +24,7 @@ export class Categories extends Component {
                     <ul className="dropdown-list">
                         { this.props.categories.map(category =>(
                             <li key={category.id}>
-                                <Link to ="/categories" className="link">
+                                <Link to={`/items/category/${category.id}`} className="link">
                                     {category.category_name}    
                                 </Link>      
                             </li>

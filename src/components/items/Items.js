@@ -20,8 +20,9 @@ export class Items extends Component {
             <div className="container">
                 <div className="row">
                     {items.map(item => (
-                        <div class="col-xs-6 m-2">
-                           <ItemCard 
+                        <div className="col-xs-6 m-2">
+                           <ItemCard
+                                key={item.id} 
                                 imageSrc={item.src} 
                                 title={item.deal_title}
                                 price={item.price}

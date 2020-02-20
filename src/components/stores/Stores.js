@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { getStores } from '../../actions/stores';
 import { StoresList } from './stores-styles';
 
@@ -26,7 +27,7 @@ export class Stores extends Component {
                     <ul className="dropdown-list">
                         { this.props.stores.map(store =>(
                             <li key={store.id}>
-                                <Link to ="/stores" className="link">
+                                <Link to ={`/items/store/${store.id}`} className="link">
                                     {store.store_name}    
                                 </Link>      
                             </li>
@@ -42,5 +43,5 @@ const mapStateToProps = state => ({
     stores: state.stores.stores
 });
 
-export default connect(mapStateToProps, { getStores })
-(Stores);  
+export default withRouter(connect(mapStateToProps, { getStores })
+(Stores));  

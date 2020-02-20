@@ -8,7 +8,7 @@ import {
 
 //get items by category
 export const getItemsByCategory = id => dispatch => {
-    let url = `http://127.0.0.1:8000/api/v1/items/category/${id}`;
+    let url = `http://127.0.0.1:8000/api/v1/items/category/${id}/`;
     axios
         .get(url)
         .then(res => {
@@ -22,7 +22,7 @@ export const getItemsByCategory = id => dispatch => {
 
 //get items per store
 export const getItemsByStore = id => dispatch => {
-    let url = `http://127.0.0.1:8000/api/v1/items/store/${id}`;
+    let url = `http://127.0.0.1:8000/api/v1/items/store/${id}/`;
     axios
         .get(url)
         .then(res => {

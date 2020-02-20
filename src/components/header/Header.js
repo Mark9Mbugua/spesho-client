@@ -7,24 +7,6 @@ import { NavbarContainer } from './header.styles';
 import Stores from '../stores/Stores';
 
 
-
-
-const categories = (
-    <Fragment>
-      <NavItem>
-        <Categories />
-      </NavItem>
-    </Fragment>
-  );
-
-  const stores = (
-    <Fragment>
-      <NavItem>
-        <Stores />
-      </NavItem>
-    </Fragment>
-  );
-
 class Header extends Component { 
    
   state = {
