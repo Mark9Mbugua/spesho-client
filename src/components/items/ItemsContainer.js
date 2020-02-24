@@ -10,7 +10,8 @@ const ItemsContainer = (props) => {
                 {items.map(item => (
                     <div className="col-xs-6 m-2">
                         <ItemCard
-                            key={item.id} 
+                            key={item.id}
+                            id={item.id} 
                             imageSrc={item.src} 
                             title={item.deal_title}
                             price={item.price}

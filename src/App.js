@@ -5,6 +5,7 @@ import store from './store';
 import Header from './components/header/Header';
 import ItemsPerCategoryPage from './pages/ItemsPerCategoryPage';
 import ItemsPerStorePage from './pages/ItemsPerStorePage';
+import ItemDetailPage from './pages/ItemDetailPage';
 import Home from './pages/Home';
 import './App.css';
 
@@ -21,6 +22,9 @@ class App extends Component {
                     />
                     <Route exact path="/items/store/:id" 
                         component={ItemsPerStorePage} 
+                    />
+                    <Route exact path="/items/:id" 
+                        component={ItemDetailPage} 
                     />
                 </Switch>
             </Provider>

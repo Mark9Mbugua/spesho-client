@@ -4,9 +4,10 @@ import Footer from '../components/common/Footer';
 
 
 const ItemsPerStorePage = (props) => {
+    const { id } = props.match.params
     return (
         <div>
-            <ItemsPerStore id={props.match.params.id} />
+            <ItemsPerStore id={id} />
             <Footer />
         </div>
     )

@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getAllItems } from '../../actions/items';
-import ItemCard from '../common/Card';
 import ItemsContainer from './ItemsContainer'; 
 
-export class HomePageItems extends Component {
+class HomePageItems extends Component {
     static propTypes = {
         items: PropTypes.array.isRequired
     };
@@ -15,6 +14,7 @@ export class HomePageItems extends Component {
     };
 
     render() {
+        //console.log(this.props)
         let { items } = this.props
         items = items.filter(item => item.front_page === true)
         

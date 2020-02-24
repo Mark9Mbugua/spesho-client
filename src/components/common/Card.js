@@ -1,9 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
@@ -11,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
+import { Link } from 'react-router-dom';
 
 import { ItemCardContainer } from './itemCard.styles';
 
@@ -25,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-const ItemCard = ({ imageSrc, title, price, oldPrice, discount, description}) => {    
+const ItemCard = ({ id, imageSrc, title, price, oldPrice, discount, description}) => {    
     const classes = useStyles();
     return (
         <ItemCardContainer>
@@ -55,9 +54,11 @@ const ItemCard = ({ imageSrc, title, price, oldPrice, discount, description}) =>
                     </IconButton>
                 </CardActions>
                 <CardActions>
-                    <Button size="small" color="primary" variant="outlined">
-                        View Details
-                    </Button>
+                    <Link to={`/items/${id}`}>
+                        <Button size="small" color="primary" variant="outlined">
+                            View Details
+                        </Button>
+                    </Link>
                 </CardActions>
             </Card>
         </ItemCardContainer>
