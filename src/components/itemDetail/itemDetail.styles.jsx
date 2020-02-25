@@ -4,44 +4,44 @@ export const ItemDetailContainer = styled.div`
     display: flex;
     flex-flow: column nowrap;
     padding: 15px;
-    margin: 30px 250px 40px 25px;
+    margin: 20px 250px 40px 25px;
+    border: 1px solid #cccccc;
 
     .header {
         display: flex;
         flex-flow: row nowrap;
-        border: 1px solid red;
+        border-bottom: 1px solid #cccccc;
         justify-content: space-around;
-        padding: 15px;
+        padding: 15px 15px 0;
         text-align: center;
 
         .menu {
             width: 65%;
             float: left;
-            border: 1px solid red;
+            border-bottom: 1px solid #cccccc;
           }
         
         .brand {
             float: right;
             width: 10%;
             font-weight: bold;
-            border: 1px solid red;
+            border-bottom: 1px solid #cccccc;
             text-align: center;
         }
     
     }
     .main {
         width: 100%;
-        margin-top: 30px;
+        margin-top: 0;
         display: flex;
         flex-flow: row nowrap;
         padding: 15px;
-        border: 1px solid red;
+        border-bottom: 1px solid #cccccc;
 
         .main-left {
             display: flex;
             flex-flow: column nowrap;
-            border: 1px solid red;
-            justify-content: space-between;
+            border-bottom: 1px solid #cccccc;
             padding: 15px;
             float-left;
             width:55%;
@@ -50,7 +50,6 @@ export const ItemDetailContainer = styled.div`
             .prices {
                 display: flex;
                 flex-flow: row nowrap;
-                border: 1px solid red;
                 justify-content: space-around;
                 align-items: left;
 
@@ -72,9 +71,19 @@ export const ItemDetailContainer = styled.div`
                 }
             }
 
+            .comments-count {
+                border-top: 1px solid #cccccc;
+                border-bottom: 1px solid #cccccc;
+                padding: 15px 15px 0;
+
+                p {
+                    margin-left: 80%;
+                }
+            }
+
             .description {
-                margin-bottom: 50%;
-                font-size: 3vh;
+                padding: 15px;
+                font-size: 2.5vh;
                 line-spacing; 1.5em;
             }
         }
@@ -82,10 +91,9 @@ export const ItemDetailContainer = styled.div`
         .main-right {
             display: flex;
             flex-flow: column nowrap;
-            padding: 15px;
             justify-content: right;
             items-align: center;
-            border: 1px solid red;
+            border-bottom: 1px solid #cccccc;
             width: 45%;
 
             .image-container {
@@ -94,7 +102,7 @@ export const ItemDetailContainer = styled.div`
                 justify-content: right;
                 items-align: center;
                 padding: 0;
-                border: 1px solid red;
+                border-bottom: 1px solid #cccccc;
                 width: 100%;
                 height: 80%;
                 
@@ -127,8 +135,8 @@ export const ItemDetailContainer = styled.div`
             }
             .good-deal {
                 margin-left: 70%;
+                margin-top: -3%;
                 margin-bottom:0;
-                border: 1px solid red;
                 height: 5%;
                 overflow-Y: hidden;  
             }
@@ -142,8 +150,17 @@ export const ItemDetailContainer = styled.div`
                 flex-flow: row nowrap;
                 justify-content: space-around;
                 items-align: center;
-                border: 1px solid red;
+                border-bottom: 1px solid #cccccc;
             }
+        }
+    
+        .comment-section {
+            width: 100%;
+            margin-top: 0;
+            display: flex;
+            flex-flow: row nowrap;
+            padding: 15px;
+            border-bottom: 1px solid #cccccc;
         }
       }
 `

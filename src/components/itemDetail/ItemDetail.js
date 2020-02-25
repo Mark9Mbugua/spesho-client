@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
+import InsertCommentTwoToneIcon from '@material-ui/icons/InsertCommentTwoTone';
 import { getItem } from '../../actions/items';
 import { ItemDetailContainer } from './itemDetail.styles';
 
@@ -17,8 +18,7 @@ class ItemDetail extends Component {
     };
     render() {
         let { items, id } = this.props
-        items = items.filter(item => item.id === id)     
-        console.log(items)
+        items = items.filter(item => item.id === id)
 
         return (
             <div>
@@ -39,8 +39,11 @@ class ItemDetail extends Component {
                                             <p>Ksh {item.original_price}</p>
                                         </div>
                                         <div className="discount">
-                                            <p>Off {item.discount}%</p>
+                                            <p>{item.discount}% off</p>
                                         </div>
+                                    </div>
+                                    <div className="comments-count">
+                                        <p><InsertCommentTwoToneIcon /> {item.comments_count} comments</p>
                                     </div>
                                     <div className="description">
                                         <p>{item.description}</p>
@@ -61,6 +64,8 @@ class ItemDetail extends Component {
                                         <hr />
                                     </div>  
                                 </div>
+                            </div>
+                            <div className="comment-section">
                             </div>
                             <p>{item.category.category_name}</p>
                             <p>{item.store.store_name}</p>
