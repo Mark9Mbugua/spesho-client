@@ -14,9 +14,9 @@ class HomePageItems extends Component {
     };
 
     render() {
-        //console.log(this.props)
         let { items } = this.props
         items = items.filter(item => item.front_page === true)
+        console.log(items)
         
         return <ItemsContainer items={items} />    
     }

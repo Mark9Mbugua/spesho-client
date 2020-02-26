@@ -6,6 +6,7 @@ import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 import InsertCommentTwoToneIcon from '@material-ui/icons/InsertCommentTwoTone';
 import { getItem } from '../../actions/items';
 import { ItemDetailContainer } from './itemDetail.styles';
+import CommentsList from '../commentSection/CommentsList';
 
 
 class ItemDetail extends Component {
@@ -19,6 +20,7 @@ class ItemDetail extends Component {
     render() {
         let { items, id } = this.props
         items = items.filter(item => item.id === id)
+        //console.log(items)
 
         return (
             <div>
@@ -65,8 +67,10 @@ class ItemDetail extends Component {
                                     </div>  
                                 </div>
                             </div>
-                            <div className="comment-section">
-                            </div>
+                            <CommentsList 
+                                objectId={this.props.id} 
+                                commentsCount={item.comments_count} 
+                            />
                             <p>{item.category.category_name}</p>
                             <p>{item.store.store_name}</p>
                         </div>                                         

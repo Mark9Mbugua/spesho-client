@@ -7,4 +7,5 @@ export const GET_ITEM = 'GET_ITEM';
 export const GET_ITEMS_BY_CATEGORY = 'GET_ITEMS_BY_CATEGORY';
 export const GET_ITEMS_BY_STORE = 'GET_ITEMS_BY_STORE';
 export const ITEMS_LOADING = 'ITEMS_LOADING';
+export const GET_COMMENTS = 'GET_COMMENTS';
 export const ITEM_LOADING = 'ITEM_LOADING';
