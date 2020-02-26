@@ -71,8 +71,6 @@ class ItemDetail extends Component {
                                 objectId={this.props.id} 
                                 commentsCount={item.comments_count} 
                             />
-                            <p>{item.category.category_name}</p>
-                            <p>{item.store.store_name}</p>
                         </div>                                         
                     </ItemDetailContainer>
                 ))}
