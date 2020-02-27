@@ -40,7 +40,7 @@ export class CommentsList extends Component {
                             </div>
                             <div className="user-info">
                                 <p className="username">{comment.user.username}</p>
-                                <p className="date-joined">Joined on: {comment.user.created_on}</p>
+                                <p className="date-joined">Joined {comment.user.created_on}</p>
                             </div> 
                         </div>
                         <div className="comment-details">
@@ -49,9 +49,9 @@ export class CommentsList extends Component {
                             <div className="comment-reaction">
                                 <Link to="#">Reply</Link>
                                 <p>Helpful Comment?</p>
-                                <p><ThumbUpAltOutlinedIcon /> 0</p>
+                                <p><ThumbUpAltOutlinedIcon /> {comment.likes_count}</p>
                                 <div className="vl"></div>
-                                <p><ThumbDownAltOutlinedIcon /> 0</p>
+                                <p><ThumbDownAltOutlinedIcon /> {comment.dislikes_count}</p>
                             </div>
                             
                         </div>

@@ -4,7 +4,7 @@ export const CommentsListContainer = styled.div`
     display: flex;
     flex-flow: column nowrap;
     padding: 15px;
-    border: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
 
     .main {
         display: flex;
@@ -29,7 +29,7 @@ export const CommentsListContainer = styled.div`
             }
             
             .user-info {
-                margin-left: -10%;
+                margin-left: -5%;
                 display: flex;
                 flex: 2;
                 flex-flow: column nowrap;
