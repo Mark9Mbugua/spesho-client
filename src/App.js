@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import Header from './components/header/Header';
+import SignUpForm from './components/auth/SignUpForm';
 import ItemsPerCategoryPage from './pages/ItemsPerCategoryPage';
 import ItemsPerStorePage from './pages/ItemsPerStorePage';
 import ItemDetailPage from './pages/ItemDetailPage';
@@ -25,6 +26,9 @@ class App extends Component {
                     />
                     <Route exact path="/items/:id" 
                         component={ItemDetailPage} 
+                    />
+                    <Route exact path="/signup" 
+                        component={SignUpForm} 
                     />
                 </Switch>
             </Provider>

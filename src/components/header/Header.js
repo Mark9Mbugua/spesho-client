@@ -3,6 +3,7 @@ import { NavItem } from 'reactstrap';
 import Categories from '../categories/Categories';
 import DesktopNavbar from './DesktopNavbar';
 import MobileNavbar from './MobileNavbar';
+import AuthNavbar from './AuthNavbar';
 import { NavbarContainer } from './header.styles';
 import Stores from '../stores/Stores';
 
@@ -40,6 +41,11 @@ class Header extends Component {
   }
 
   render() {
+    if (window.location.pathname === '/signup') return (
+      <NavbarContainer>
+        <AuthNavbar />
+      </NavbarContainer>
+    );
     return (
       <NavbarContainer>
         <DesktopNavbar 
@@ -48,7 +54,7 @@ class Header extends Component {
         />
         <MobileNavbar displayMobileNavbar={this.state.displayMobileNavbar} />
       </NavbarContainer>
-    )
+    );
   }
 }
 
