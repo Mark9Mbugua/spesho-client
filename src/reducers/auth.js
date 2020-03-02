@@ -1,11 +1,16 @@
+import jwt_decode from 'jwt-decode';
 import {
-    REGISTER_SUCCESS,
-    REGISTER_FAIL,
-    USER_LOADING
+  AUTH_ERROR,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  USER_LOADING,
+  USER_LOADED 
 } from '../actions/types';
   
 const initialState = {
-    token: null,
+    token: localStorage.getItem('token'),
     isAuthenticated: null,
     isLoading: false,
     user: null
@@ -18,12 +23,38 @@ export default function(state = initialState, action) {
           ...state,
           isLoading: true
         };
+      case USER_LOADED:
+        return {
+          ...state,
+          isAuthenticated: true,
+          isLoading: false,
+          user: action.payload
+        };
       case REGISTER_SUCCESS:
         return {
           ...state,
           isLoading: false,
           user: action.payload
         };
+      case LOGIN_SUCCESS:
+        localStorage.setItem('token', action.payload.token)
+        return {
+          ...state,
+          isAuthenticated: true,
+          isLoading: false,
+          token: action.payload.token,
+          user: jwt_decode(action.payload.token)
+        };
+        case AUTH_ERROR:
+        case LOGIN_FAIL:
+        case REGISTER_FAIL:
+          return {
+            ...state,
+            token: null,
+            user: null,
+            isAuthenticated: false,
+            isLoading: false
+          };
       default:
         return state;
     }

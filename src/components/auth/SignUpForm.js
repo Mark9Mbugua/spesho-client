@@ -7,13 +7,16 @@ import { SignUpFormContainer } from './signUpForm.styles';
 import Footer from '../common/Footer';
 
 class SignUpForm extends Component{
-    state = {
-        email: '',
-        first_name: '',
-        last_name: '',
-        username: '',
-        password: ''
-    };
+    constructor(props){
+        super(props);
+        this.state = {
+            email: '',
+            first_name: '',
+            last_name: '',
+            username: '',
+            password: ''
+        };
+    }
 
     handleChange = e => {
         const { name, value } = e.target;
@@ -21,38 +24,36 @@ class SignUpForm extends Component{
         this.setState({ [name]: value });
     };
 
-    handleSubmit = e => {
+    handleSubmit = e=> {
         e.preventDefault();
 
         const { email, first_name, last_name, username, password } = this.state;
         //const { isAuthenticated } = this.props;
 
         // Create user object
-        const newUser = {
+        const user = {
             email,
             first_name,
             last_name,
             username,
             password
         };
-
-        this.props.register(newUser)
-
-        //clear state
-        this.setState({
-            first_name:'',
-            last_name: '',
-            email: '',
-            username: '',
-            password: ''
-        });
         
-        //user is redirected to signin page on successful registration
-        this.props.history.push('/signin')
+        this.props.register(user); 
+        
+        //clear state
+        // this.setState({
+        //     first_name:'',
+        //     last_name: '',
+        //     email: '',
+        //     username: '',
+        //     password: ''
+        // });
+        
     };
  
     render(){
-        //console.log(this.props)
+        console.log(this.props)
         return(
             <div>
                 <SignUpFormContainer>
@@ -130,7 +131,8 @@ class SignUpForm extends Component{
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
-    error: state.error
+    user: state.auth.user,
+    error: state.errors
 });
 
 export default connect(mapStateToProps, { register })(SignUpForm);

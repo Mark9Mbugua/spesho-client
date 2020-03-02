@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { NavItem } from 'reactstrap';
-import Categories from '../categories/Categories';
 import DesktopNavbar from './DesktopNavbar';
 import MobileNavbar from './MobileNavbar';
 import AuthNavbar from './AuthNavbar';
@@ -41,11 +40,12 @@ class Header extends Component {
   }
 
   render() {
-    if (window.location.pathname === '/signup') return (
-      <NavbarContainer>
-        <AuthNavbar />
-      </NavbarContainer>
-    );
+    if (window.location.pathname === '/signup' || window.location.pathname === '/signin') 
+      return (
+        <NavbarContainer>
+          <AuthNavbar />
+        </NavbarContainer>
+      );
     return (
       <NavbarContainer>
         <DesktopNavbar 

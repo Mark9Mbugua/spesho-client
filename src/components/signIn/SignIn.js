@@ -1,11 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CustomButton from '../common/CustomButton';
 
-const SignIn = (props) => {
+const SignIn = () => {
     return (
-        <CustomButton isSignIn>
-            Sign In
-        </CustomButton>
+        <Link to='/signin'>
+            <CustomButton isSignIn>
+                Sign In
+            </CustomButton>
+        </Link>
     )
 }
 

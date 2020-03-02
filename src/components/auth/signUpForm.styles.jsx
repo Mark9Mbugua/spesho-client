@@ -70,12 +70,15 @@ export const SignUpFormContainer = styled.div`
                 border-color: #FFFFFF;
             }
         }
+        .forgot-password {
+            padding: 8px;
+        }
     }
 
     .termsLink {
-        padding-top: 20px;
+        padding-top: 25px;
         p {
-            font-size: 14px;
+            font-size: 12px;
         }
     }
 
