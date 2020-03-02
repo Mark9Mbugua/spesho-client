@@ -5,11 +5,11 @@ import store from './store';
 import Header from './components/header/Header';
 import SignUpForm from './components/auth/SignUpForm';
 import SignInForm from './components/auth/SignInForm';
+import ProfileOverview from './components/auth/userProfile/ProfileOverview';
 import ItemsPerCategoryPage from './pages/ItemsPerCategoryPage';
 import ItemsPerStorePage from './pages/ItemsPerStorePage';
 import ItemDetailPage from './pages/ItemDetailPage';
 import Home from './pages/Home';
-import { history } from './helpers/history';
 import './App.css';
 
 const App = () => {
@@ -32,6 +32,9 @@ const App = () => {
                 />
                 <Route exact path="/signin" 
                     component={SignInForm} 
+                />
+                <Route exact path="/my-profile" 
+                    component={ProfileOverview} 
                 />
             </Switch>
         </Provider>
