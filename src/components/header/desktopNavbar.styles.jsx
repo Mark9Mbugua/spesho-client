@@ -58,6 +58,17 @@ export const DesktopNavbarContainer = styled.nav`
         }
     }
 
+    .user-details {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-evenly;
+        width: 12vw;
+
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
+    }
+
     .nav-links {
         display: flex;
         flex-flow: row nowrap;

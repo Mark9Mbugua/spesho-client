@@ -1,9 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import { NavItem } from 'reactstrap';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import DesktopNavbar from './DesktopNavbar';
 import MobileNavbar from './MobileNavbar';
 import AuthNavbar from './AuthNavbar';
 import { NavbarContainer } from './header.styles';
+import { loadUserProfile } from '../../actions/auth';
 import Stores from '../stores/Stores';
 
 
@@ -16,6 +17,7 @@ class Header extends Component {
   //event listener that is going to listen to resize events
   componentDidMount = () => {
     window.addEventListener('resize', this.checkAndAutoHideMobileNavbar)
+    this.props.loadUserProfile();
   }
 
   //clean up after component mounts
@@ -40,6 +42,9 @@ class Header extends Component {
   }
 
   render() {
+    let { isAuthenticated, user } = this.props
+    // console.log(isAuthenticated)
+    // console.log(user)
     if (window.location.pathname === '/signup' || window.location.pathname === '/signin') 
       return (
         <NavbarContainer>
@@ -49,13 +54,25 @@ class Header extends Component {
     return (
       <NavbarContainer>
         <DesktopNavbar 
+          isAuth={isAuthenticated}
+          profile={user}
           displayMobileNavbar={this.state.displayMobileNavbar}
           toggleMobileNavbar={this.toggleMobileNavbar} 
         />
-        <MobileNavbar displayMobileNavbar={this.state.displayMobileNavbar} />
+        <MobileNavbar 
+          isAuth={isAuthenticated}
+          profile={user}
+          displayMobileNavbar={this.state.displayMobileNavbar} 
+        />
       </NavbarContainer>
     );
   }
 }
 
-export default Header
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
+  error: state.errors
+});
+
+export default connect(mapStateToProps, { loadUserProfile })(Header)

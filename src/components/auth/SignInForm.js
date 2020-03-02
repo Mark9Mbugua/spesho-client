@@ -32,12 +32,7 @@ class SignUpForm extends Component{
         };
 
         this.props.login(user)
-
-        //clear state
-        // this.setState({
-        //     username: '',
-        //     password: ''
-        // });
+        
     };
  
     render(){
@@ -94,6 +89,7 @@ class SignUpForm extends Component{
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user,
     error: state.errors
 });
 

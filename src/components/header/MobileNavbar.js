@@ -1,16 +1,29 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { MobileNavbarContainer } from './mobileNavbar.styles'
 import MobileNavLinks from './MobileNavLinks';
 import SignUp from '../signUp/SignUp';
 import SignIn from '../signIn/SignIn';
 
 const MobileNavbar = props => {
+    const { isAuth, profile } = props;
+    const guestLinks = (
+        <Fragment>
+            <SignIn />
+            <SignUp />
+        </Fragment>
+    );
+
+    const authLinks = (
+        <Fragment>
+            <p>{profile && profile.user ? `${profile.user.username}` : ''}</p>
+        </Fragment>
+    );
+
     return (
         <MobileNavbarContainer displayMobileNavbar={props.displayMobileNavbar}>
             <MobileNavLinks isMobileLink={true} />
             <div className="auth-buttons">
-                <SignIn />
-                <SignUp />
+                {isAuth ? authLinks : guestLinks}
             </div>
         </MobileNavbarContainer>
     )
