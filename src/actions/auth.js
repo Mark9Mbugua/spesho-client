@@ -9,7 +9,8 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     USER_LOADING,
-    USER_LOADED 
+    USER_LOADED,
+    LOGOUT_SUCCESS 
 } from './types';
 
 
@@ -97,6 +98,12 @@ export const login = ({ username, password }) => dispatch => {
         })
 };
 
+// Logout User
+export const logout = () => {
+  return {
+    type: LOGOUT_SUCCESS
+  };
+};
 
 // Setup config/headers and token
 export const tokenConfig = getState => {
