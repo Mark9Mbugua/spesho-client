@@ -3,6 +3,7 @@ import { MobileNavbarContainer } from './mobileNavbar.styles'
 import MobileNavLinks from './MobileNavLinks';
 import SignUp from '../signUp/SignUp';
 import SignIn from '../signIn/SignIn';
+import Logout from '../auth/Logout';
 
 const MobileNavbar = props => {
     const { isAuth, profile } = props;
@@ -16,6 +17,7 @@ const MobileNavbar = props => {
     const authLinks = (
         <Fragment>
             <p>{profile && profile.user ? `${profile.user.username}` : ''}</p>
+            <Logout />
         </Fragment>
     );
 
