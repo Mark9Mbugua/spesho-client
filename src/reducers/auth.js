@@ -42,8 +42,7 @@ export default function(state = initialState, action) {
           ...state,
           isAuthenticated: true,
           isLoading: false,
-          token: action.payload.token,
-          user: jwt_decode(action.payload.token)
+          token: action.payload.token
         };
         case AUTH_ERROR:
         case LOGIN_FAIL:

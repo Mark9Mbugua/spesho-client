@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import DesktopNavbar from './DesktopNavbar';
 import MobileNavbar from './MobileNavbar';
 import AuthNavbar from './AuthNavbar';
 import { NavbarContainer } from './header.styles';
 import { loadUserProfile } from '../../actions/auth';
-import Stores from '../stores/Stores';
 
 
 class Header extends Component { 
-   
-  state = {
-    displayMobileNavbar: false
-  }
+  constructor(props){
+    super(props);
+    this.state = {
+      displayMobileNavbar: false,
+      isAuth: false,
+      profile: {}
+    }
+  } 
+
 
   //event listener that is going to listen to resize events
   componentDidMount = () => {
     window.addEventListener('resize', this.checkAndAutoHideMobileNavbar)
-    this.props.loadUserProfile();
   }
 
   //clean up after component mounts
@@ -42,9 +44,8 @@ class Header extends Component {
   }
 
   render() {
-    let { isAuthenticated, user } = this.props
-    // console.log(isAuthenticated)
-    // console.log(user)
+    let { isAuth, profile } = this.props
+    console.log(this.props)
     if (window.location.pathname === '/signup' || window.location.pathname === '/signin') 
       return (
         <NavbarContainer>
@@ -53,15 +54,15 @@ class Header extends Component {
       );
     return (
       <NavbarContainer>
-        <DesktopNavbar 
-          isAuth={isAuthenticated}
-          profile={user}
+        <DesktopNavbar
+          isAuth={isAuth}
+          profile={profile} 
           displayMobileNavbar={this.state.displayMobileNavbar}
           toggleMobileNavbar={this.toggleMobileNavbar} 
         />
-        <MobileNavbar 
-          isAuth={isAuthenticated}
-          profile={user}
+        <MobileNavbar
+          isAuth={isAuth}
+          profile={profile}  
           displayMobileNavbar={this.state.displayMobileNavbar} 
         />
       </NavbarContainer>
@@ -69,10 +70,4 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
-  user: state.auth.user,
-  error: state.errors
-});
-
-export default connect(mapStateToProps, { loadUserProfile })(Header)
+export default Header

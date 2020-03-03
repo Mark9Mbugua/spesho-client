@@ -41,19 +41,10 @@ class SignUpForm extends Component{
         
         this.props.register(user); 
         
-        //clear state
-        // this.setState({
-        //     first_name:'',
-        //     last_name: '',
-        //     email: '',
-        //     username: '',
-        //     password: ''
-        // });
-        
     };
  
     render(){
-        console.log(this.props)
+        //console.log(this.props)
         return(
             <div>
                 <SignUpFormContainer>
