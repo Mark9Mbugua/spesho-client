@@ -5,7 +5,6 @@ import { loadUserProfile } from '../../actions/auth';
 import Header from '../header/Header';
 import SignUpForm from '../auth/SignUpForm';
 import SignInForm from '../auth/SignInForm';
-import ProfileOverview from '../auth/userProfile/ProfileOverview';
 import ItemsPerCategoryPage from '../../pages/ItemsPerCategoryPage';
 import ItemsPerStorePage from '../../pages/ItemsPerStorePage';
 import ItemDetailPage from '../../pages/ItemDetailPage';

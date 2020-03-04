@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loadUserProfile } from '../../../actions/auth';
-import { ProfileItemsList } from './profileoverview.styles';
+import { ProfileItemsList } from './profileMenu.styles';
 import Logout from '../Logout';
 
-class ProfileOverview extends Component {
+class ProfileMenu extends Component {
     static propTypes = {
         profile: PropTypes.object.isRequired
     };
@@ -66,4 +66,4 @@ const mapStateToProps = state => ({
     error: state.errors
 });
 
-export default (connect(mapStateToProps, { loadUserProfile })(ProfileOverview))
+export default (connect(mapStateToProps, { loadUserProfile })(ProfileMenu))
