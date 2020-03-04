@@ -7,7 +7,6 @@ import mobileNavIcon from '../../images/mobile-nav-icon.svg';
 import SearchBar from './SearchBar';
 import SignUp from '../signUp/SignUp';
 import SignIn from '../signIn/SignIn';
-import Logout from '../auth/Logout';
 import ProfileOverview from '../auth/userProfile/ProfileOverview';
 import SiteLogo from './SiteLogo';
 
@@ -24,8 +23,10 @@ const DesktopNavbar = props => {
 
     const authLinks = (
         <Fragment>
-            <ProfileOverview profile={profile}/>
-            <Logout />
+            <ProfileOverview 
+                profile={profile}
+                isAuth={isAuth}
+            />
         </Fragment>
     );
 
@@ -38,9 +39,9 @@ const DesktopNavbar = props => {
             <NavLinks />
             <div className="right-navbar">
                 <SearchBar />
-                <div className="auth-buttons">
+            </div>
+            <div className="auth-buttons">
                   {isAuth ? authLinks : guestLinks}  
-                </div>
             </div>
             <MyMobileNavButton
                 displayMobileNavbar={props.displayMobileNavbar}

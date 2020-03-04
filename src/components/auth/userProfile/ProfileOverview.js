@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loadUserProfile } from '../../../actions/auth';
+import { ProfileItemsList } from './profileoverview.styles';
+import Logout from '../Logout';
 
 class ProfileOverview extends Component {
     static propTypes = {
@@ -13,9 +15,47 @@ class ProfileOverview extends Component {
         const { profile } =this.props;
         console.log(profile)
         return (
-            <div>
-                <p>{profile && profile.user ? `${profile.user.username}` : ''}</p>
-            </div>
+            <ul className="nav-links">
+                <li>
+                    <ProfileItemsList>
+                        <li className="menu-item">
+                            <Link to="#" className="link">
+                                {profile && profile.user ? `${profile.user.username}` : ''}
+                            </Link>
+                            <ul className="dropdown-list">
+                                <li className="link-body">
+                                    <Link to="#" className="item-link">
+                                        ProfileOverview    
+                                    </Link>      
+                                </li>
+                                <li className="link-body">
+                                    <Link to="#" className="item-link">
+                                        My Deal Alerts    
+                                    </Link>      
+                                </li>
+                                <li className="link-body">
+                                    <Link to="#" className="item-link">
+                                        Saved Items    
+                                    </Link>      
+                                </li>
+                                <li className="link-body">
+                                    <Link to="#" className="item-link">
+                                        Notifications    
+                                    </Link>      
+                                </li>
+                                <li className="link-body">
+                                    <Link to="#" className="item-link">
+                                        Settings & Options    
+                                    </Link>      
+                                </li>
+                                <li className="link-body">
+                                    <Logout />      
+                                </li>
+                            </ul>
+                        </li>
+                    </ProfileItemsList>
+                </li>
+            </ul> 
         );
     }
 }

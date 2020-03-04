@@ -1,6 +1,5 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { logout } from '../../actions/auth';
 import { LogoutContainer } from './logout.styles';
@@ -8,7 +7,7 @@ import { LogoutContainer } from './logout.styles';
 const Logout = ({ logout }) => {
     return (
         <LogoutContainer>
-            <Link to="/signin" className="logout-link" onClick={logout}>Logout</Link>
+            <Link to="/signin" className="item-link" onClick={logout}>Logout</Link>
         </LogoutContainer>
     )
 }
