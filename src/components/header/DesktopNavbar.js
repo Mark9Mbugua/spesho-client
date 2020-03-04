@@ -7,7 +7,7 @@ import mobileNavIcon from '../../images/mobile-nav-icon.svg';
 import SearchBar from './SearchBar';
 import SignUp from '../signUp/SignUp';
 import SignIn from '../signIn/SignIn';
-import ProfileOverview from '../auth/userProfile/ProfileOverview';
+import ProfileOverview from '../auth/userProfile/ProfileMenu';
 import SiteLogo from './SiteLogo';
 
 const DesktopNavbar = props => {

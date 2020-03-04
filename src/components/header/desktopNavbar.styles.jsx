@@ -41,6 +41,7 @@ export const DesktopNavbarContainer = styled.nav`
         justify-content: space-evenly;
         margin-left: 25%;
 
+
         @media screen and (max-width: 768px) {
             margin-left: 0;
         }

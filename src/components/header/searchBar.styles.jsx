@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const SearchBarForm = styled.form`
-    margin-top: 3px;
+    margin-bottom: 5px;
     flex-flow: row nowrap;
-    justify-content: left;
+    justify-content: right;
     display: flex;
+    margin-right: -20%;
     
     .search-icon {
         padding: 0 5px;
