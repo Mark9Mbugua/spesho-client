@@ -87,7 +87,7 @@ export const DesktopNavbarContainer = styled.nav`
 
         padding: 0 1rem;
 
-        font-size: 2.5vh;
+        font-size: 2.7vh;
         text-decoration: none;
         border-radius: 10px;
 
