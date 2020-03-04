@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const SearchBarForm = styled.form`
-    margin-bottom: 0;
-    margin-top: 6px;
+    margin-top: 3px;
     flex-flow: row nowrap;
     justify-content: left;
     display: flex;

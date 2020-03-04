@@ -18,6 +18,7 @@ class AppContainer extends Component {
     }
 
     render() {
+        console.log(this.props)
         const { isAuthenticated, user } = this.props
         return (
             <div>
@@ -42,8 +43,17 @@ class AppContainer extends Component {
                     <Route exact path="/signin" 
                         component={SignInForm} 
                     />
-                    <Route exact path="/my-profile" 
-                        component={ProfileOverview} 
+                    <Route 
+                        exact 
+                        path="/my-profile" 
+                        render={
+                            (props) => 
+                            <ProfileOverview 
+                                {...props} 
+                                isAuth={isAuthenticated}
+                                profile={user} 
+                            />
+                        }
                     />
                 </Switch>
             </div>

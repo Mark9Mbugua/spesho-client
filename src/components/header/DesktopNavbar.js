@@ -8,6 +8,7 @@ import SearchBar from './SearchBar';
 import SignUp from '../signUp/SignUp';
 import SignIn from '../signIn/SignIn';
 import Logout from '../auth/Logout';
+import ProfileOverview from '../auth/userProfile/ProfileOverview';
 import SiteLogo from './SiteLogo';
 
 const DesktopNavbar = props => {
@@ -23,7 +24,7 @@ const DesktopNavbar = props => {
 
     const authLinks = (
         <Fragment>
-            <p>{profile && profile.user ? `${profile.user.username}` : ''}</p>
+            <ProfileOverview profile={profile}/>
             <Logout />
         </Fragment>
     );
