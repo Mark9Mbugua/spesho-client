@@ -9,12 +9,12 @@ export const ProfileItemsList = styled.ul`
 
     .menu-item:hover ul {
         display: flex;
-        flex-wrap: wrap;
+        flex-flow: column nowrap;
         justify-content: center;
         align-items: center;
         position: absolute;
         margin-top: -1.8%;
-        max-width: 200px;
+        width: 200px;
         background: #ccc;
         z-index: 1; 
         

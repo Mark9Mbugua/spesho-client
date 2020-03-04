@@ -8,6 +8,7 @@ import SignInForm from '../auth/SignInForm';
 import ItemsPerCategoryPage from '../../pages/ItemsPerCategoryPage';
 import ItemsPerStorePage from '../../pages/ItemsPerStorePage';
 import ItemDetailPage from '../../pages/ItemDetailPage';
+import ProfilePage from '../../pages/ProfilePage';
 import Home from '../../pages/Home';
 
 class AppContainer extends Component {
@@ -41,6 +42,9 @@ class AppContainer extends Component {
                     />
                     <Route exact path="/signin" 
                         component={SignInForm} 
+                    />
+                    <Route exact path="/profile" 
+                        component={ProfilePage} 
                     />
                 </Switch>
             </div>
