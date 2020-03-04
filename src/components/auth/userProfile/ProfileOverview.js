@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { loadUserProfile } from '../../../actions/auth';
 
 class ProfileOverview extends Component {
     static propTypes = {
-        user: PropTypes.object.isRequired
-    };
-
-    componentDidMount() {
-        this.props.loadUserProfile();
+        profile: PropTypes.object.isRequired
     };
 
     render() {
-        let { user } =this.props;
-        console.log(user)
+        const { profile } =this.props;
+        console.log(profile)
         return (
             <div>
-                <h1>My profile</h1>
-                <p></p>
+                <p>{profile && profile.user ? `${profile.user.username}` : ''}</p>
             </div>
         );
     }
@@ -30,4 +26,4 @@ const mapStateToProps = state => ({
     error: state.errors
 });
 
-export default connect(mapStateToProps, { loadUserProfile })(ProfileOverview)
+export default (connect(mapStateToProps, { loadUserProfile })(ProfileOverview))

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
 import AppContainer from './components/appContainer/AppContainer';
@@ -14,4 +14,9 @@ const App = () => {
 }
 
 export default App;
+
+
+
+
+
 

@@ -3,7 +3,6 @@ import DesktopNavbar from './DesktopNavbar';
 import MobileNavbar from './MobileNavbar';
 import AuthNavbar from './AuthNavbar';
 import { NavbarContainer } from './header.styles';
-import { loadUserProfile } from '../../actions/auth';
 
 
 class Header extends Component { 
@@ -12,14 +11,15 @@ class Header extends Component {
     this.state = {
       displayMobileNavbar: false,
       isAuth: false,
-      profile: {}
+      profile: {},
+      isLoaded: false
     }
   } 
 
 
   //event listener that is going to listen to resize events
   componentDidMount = () => {
-    window.addEventListener('resize', this.checkAndAutoHideMobileNavbar)
+    window.addEventListener('resize', this.checkAndAutoHideMobileNavbar);
   }
 
   //clean up after component mounts
