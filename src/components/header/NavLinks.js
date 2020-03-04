@@ -3,7 +3,7 @@ import Categories from '../categories/Categories';
 import Stores from '../stores/Stores';
 
 
-const NavLinks = props => { 
+const NavLinks = () => { 
 
     return (
         <ul className="nav-links">

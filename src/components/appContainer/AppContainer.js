@@ -43,18 +43,6 @@ class AppContainer extends Component {
                     <Route exact path="/signin" 
                         component={SignInForm} 
                     />
-                    <Route 
-                        exact 
-                        path="/my-profile" 
-                        render={
-                            (props) => 
-                            <ProfileOverview 
-                                {...props} 
-                                isAuth={isAuthenticated}
-                                profile={user} 
-                            />
-                        }
-                    />
                 </Switch>
             </div>
         )
