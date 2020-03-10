@@ -9,6 +9,7 @@ import ItemsPerCategoryPage from '../../pages/ItemsPerCategoryPage';
 import ItemsPerStorePage from '../../pages/ItemsPerStorePage';
 import ItemDetailPage from '../../pages/ItemDetailPage';
 import ProfilePage from '../../pages/ProfilePage';
+import SavedItemsPage from '../../pages/SavedItemsPage';
 import Home from '../../pages/Home';
 
 class AppContainer extends Component {
@@ -45,6 +46,9 @@ class AppContainer extends Component {
                     />
                     <Route exact path="/profile" 
                         component={ProfilePage} 
+                    />
+                    <Route exact path="/saved-items" 
+                        component={SavedItemsPage} 
                     />
                 </Switch>
             </div>
