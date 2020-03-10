@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { loadUserProfile } from '../actions/auth';
 import Footer from '../components/common/Footer';
 import ProfileHeader from '../components/auth/userProfile/profileHeader/ProfileHeader';
+import ProfileBody from '../components/auth/userProfile/profileBody/ProfileBody';
+
 
 class ProfilePage extends Component {
     componentDidMount() {
@@ -14,6 +16,10 @@ class ProfilePage extends Component {
         return (
             <div>
                 <ProfileHeader 
+                    isAuth={isAuthenticated}
+                    profile={user}
+                />
+                <ProfileBody 
                     isAuth={isAuthenticated}
                     profile={user}
                 />
