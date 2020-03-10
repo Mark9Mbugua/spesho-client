@@ -24,7 +24,7 @@ const ProfileMenu = ({ profile }) => {
                                 </Link>      
                             </li>
                             <li className="link-body">
-                                <Link to="#" className="item-link">
+                                <Link to="/saved-items" className="item-link">
                                     Saved Items    
                                 </Link>      
                             </li>
