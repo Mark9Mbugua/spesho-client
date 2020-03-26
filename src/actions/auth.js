@@ -13,6 +13,8 @@ import {
     PROFILE_LOADING,
     PROFILE_LOADED,
     UPDATE_PROFILE,
+    UPDATE_PHONE,
+    VERIFY_CODE,
     LOGOUT_SUCCESS 
 } from './types';
 
@@ -48,6 +50,48 @@ export const updateUserProfile = ({bio, avatar, birth_date, gender}) => (dispatc
     .then(res =>
       dispatch({
         type: UPDATE_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: AUTH_ERROR
+      });
+    });
+};
+
+//update user phone number
+export const updatePhoneNumber = ({phone_number}) => (dispatch, getState) => {
+  // Request body
+  const body = JSON.stringify({ phone_number });
+
+  axios
+    .patch('http://127.0.0.1:8000/api/v1/accounts/user/update/phone-number', body, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: UPDATE_PHONE,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: AUTH_ERROR
+      });
+    });
+};
+
+//verify confirmation code
+export const verifyCode = ({confirmation_code}) => (dispatch, getState) => {
+  // Request body
+  const body = JSON.stringify({ confirmation_code });
+
+  axios
+    .put('http://127.0.0.1:8000/api/v1/accounts/user/verification-code', body, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: VERIFY_CODE,
         payload: res.data
       })
     )

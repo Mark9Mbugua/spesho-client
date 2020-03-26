@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateUserProfile } from '../../../../actions/auth';
+import { verifyCode } from '../../../../actions/auth';
 import {
     Button,
     Modal,
@@ -13,11 +13,11 @@ import {
 } from 'reactstrap';
 import EditIcon from '@material-ui/icons/Edit';
 
-class UpdateBioModal extends Component {
+class VerifyCodeModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bio: props.bio,
+            confirmationCode: props.confirmation_code,
             modal: false
         };
     }
@@ -30,12 +30,13 @@ class UpdateBioModal extends Component {
 
     handleSubmit = e => {
         e.preventDefault();  
-        const bio = {bio: this.state.bio};
+        let confirmationCode = this.state.confirmationCode;
+        let confirmation_code = {confirmation_code: confirmationCode};
+        // update phone via verifyCode action
+        console.log(confirmation_code);
+        this.props.verifyCode(confirmation_code);
 
-        // update bio via updateUser action
-        this.props.updateUserProfile(bio);
-
-        this.toggle()
+        this.toggle();
     
     };
 
@@ -47,25 +48,27 @@ class UpdateBioModal extends Component {
 
     render() {
         //const { getProfile } = this.props;
-        //console.log(getProfile)
+        console.log(this.props)
         return (
             <div>
-                <EditIcon onClick={this.toggle} />
+                <Button color='dark' onClick={this.toggle}>
+                    Verify Code
+                </Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>Update Bio</ModalHeader>
+                    <ModalHeader toggle={this.toggle}>Verify confirmation code</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.handleSubmit}>
                             <FormGroup>
-                                <Label for='bio'>Bio</Label>
+                                <Label for='confirmationCode'> Enter confirmation code</Label>
                                 <Input
                                     type='text'
-                                    name='bio'
-                                    id='bio'
-                                    value={this.state.bio}
+                                    name='confirmationCode'
+                                    id='confirmationCode'
+                                    value={this.state.confirmationCode}
                                     onChange={this.handleChange}
                                 />
                                 <Button color='dark' style={{ marginTop: '2rem' }}>
-                                    Update Bio
+                                    Verify Code
                                 </Button>
                             </FormGroup>
                         </Form>
@@ -81,4 +84,4 @@ const mapStateToProps = state => ({
     error: state.errors
 });
 
-export default connect(mapStateToProps, { updateUserProfile })(UpdateBioModal)
+export default connect(mapStateToProps, { verifyCode })(VerifyCodeModal)

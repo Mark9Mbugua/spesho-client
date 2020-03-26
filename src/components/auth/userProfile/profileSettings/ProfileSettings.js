@@ -1,6 +1,8 @@
 import React from 'react';
 import UpdateBioModal from './UpdateBioModal';
 import UpdateGenderModal from './UpdateGenderModal';
+import UpdatePhoneModal from './UpdatePhoneModal';
+import VerifyCodeModal from './VerifyCodeModal';
 import UpdateBirthDate from './UpdateBirthDate';
 import { ProfileSettingsContainer } from './profileSettings.styles'; 
 
@@ -25,6 +27,18 @@ const ProfileSettings = ({ getProfile }) => {
                         <span>{getProfile && getProfile.user ? `${getProfile.gender}` : 'Edit Gender'}</span>
                         <div className="icon">
                             <UpdateGenderModal getProfile={getProfile} />
+                        </div>
+                    </div>
+                </div>
+                <div className="modal-body">
+                    <p>Phone</p>
+                    <div className="edit">
+                        <span>{getProfile && getProfile.user ? `${getProfile.phone_number}` : 'Edit Phone Number'}</span>
+                        <div className="icon">
+                            <UpdatePhoneModal getProfile={getProfile} />
+                        </div>
+                        <div className="verify-button">
+                            <VerifyCodeModal getProfile={getProfile} />
                         </div>
                     </div>
                 </div>
