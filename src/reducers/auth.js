@@ -7,6 +7,9 @@ import {
   LOGIN_FAIL,
   USER_LOADING,
   USER_LOADED,
+  PROFILE_LOADING,
+  PROFILE_LOADED,
+  UPDATE_PROFILE,
   LOGOUT_SUCCESS 
 } from '../actions/types';
   
@@ -14,12 +17,14 @@ const initialState = {
     token: localStorage.getItem('token'),
     isAuthenticated: null,
     isLoading: false,
-    user: null
+    user: null,
+    profile: null
 };
   
 export default function(state = initialState, action) {
     switch (action.type) {
       case USER_LOADING:
+      case PROFILE_LOADING:
         return {
           ...state,
           isLoading: true
@@ -30,6 +35,18 @@ export default function(state = initialState, action) {
           isAuthenticated: true,
           isLoading: false,
           user: action.payload
+        };
+      case PROFILE_LOADED:
+        return {
+          ...state,
+          isAuthenticated: true,
+          isLoading: false,
+          profile: action.payload
+        };
+      case UPDATE_PROFILE:
+        return {
+            ...state,
+            profile: action.payload
         };
       case REGISTER_SUCCESS:
         return {
@@ -55,6 +72,7 @@ export default function(state = initialState, action) {
             ...state,
             token: null,
             user: null,
+            profile: null,
             isAuthenticated: false,
             isLoading: false
           };

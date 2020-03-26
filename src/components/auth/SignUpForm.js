@@ -1,7 +1,6 @@
 import React , {Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import { register } from '../../actions/auth';
 import { SignUpFormContainer } from './signUpForm.styles';
 import Footer from '../common/Footer';

@@ -10,6 +10,7 @@ import ItemsPerStorePage from '../../pages/ItemsPerStorePage';
 import ItemDetailPage from '../../pages/ItemDetailPage';
 import ProfilePage from '../../pages/ProfilePage';
 import SavedItemsPage from '../../pages/SavedItemsPage';
+import ProfileSettingsPage from '../../pages/ProfileSettingsPage';
 import Home from '../../pages/Home';
 
 class AppContainer extends Component {
@@ -20,12 +21,12 @@ class AppContainer extends Component {
 
     render() {
         console.log(this.props)
-        const { isAuthenticated, user } = this.props
+        const { isAuthenticated, profile } = this.props
         return (
             <div>
                 <Header 
                     isAuth={isAuthenticated}
-                    profile={user}
+                    profile={profile}
                 />
                 <Switch>
                     <Route exact path="/" component={Home} />
@@ -50,6 +51,9 @@ class AppContainer extends Component {
                     <Route exact path="/saved-items" 
                         component={SavedItemsPage} 
                     />
+                    <Route exact path="/settings" 
+                        component={ProfileSettingsPage} 
+                    />
                 </Switch>
             </div>
         )
@@ -58,7 +62,7 @@ class AppContainer extends Component {
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
-    user: state.auth.user,
+    profile: state.auth.profile,
     error: state.errors
 });
 

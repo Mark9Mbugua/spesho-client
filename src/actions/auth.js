@@ -10,6 +10,9 @@ import {
     LOGIN_FAIL,
     USER_LOADING,
     USER_LOADED,
+    PROFILE_LOADING,
+    PROFILE_LOADED,
+    UPDATE_PROFILE,
     LOGOUT_SUCCESS 
 } from './types';
 
@@ -23,7 +26,7 @@ export const loadUserProfile = () => (dispatch, getState) => {
       .get('http://127.0.0.1:8000/api/v1/accounts/user/profile', tokenConfig(getState))
       .then(res =>
         dispatch({
-          type: USER_LOADED,
+          type: PROFILE_LOADED,
           payload: res.data
         })
       )
@@ -33,6 +36,27 @@ export const loadUserProfile = () => (dispatch, getState) => {
           type: AUTH_ERROR
         });
       });
+};
+
+//update user profile
+export const updateUserProfile = ({bio, avatar, birth_date, gender}) => (dispatch, getState) => {
+  // Request body
+  const body = JSON.stringify({ bio, avatar, birth_date, gender });
+
+  axios
+    .patch('http://127.0.0.1:8000/api/v1/accounts/user/profile', body, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: UPDATE_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: AUTH_ERROR
+      });
+    });
 };
 
 // Register User

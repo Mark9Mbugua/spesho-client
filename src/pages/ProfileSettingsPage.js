@@ -3,25 +3,24 @@ import { connect } from 'react-redux';
 import { loadUserProfile } from '../actions/auth';
 import Footer from '../components/common/Footer';
 import ProfileHeader from '../components/auth/userProfile/profileHeader/ProfileHeader';
-import ProfileBody from '../components/auth/userProfile/profileBody/ProfileBody';
+import ProfileSettings from '../components/auth/userProfile/profileSettings/ProfileSettings';
 
-
-class ProfilePage extends Component {
+class ProfileSettingsPage extends Component {
     componentDidMount() {
         this.props.loadUserProfile();
     }
-
     render() {
         const { isAuthenticated, profile } = this.props;
+        //console.log(profile)
         return (
             <div>
                 <ProfileHeader 
                     isAuth={isAuthenticated}
                     profile={profile}
                 />
-                <ProfileBody 
+                <ProfileSettings 
                     isAuth={isAuthenticated}
-                    profile={profile}
+                    getProfile={profile}
                 />
                 <Footer />
             </div>
@@ -35,6 +34,4 @@ const mapStateToProps = state => ({
     error: state.errors
 });
 
-export default (connect(mapStateToProps, { loadUserProfile })(ProfilePage))
-
-
+export default (connect(mapStateToProps, { loadUserProfile })(ProfileSettingsPage))

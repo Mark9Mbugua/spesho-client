@@ -6,6 +6,7 @@ import InfoTwoToneIcon from '@material-ui/icons/InfoTwoTone';
 import ThumbUpAltTwoToneIcon from '@material-ui/icons/ThumbUpAltTwoTone';
 import InsertCommentTwoToneIcon from '@material-ui/icons/InsertCommentTwoTone';
 import ShoppingCartTwoToneIcon from '@material-ui/icons/ShoppingCartTwoTone';
+import WcTwoToneIcon from '@material-ui/icons/WcTwoTone';
 import { ProfileMainContainer } from './profileMain.styles';
 import ActivityTab from './activityTabs/ActivityTab';
 
@@ -25,7 +26,11 @@ const ProfileMain = ({isAuth, profile}) => {
                         <hr />
                         <p><InfoTwoToneIcon /> Bio: {profile && profile.user ? `${profile.bio}` : 'Edit Bio'}</p>
                         <hr />
-                        <p><ContactPhoneTwoToneIcon /> {profile && profile.user ? `${profile.bio}` : 'Edit phone number'}</p>
+                        <p><ContactPhoneTwoToneIcon /> {profile && profile.user ? `${profile.phone_number}` : 'Edit phone number'}</p>
+                        <hr />
+                        <p><WcTwoToneIcon /> {profile && profile.user ? `${profile.gender}` : 'Edit gender'}</p>
+                        <hr />
+                        <p>Birth Date: {profile && profile.user ? `${profile.birth_date}` : 'Edit birth date'}</p>
                         <hr />
                     </div>
                 </div>
