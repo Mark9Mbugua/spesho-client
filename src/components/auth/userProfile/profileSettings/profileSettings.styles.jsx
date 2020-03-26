@@ -34,6 +34,10 @@ export const ProfileSettingsContainer = styled.div`
             .icon {
                 padding-left:10px;
             }
+
+            .verify-button {
+                padding-left:10px;
+            }
         }
     }
 

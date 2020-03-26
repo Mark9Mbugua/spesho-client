@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateUserProfile } from '../../../../actions/auth';
+import { updatePhoneNumber } from '../../../../actions/auth';
 import {
     Button,
     Modal,
@@ -13,11 +13,11 @@ import {
 } from 'reactstrap';
 import EditIcon from '@material-ui/icons/Edit';
 
-class UpdateBioModal extends Component {
+class UpdatePhoneModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bio: props.bio,
+            phone: props.phone_number,
             modal: false
         };
     }
@@ -30,12 +30,13 @@ class UpdateBioModal extends Component {
 
     handleSubmit = e => {
         e.preventDefault();  
-        const bio = {bio: this.state.bio};
+        let phone = this.state.phone;
+        let phone_number = {phone_number: phone};
+        // update phone via updatePhoneNumber action
+        console.log(phone_number);
+        this.props.updatePhoneNumber(phone_number);
 
-        // update bio via updateUser action
-        this.props.updateUserProfile(bio);
-
-        this.toggle()
+        this.toggle();
     
     };
 
@@ -47,25 +48,25 @@ class UpdateBioModal extends Component {
 
     render() {
         //const { getProfile } = this.props;
-        //console.log(getProfile)
+        console.log(this.props)
         return (
             <div>
                 <EditIcon onClick={this.toggle} />
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>Update Bio</ModalHeader>
+                    <ModalHeader toggle={this.toggle}>Update Phone Number</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.handleSubmit}>
                             <FormGroup>
-                                <Label for='bio'>Bio</Label>
+                                <Label for='phone'>Phone</Label>
                                 <Input
                                     type='text'
-                                    name='bio'
-                                    id='bio'
-                                    value={this.state.bio}
+                                    name='phone'
+                                    id='phone'
+                                    value={this.state.phone}
                                     onChange={this.handleChange}
                                 />
                                 <Button color='dark' style={{ marginTop: '2rem' }}>
-                                    Update Bio
+                                    Update Phone Number
                                 </Button>
                             </FormGroup>
                         </Form>
@@ -81,4 +82,4 @@ const mapStateToProps = state => ({
     error: state.errors
 });
 
-export default connect(mapStateToProps, { updateUserProfile })(UpdateBioModal)
+export default connect(mapStateToProps, { updatePhoneNumber })(UpdatePhoneModal)

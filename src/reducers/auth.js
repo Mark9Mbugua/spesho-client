@@ -10,6 +10,8 @@ import {
   PROFILE_LOADING,
   PROFILE_LOADED,
   UPDATE_PROFILE,
+  UPDATE_PHONE,
+  VERIFY_CODE,
   LOGOUT_SUCCESS 
 } from '../actions/types';
   
@@ -42,7 +44,9 @@ export default function(state = initialState, action) {
           isAuthenticated: true,
           isLoading: false,
           profile: action.payload
-        };
+        };     
+      case VERIFY_CODE:
+      case UPDATE_PHONE:
       case UPDATE_PROFILE:
         return {
             ...state,
