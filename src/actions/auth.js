@@ -147,7 +147,7 @@ export const login = ({ username, password }) => dispatch => {
     const body = JSON.stringify({ username, password }); 
   
     axios
-        .post('http://127.0.0.1:8000/api/v1/accounts/login/', body, config)
+        .post('http://127.0.0.1:8000/accounts/login/', body, config)
         .then(res =>
             dispatch({
             type: LOGIN_SUCCESS,

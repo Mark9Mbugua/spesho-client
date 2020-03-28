@@ -14,10 +14,6 @@ export const SignUpFormContainer = styled.div`
         font-weight: bold;
         margin: 4%;
     }
-
-    h4 {
-        
-    }
     
     .FormFields {
         background-color: #FFFFFF;

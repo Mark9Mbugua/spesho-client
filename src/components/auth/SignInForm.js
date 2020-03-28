@@ -65,7 +65,11 @@ class SignUpForm extends Component{
                                 />
                             </div>
                             <div className="forgot-password">
-                                <Link to="#" className="password-link">Forgot password?</Link>
+                                <a 
+                                    href="http://localhost:8000/api/v1/accounts/reset/password_reset/" 
+                                    className="password-link">
+                                        Forgot password?
+                                </a>
                             </div>
                             <div className="ButtonField">
                                 <button className="FormButton">
