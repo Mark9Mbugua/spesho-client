@@ -30,8 +30,8 @@ class VerifyCodeModal extends Component {
 
     handleSubmit = e => {
         e.preventDefault();  
-        let confirmationCode = this.state.confirmationCode;
-        let confirmation_code = {confirmation_code: confirmationCode};
+        const { confirmationCode } = this.state;
+        const confirmation_code = {confirmation_code: confirmationCode};
         // update phone via verifyCode action
         console.log(confirmation_code);
         this.props.verifyCode(confirmation_code);
@@ -48,10 +48,10 @@ class VerifyCodeModal extends Component {
 
     render() {
         //const { getProfile } = this.props;
-        console.log(this.props)
+        //console.log(this.props)
         return (
             <div>
-                <Button color='dark' onClick={this.toggle}>
+                <Button color='danger' onClick={this.toggle}>
                     Verify Code
                 </Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>
@@ -59,7 +59,7 @@ class VerifyCodeModal extends Component {
                     <ModalBody>
                         <Form onSubmit={this.handleSubmit}>
                             <FormGroup>
-                                <Label for='confirmationCode'> Enter confirmation code</Label>
+                                <Label for='confirmationCode'> Enter confirmation code sent to your phone</Label>
                                 <Input
                                     type='text'
                                     name='confirmationCode'

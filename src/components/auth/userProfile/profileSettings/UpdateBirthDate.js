@@ -33,8 +33,9 @@ class UpdateBirthDate extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        const birthDate = this.formatDate(this.state.birth_date);
-        let birth_date = {birth_date: birthDate};
+        let { birth_date } = this.state; 
+        const birthDate = this.formatDate(birth_date);
+        birth_date = {birth_date: birthDate};
         console.log(birth_date);
         // update birth date via updateUser action
         this.props.updateUserProfile(birth_date);
@@ -55,7 +56,7 @@ class UpdateBirthDate extends Component {
                         <DatePicker
                             selected={ this.state.birth_date }
                             onChange={ this.handleChange }
-                            name="startDate"
+                            name="birthDate"
                             dateFormat="yyyy-MM-dd"
                         />
                     </div>

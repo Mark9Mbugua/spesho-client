@@ -45,7 +45,7 @@ class Header extends Component {
 
   render() {
     let { isAuth, profile } = this.props
-    console.log(this.props)
+    //console.log(this.props)
     if (window.location.pathname === '/signup' || window.location.pathname === '/signin') 
       return (
         <NavbarContainer>

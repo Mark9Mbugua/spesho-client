@@ -29,8 +29,9 @@ class UpdateGenderModal extends Component {
     }
 
     handleSubmit = e => {
-        e.preventDefault();  
-        const gender = {gender: this.state.gender};
+        e.preventDefault(); 
+        let { gender } = this.state 
+        gender = {gender: gender};
 
         // update gender via updateUser action
         this.props.updateUserProfile(gender);

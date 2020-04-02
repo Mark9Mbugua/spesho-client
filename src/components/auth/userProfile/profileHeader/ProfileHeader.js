@@ -38,7 +38,7 @@ const ProfileHeader = ({isAuth, profile}) => {
                         <img src={settingsIcon} alt="logo icon" />
                     </div>
                     <div className="item-title">
-                        Settings
+                        Profile Settings
                     </div>
                 </div>
             </div>
