@@ -35,7 +35,7 @@ const ProfileMenu = ({ profile }) => {
                             </li>
                             <li className="link-body">
                                 <Link to='/settings' className="item-link">
-                                    Settings  
+                                    Profile Settings  
                                 </Link>      
                             </li>
                             <li className="link-body">

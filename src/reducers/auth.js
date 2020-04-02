@@ -11,6 +11,8 @@ import {
   PROFILE_LOADED,
   UPDATE_PROFILE,
   UPDATE_PHONE,
+  CHANGE_PASSWORD_SUCCESS,
+  CHANGE_PASSWORD_FAILURE,
   VERIFY_CODE,
   LOGOUT_SUCCESS 
 } from '../actions/types';
@@ -20,7 +22,8 @@ const initialState = {
     isAuthenticated: null,
     isLoading: false,
     user: null,
-    profile: null
+    profile: null,
+    success: false
 };
   
 export default function(state = initialState, action) {
@@ -51,6 +54,16 @@ export default function(state = initialState, action) {
         return {
             ...state,
             profile: action.payload
+        };
+      case CHANGE_PASSWORD_SUCCESS:
+        return {
+            ...state,
+            success: true
+        };
+      case CHANGE_PASSWORD_FAILURE:
+        return {
+            ...state,
+            success: false
         };
       case REGISTER_SUCCESS:
         return {

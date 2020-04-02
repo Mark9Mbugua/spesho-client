@@ -29,8 +29,9 @@ class UpdateBioModal extends Component {
     }
 
     handleSubmit = e => {
-        e.preventDefault();  
-        const bio = {bio: this.state.bio};
+        e.preventDefault();
+        let { bio } = this.state;  
+        bio = {bio: bio};
 
         // update bio via updateUser action
         this.props.updateUserProfile(bio);

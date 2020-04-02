@@ -14,6 +14,8 @@ import {
     PROFILE_LOADED,
     UPDATE_PROFILE,
     UPDATE_PHONE,
+    CHANGE_PASSWORD_SUCCESS,
+    CHANGE_PASSWORD_FAILURE,
     VERIFY_CODE,
     LOGOUT_SUCCESS 
 } from './types';
@@ -99,6 +101,27 @@ export const verifyCode = ({confirmation_code}) => (dispatch, getState) => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
         type: AUTH_ERROR
+      });
+    });
+};
+
+//change user password
+export const changeUserPassword = ({old_password, new_password}) => (dispatch, getState) => {
+  // Request body
+  const body = JSON.stringify({ old_password, new_password });
+
+  axios
+    .put('http://127.0.0.1:8000/api/v1/accounts/user/change-password', body, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: CHANGE_PASSWORD_SUCCESS,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: CHANGE_PASSWORD_FAILURE
       });
     });
 };

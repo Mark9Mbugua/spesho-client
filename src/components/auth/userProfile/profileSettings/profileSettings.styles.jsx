@@ -1,51 +1,70 @@
 import styled from 'styled-components';
 
 export const ProfileSettingsContainer = styled.div`
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-content: stretch;
-    overflow: hidden;
-    padding: 20px;
-
-    .page-title {
-        text-align: center;
-        margin-left: -45%;
-        margin-bottom: 25px;
-    }
+    padding: 30px;
 
     .modal-container {
         width: 70%;
         margin-left: 9%;
+    
+        .page-title {
+            text-align: center;
+            margin-left: -38%;
+            margin-bottom: 30px;
+        }
+
+        hr {margin-left: 45px}
     }
 
     .modal-body {
         display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-around;
+        flex-flow: column nowrap;
+        justify-content: space-between;
         align-content: stretch;
         overflow: hidden;
-        padding: 20px;
+        padding: 5px;
+        margin-left: 200px;
 
         .edit {
             display: flex;
-            flex-flow: row nowrap;
-            
-            .icon {
-                padding-left:10px;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+            margin-top: 18px;
+            width: 85%;
+
+            .phone-icon-button {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-between;
+                
+                .phone-icon {
+                    padding: 5px 20px 0 0;
+
+                }
             }
 
-            .verify-button {
-                padding-left:10px;
-            }
         }
     }
 
     .date-body {
         display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-around;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        align-content: stretch;
         overflow: hidden;
-        padding: 20px;        
+        padding: 5px;
+        margin-left: 200px;
+        
+        .edit-date {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+            margin-top: 18px;
+            width: 85%;
+        }
     }
 `
