@@ -64,6 +64,29 @@ export const ProfileHeaderContainer = styled.nav`
             .item-title {
                 font-size: 2.5vh;
                 margin-left: -75%;
+
+                .profile-link {
+                    text-decoration: none;
+                    color: black;
+                    
+                    &:focus {
+                        background: rgba(0, 0, 0, 0.1);
+                        outline: none;
+                    }
+            
+                    &::after {
+                        content: '';
+                        height: 2px;
+                        width: 0;
+                        background: black;
+                        display: block;
+                        transition: width 0.5s ease-in-out;
+                    }
+                    &:hover::after {
+                        transform: width;
+                        width: 125%;
+                    }
+                }
             }
         }     
     }

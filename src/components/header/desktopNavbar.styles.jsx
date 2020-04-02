@@ -108,6 +108,7 @@ export const DesktopNavbarContainer = styled.nav`
             transform: width;
             width: 125%;
         }
+
     }
 
 `

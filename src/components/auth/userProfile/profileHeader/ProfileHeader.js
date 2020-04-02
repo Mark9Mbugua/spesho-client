@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ProfileHeaderContainer } from './profileHeader.styles';
 import profileIcon from '../../../../images/profile-icon.svg';
 import userIcon from '../../../../images/user-icon.svg';
@@ -22,7 +23,10 @@ const ProfileHeader = ({isAuth, profile}) => {
                         <img src={userIcon} alt="logo icon" />
                     </div>
                     <div className="item-title">
-                        My Profile
+                    <Link to="/profile" className="profile-link">
+                        My Profile    
+                    </Link>
+                       
                     </div>
                 </div>
                 <div className="item-group">
@@ -30,7 +34,9 @@ const ProfileHeader = ({isAuth, profile}) => {
                         <img src={itemIcon} alt="logo icon" />
                     </div>
                     <div className="item-title">
-                        Saved Items
+                    <Link to="/saved-items" className="profile-link">
+                        Saved Items    
+                    </Link>
                     </div>
                 </div>
                 <div className="item-group">
@@ -38,7 +44,9 @@ const ProfileHeader = ({isAuth, profile}) => {
                         <img src={settingsIcon} alt="logo icon" />
                     </div>
                     <div className="item-title">
-                        Profile Settings
+                        <Link to='/settings' className="profile-link">
+                            Profile Settings  
+                        </Link>
                     </div>
                 </div>
             </div>

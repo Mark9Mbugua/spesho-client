@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ArrowDropDownTwoToneIcon from '@material-ui/icons/ArrowDropDownTwoTone';
 import { ProfileItemsList } from './profileMenu.styles';
 import Logout from '../Logout';
 
@@ -10,7 +11,9 @@ const ProfileMenu = ({ profile }) => {
                 <ProfileItemsList>
                     <li className="menu-item">
                         <Link to="#" className="link">
-                            {profile && profile.user ? `${profile.user.username}` : ''}
+                            <div className="link-icon">
+                                {profile && profile.user ? `${profile.user.username}` : ''}<ArrowDropDownTwoToneIcon />
+                            </div>
                         </Link>
                         <ul className="dropdown-list">
                             <li className="link-body">
