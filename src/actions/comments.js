@@ -1,11 +1,18 @@
 import axios from "axios";
+import { returnErrors } from './errors';
+import { tokenConfig } from './auth';
+import { history } from '../helpers/history';
 
-import { GET_COMMENTS } from "./types";
+import { 
+    GET_COMMENTS,
+    CREATE_COMMENT,
+    CREATE_COMMENT_ERROR 
+} from "./types";
 
-//get stores
-export const getComments = () => dispatch => {
+//get comments
+export const getComments = id => dispatch => {
     axios
-        .get('http://127.0.0.1:8000/api/v1/comments/')
+        .get(`http://127.0.0.1:8000/api/v1/comments/item/?id=${id}`)
         .then(res => {
             dispatch({
                 type: GET_COMMENTS,
@@ -13,4 +20,26 @@ export const getComments = () => dispatch => {
             });
         })
         .catch(err => console.log(err));
-}; 
+};
+
+// create a comment
+export const createComment = (content, id) => (dispatch, getState) => {
+    
+  // Request body
+    const body = JSON.stringify({ content });
+  
+    axios
+      .post(`http://127.0.0.1:8000/api/v1/comments/create/?type=item&id=${id}`, body, tokenConfig(getState))
+      .then(res =>
+        dispatch({
+          type: CREATE_COMMENT,
+          payload: res.data
+        }),
+      )
+      .catch(err => {
+        dispatch(returnErrors(err.response.data, err.response.status));
+        dispatch({
+          type: CREATE_COMMENT_ERROR
+        });
+      });
+};

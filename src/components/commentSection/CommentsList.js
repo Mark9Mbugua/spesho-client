@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Modal } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -6,31 +7,69 @@ import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 import { getComments } from '../../actions/comments';
 import { CommentsListContainer } from './commentList.styles';
+import CreateCommentModal from './CreateCommentModal';
+import { createComment } from '../../actions/comments';
 import profileIcon from '../../images/profile-icon.svg';
 
 export class CommentsList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            content: '',
+            modal: false
+        };
+    }
+
+    componentDidMount() {
+        let { objectId } = this.props;
+        this.props.getComments(objectId);
+    };
+
+    toggle = () => {
+        this.setState({
+            modal: !this.state.modal
+        });
+    }
+
+    handleSubmit = e => {
+        e.preventDefault();
+        const { content } = this.state;  
+        let { objectId } = this.props;
+
+        // create comment via createComment action
+        this.props.createComment(content, objectId);
+
+        this.toggle()
+    
+    };
+
+    handleChange = e => {
+        const { name, value } = e.target;
+
+        this.setState({ [name]: value });
+    };
+
     static propTypes = {
         comments: PropTypes.array.isRequired
     };
 
-    componentDidMount() {
-        this.props.getComments();
-    };
-
     render() {
-        let { comments } = this.props;
-        comments = comments
-            .filter(comment => comment.object_id === this.props.objectId)
-            .filter(comment => comment.parent === null)
-        console.log(comments)
-        let user = comments.map(comment => comment.user)
-        console.log(user)
-
+        let { comments } = this.props.comments;
+        console.log(comments);
         
         return (
             <CommentsListContainer>
+                <CreateCommentModal 
+                    id={this.props.objectId}
+                    modal={this.state.modal}
+                    content={this.state.content}
+                    toggle={this.toggle}
+                    handleSubmit={this.handleSubmit}
+                    handleChange={this.handleChange}
+                />
+                <hr />
                 <div className="comments-header">
-                    <h2>{this.props.commentsCount} Comments</h2>
+                    <h2>{comments.length} Comments</h2>
                 </div>
                 {comments.map(comment => (
                     <div key={comment.id} className="main">
@@ -63,8 +102,8 @@ export class CommentsList extends Component {
 }
 
 const mapStateToProps = state => ({
-    comments: state.comments.comments
+    comments: state.comments
 });
 
-export default connect(mapStateToProps, { getComments })
+export default connect(mapStateToProps, { getComments, createComment })
 (CommentsList);  
