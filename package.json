@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.8.3",
     "@material-ui/icons": "^4.9.1",
+    "autosize": "^4.0.2",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "history": "^4.10.1",

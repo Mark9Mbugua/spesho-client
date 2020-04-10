@@ -1,22 +1,24 @@
 import React, { Component } from "react";
-import { Modal } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { getComments } from '../../actions/comments';
 import { CommentsListContainer } from './commentList.styles';
 import CreateCommentModal from './CreateCommentModal';
-import { createComment } from '../../actions/comments';
 import profileIcon from '../../images/profile-icon.svg';
+import EditAndDeleteCommentModal from './EditAndDeleteCommentModal';
+import EditCommentForm from './EditCommentForm';
 
 export class CommentsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            content: '',
-            modal: false
+            showEditModal: false,
+            clickedComment: null,
+            showEditForm: false
         };
     }
 
@@ -25,29 +27,19 @@ export class CommentsList extends Component {
         this.props.getComments(objectId);
     };
 
-    toggle = () => {
+    toggleEditModal = clickedId => {
         this.setState({
-            modal: !this.state.modal
+            showEditModal: !this.state.showEditModal,
+            clickedComment: clickedId
         });
     }
 
-    handleSubmit = e => {
-        e.preventDefault();
-        const { content } = this.state;  
-        let { objectId } = this.props;
-
-        // create comment via createComment action
-        this.props.createComment(content, objectId);
-
-        this.toggle()
-    
-    };
-
-    handleChange = e => {
-        const { name, value } = e.target;
-
-        this.setState({ [name]: value });
-    };
+    toggleEditForm = clickedId => {
+        this.setState({
+            showEditForm: !this.state.showEditForm,
+            clickedComment: clickedId
+        });
+    }
 
     static propTypes = {
         comments: PropTypes.array.isRequired
@@ -55,17 +47,13 @@ export class CommentsList extends Component {
 
     render() {
         let { comments } = this.props.comments;
+        const { showEditModal, clickedComment, showEditForm } = this.state;
         console.log(comments);
         
         return (
             <CommentsListContainer>
                 <CreateCommentModal 
                     id={this.props.objectId}
-                    modal={this.state.modal}
-                    content={this.state.content}
-                    toggle={this.toggle}
-                    handleSubmit={this.handleSubmit}
-                    handleChange={this.handleChange}
                 />
                 <hr />
                 <div className="comments-header">
@@ -84,15 +72,31 @@ export class CommentsList extends Component {
                         </div>
                         <div className="comment-details">
                             <p className="date-created">{comment.created_on}</p>
-                            <p>{comment.content}</p>
+                            { showEditForm && clickedComment === comment.id ?
+                                <EditCommentForm 
+                                    id={comment.id}
+                                    content={comment.content}
+                                    toggleEditForm={this.toggleEditForm} 
+                                />
+                            : <p>{comment.content}</p> }
                             <div className="comment-reaction">
                                 <Link to="#">Reply</Link>
                                 <p>Helpful Comment?</p>
                                 <p><ThumbUpAltOutlinedIcon /> {comment.likes_count}</p>
                                 <div className="vl"></div>
                                 <p><ThumbDownAltOutlinedIcon /> {comment.dislikes_count}</p>
-                            </div>
-                            
+                            </div>            
+                        </div>
+                        <div className="more-icon">
+                            <MoreVertIcon onClick={() => this.toggleEditModal(comment.id)}/>
+                            { showEditModal && clickedComment === comment.id ? 
+                                <EditAndDeleteCommentModal 
+                                    id={comment.id}
+                                    content={comment.content}
+                                    toggleEditForm={this.toggleEditForm}
+                                    toggleEditModal={this.toggleEditModal}
+                                /> 
+                            : null }
                         </div>
                     </div>
                 ))}
@@ -105,5 +109,4 @@ const mapStateToProps = state => ({
     comments: state.comments
 });
 
-export default connect(mapStateToProps, { getComments, createComment })
-(CommentsList);  
+export default connect(mapStateToProps, { getComments })(CommentsList);  
