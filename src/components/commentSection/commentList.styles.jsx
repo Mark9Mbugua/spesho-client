@@ -65,6 +65,12 @@ export const CommentsListContainer = styled.div`
                 }
             }
         }
+
+        .more-icon {
+            padding-top: 35px;
+            .edit-modal {
+            }
+        }
     }
 
 `

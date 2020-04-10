@@ -1,12 +1,13 @@
 import axios from "axios";
 import { returnErrors } from './errors';
 import { tokenConfig } from './auth';
-import { history } from '../helpers/history';
 
 import { 
     GET_COMMENTS,
     CREATE_COMMENT,
-    CREATE_COMMENT_ERROR 
+    CREATE_COMMENT_ERROR,
+    EDIT_COMMENT,
+    EDIT_COMMENT_ERROR 
 } from "./types";
 
 //get comments
@@ -40,6 +41,28 @@ export const createComment = (content, id) => (dispatch, getState) => {
         dispatch(returnErrors(err.response.data, err.response.status));
         dispatch({
           type: CREATE_COMMENT_ERROR
+        });
+      });
+};
+
+// edit a comment
+export const editComment = (content, id) => (dispatch, getState) => {
+    
+  // Request body
+    const body = JSON.stringify({ content });
+  
+    axios
+      .put(`http://127.0.0.1:8000/api/v1/comments/${id}`, body, tokenConfig(getState))
+      .then(res =>
+        dispatch({
+          type: EDIT_COMMENT,
+          payload: res.data
+        }),
+      )
+      .catch(err => {
+        dispatch(returnErrors(err.response.data, err.response.status));
+        dispatch({
+          type: EDIT_COMMENT_ERROR
         });
       });
 };
