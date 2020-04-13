@@ -7,7 +7,9 @@ import {
     CREATE_COMMENT,
     CREATE_COMMENT_ERROR,
     EDIT_COMMENT,
-    EDIT_COMMENT_ERROR 
+    EDIT_COMMENT_ERROR,
+    DELETE_COMMENT,
+    DELETE_COMMENT_ERROR  
 } from "./types";
 
 //get comments
@@ -66,3 +68,22 @@ export const editComment = (content, id) => (dispatch, getState) => {
         });
       });
 };
+
+// delete a comment
+export const deleteComment = id => (dispatch, getState) => {
+  axios
+    .delete(`http://127.0.0.1:8000/api/v1/comments/${id}`, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: DELETE_COMMENT,
+        payload: id
+      }),
+    )
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: DELETE_COMMENT_ERROR
+      });
+    });
+};
+
