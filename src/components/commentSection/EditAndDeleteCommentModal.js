@@ -12,7 +12,9 @@ const EditAndDeleteCommentModal = ({ id, content, toggleEditForm, toggleEditModa
                 toggleEditForm={toggleEditForm}
                 toggleEditModal={toggleEditModal}
             />
-            <DeleteComment />
+            <DeleteComment 
+                id={id}
+            />
         </EditAndDeleteContainer>
     )
 }

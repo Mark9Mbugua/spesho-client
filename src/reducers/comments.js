@@ -3,7 +3,9 @@ import {
     CREATE_COMMENT,
     CREATE_COMMENT_ERROR,
     EDIT_COMMENT,
-    EDIT_COMMENT_ERROR
+    EDIT_COMMENT_ERROR,
+    DELETE_COMMENT,
+    DELETE_COMMENT_ERROR
 } from "../actions/types.js";
 
 const initialState = {
@@ -32,6 +34,12 @@ export default function(state = initialState, action) {
                         ? (comment = action.payload)
                         : comment
                     )
+            };
+        
+        case DELETE_COMMENT:
+            return {
+                ...state,
+                comments: state.comments.filter(comment => comment.id !== action.payload)
             };
 
         case EDIT_COMMENT_ERROR:
