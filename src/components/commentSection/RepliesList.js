@@ -6,7 +6,7 @@ import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import profileIcon from '../../images/profile-icon.svg';
 import { RepliesListContainer } from './repliesList.styles';
-import EditAndDeleteCommentModal from './EditAndDeleteCommentModal';
+import EditAndDeleteReplyModal from './EditAndDeleteReplyModal';
 import EditReplyForm from './EditReplyForm';
 
 
@@ -74,7 +74,7 @@ class RepliesList extends Component {
                         <div className="reply-more-icon">
                         <MoreVertIcon onClick={() => this.toggleEditReplyModal(reply.id)}/>
                         { showEditReplyModal && clickedComment === reply.id ? 
-                            <EditAndDeleteCommentModal 
+                            <EditAndDeleteReplyModal 
                                 id={reply.id}
                                 content={reply.content}
                                 toggleEditForm={this.toggleEditReplyForm}

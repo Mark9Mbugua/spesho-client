@@ -28,11 +28,12 @@ class EditCommentForm extends Component {
     handleSubmit = e => {
         e.preventDefault();
         const { content, id } = this.state;
+        const { toggleEditForm } = this.props;
         
         // edit comment via editComment action
         this.props.editComment(content, id);
 
-        this.props.toggleEditForm();
+        toggleEditForm();
     
     };
 

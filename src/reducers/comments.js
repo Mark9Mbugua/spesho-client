@@ -12,7 +12,9 @@ import {
     CREATE_REPLY,
     CREATE_REPLY_ERROR,
     EDIT_REPLY,
-    EDIT_REPLY_ERROR
+    EDIT_REPLY_ERROR,
+    DELETE_REPLY,
+    DELETE_REPLY_ERROR,
 
 } from "../actions/types.js";
 
@@ -72,6 +74,12 @@ export default function(state = initialState, action) {
                         : reply
                     )
             };
+        
+        case DELETE_REPLY:
+            return {
+                ...state,
+                replies: state.replies.filter(reply => reply.id !== action.payload)
+            };
     
         case GET_COMMENTS_ERROR:
         case CREATE_COMMENT_ERROR:
@@ -80,6 +88,7 @@ export default function(state = initialState, action) {
         case GET_REPLIES_ERROR:
         case CREATE_REPLY_ERROR:
         case EDIT_REPLY_ERROR:
+        case DELETE_REPLY_ERROR:
             return {
                 ...state
             };

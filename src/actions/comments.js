@@ -16,7 +16,9 @@ import {
     CREATE_REPLY,
     CREATE_REPLY_ERROR,
     EDIT_REPLY,
-    EDIT_REPLY_ERROR  
+    EDIT_REPLY_ERROR,
+    DELETE_REPLY,
+    DELETE_REPLY_ERROR  
 } from "./types";
 
 //get comments
@@ -164,4 +166,22 @@ export const editReply = (content, id) => (dispatch, getState) => {
         });
       });
 }
+
+// delete a comment reply
+export const deleteReply = id => (dispatch, getState) => {
+  axios
+    .delete(`http://127.0.0.1:8000/api/v1/comments/${id}`, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: DELETE_REPLY,
+        payload: id
+      }),
+    )
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: DELETE_REPLY_ERROR
+      });
+    });
+};
 
