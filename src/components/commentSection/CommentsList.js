@@ -136,6 +136,10 @@ export class CommentsList extends Component {
                                     className="replies-section"
                                     id={comment.id}
                                     parentId={objectId}
+                                    showEditModal={showEditModal}
+                                    toggleEditForm={this.toggleEditForm}
+                                    toggleEditModal={this.toggleEditModal}
+                                    clickedComment={clickedComment}
                                 />
                             : null }            
                         </div>

@@ -14,7 +14,9 @@ import {
     GET_REPLIES,
     GET_REPLIES_ERROR,
     CREATE_REPLY,
-    CREATE_REPLY_ERROR  
+    CREATE_REPLY_ERROR,
+    EDIT_REPLY,
+    EDIT_REPLY_ERROR  
 } from "./types";
 
 //get comments
@@ -140,4 +142,26 @@ export const createReply = (content, id, parentId) => (dispatch, getState) => {
         });
       });
 };
+
+// edit a reply
+export const editReply = (content, id) => (dispatch, getState) => {
+    
+  // Request body
+    const body = JSON.stringify({ content });
+  
+    axios
+      .put(`http://127.0.0.1:8000/api/v1/comments/${id}`, body, tokenConfig(getState))
+      .then(res =>
+        dispatch({
+          type: EDIT_REPLY,
+          payload: res.data
+        }),
+      )
+      .catch(err => {
+        dispatch(returnErrors(err.response.data, err.response.status));
+        dispatch({
+          type: EDIT_REPLY_ERROR
+        });
+      });
+}
 

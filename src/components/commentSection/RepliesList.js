@@ -1,23 +1,47 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getReplies } from '../../actions/comments';
-import { Link } from 'react-router-dom';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import profileIcon from '../../images/profile-icon.svg';
 import { RepliesListContainer } from './repliesList.styles';
+import EditAndDeleteCommentModal from './EditAndDeleteCommentModal';
+import EditReplyForm from './EditReplyForm';
 
 
 class RepliesList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showEditReplyModal: false,
+            clickedComment: null,
+            showEditReplyForm: false
+        };
+    }
+
     componentDidMount() {
         let { id } = this.props;
         this.props.getReplies(id);
     };
 
+    toggleEditReplyModal = clickedId => {
+        this.setState({
+            showEditReplyModal: !this.state.showEditReplyModal,
+            clickedComment: clickedId
+        });
+    }
+
+    toggleEditReplyForm = clickedId => {
+        this.setState({
+            showEditReplyForm: !this.state.showEditReplyForm,
+            clickedComment: clickedId
+        });
+    }
 
     render() {
-        const { replies, parentId } = this.props;
+        const { replies, parentId  } = this.props;
+        const { showEditReplyModal, showEditReplyForm, clickedComment } = this.state;
         //console.log(replies);
         return (
             <RepliesListContainer>
@@ -34,7 +58,13 @@ class RepliesList extends Component {
                         </div>
                         <div className="reply-comment-details">
                             <p className="reply-date-created">{reply.created_on}</p>
-                            <p>{reply.content}</p>
+                            { showEditReplyForm && clickedComment === reply.id ?
+                                <EditReplyForm 
+                                    id={reply.id}
+                                    content={reply.content}
+                                    toggleEditForm={this.toggleEditReplyForm} 
+                                />
+                            : <p>{reply.content}</p> }
                             <div className="reply-comment-reaction">
                                 <p><ThumbUpAltOutlinedIcon /> {reply.likes_count}</p>
                                 <div className="reply-vl"></div>
@@ -42,7 +72,15 @@ class RepliesList extends Component {
                             </div>          
                         </div>
                         <div className="reply-more-icon">
-                            <MoreVertIcon />
+                        <MoreVertIcon onClick={() => this.toggleEditReplyModal(reply.id)}/>
+                        { showEditReplyModal && clickedComment === reply.id ? 
+                            <EditAndDeleteCommentModal 
+                                id={reply.id}
+                                content={reply.content}
+                                toggleEditForm={this.toggleEditReplyForm}
+                                toggleEditModal={this.toggleEditReplyModal}
+                            /> 
+                        : null }
                         </div>
                     </div>
                 ))}
