@@ -10,7 +10,10 @@ import {
     GET_REPLIES,
     GET_REPLIES_ERROR,
     CREATE_REPLY,
-    CREATE_REPLY_ERROR
+    CREATE_REPLY_ERROR,
+    EDIT_REPLY,
+    EDIT_REPLY_ERROR
+
 } from "../actions/types.js";
 
 const initialState = {
@@ -59,6 +62,16 @@ export default function(state = initialState, action) {
                 ...state,
                 replies: [action.payload, ...state.replies]
             };
+        
+        case EDIT_REPLY:
+            return {
+                ...state,
+                replies: state.replies.map(reply =>
+                    reply.id === action.payload.id
+                        ? (reply = action.payload)
+                        : reply
+                    )
+            };
     
         case GET_COMMENTS_ERROR:
         case CREATE_COMMENT_ERROR:
@@ -66,6 +79,7 @@ export default function(state = initialState, action) {
         case DELETE_COMMENT_ERROR:   
         case GET_REPLIES_ERROR:
         case CREATE_REPLY_ERROR:
+        case EDIT_REPLY_ERROR:
             return {
                 ...state
             };
