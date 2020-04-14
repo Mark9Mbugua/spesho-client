@@ -1,3 +1,4 @@
+import jwt_decode from 'jwt-decode';
 import { 
     GET_COMMENTS,
     GET_COMMENTS_ERROR,
@@ -20,7 +21,8 @@ import {
 
 const initialState = {
     comments: [],
-    replies: []
+    replies: [],
+    user: null
 };
 
 export default function(state = initialState, action) {
@@ -28,6 +30,7 @@ export default function(state = initialState, action) {
         case GET_COMMENTS:
             return {
                 ...state,
+                user: jwt_decode(localStorage.getItem('token')),
                 comments: action.payload
             };
         
@@ -56,6 +59,7 @@ export default function(state = initialState, action) {
         case GET_REPLIES:
             return {
                 ...state,
+                user: jwt_decode(localStorage.getItem('token')),
                 replies: action.payload
             }
 
@@ -90,7 +94,8 @@ export default function(state = initialState, action) {
         case EDIT_REPLY_ERROR:
         case DELETE_REPLY_ERROR:
             return {
-                ...state
+                ...state,
+                user: null
             };
         default:
             return state;

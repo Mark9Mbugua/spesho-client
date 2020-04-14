@@ -66,10 +66,8 @@ export class CommentsList extends Component {
     };
 
     render() {
-        const { comments } = this.props.comments;
-        const { objectId } = this.props;
+        const { comments, objectId, user } = this.props;
         const { showEditModal, clickedComment, showEditForm, showReplies, showCreateReplyForm } = this.state;
-        //console.log(comments);
         
         return (
             <CommentsListContainer>
@@ -143,17 +141,19 @@ export class CommentsList extends Component {
                                 />
                             : null }            
                         </div>
-                        <div className="more-icon">
-                            <MoreVertIcon onClick={() => this.toggleEditModal(comment.id)}/>
-                            { showEditModal && clickedComment === comment.id ? 
-                                <EditAndDeleteCommentModal 
-                                    id={comment.id}
-                                    content={comment.content}
-                                    toggleEditForm={this.toggleEditForm}
-                                    toggleEditModal={this.toggleEditModal}
-                                /> 
-                            : null }
-                        </div>
+                        { user && user.user_id == comment.user.id ?
+                            <div className="more-icon">
+                                <MoreVertIcon onClick={() => this.toggleEditModal(comment.id)}/>
+                                { showEditModal && clickedComment === comment.id ? 
+                                    <EditAndDeleteCommentModal 
+                                        id={comment.id}
+                                        content={comment.content}
+                                        toggleEditForm={this.toggleEditForm}
+                                        toggleEditModal={this.toggleEditModal}
+                                    /> 
+                                : null }
+                            </div>
+                        : null }
                     </div>
                 ))}
             </CommentsListContainer>
@@ -162,7 +162,8 @@ export class CommentsList extends Component {
 }
 
 const mapStateToProps = state => ({
-    comments: state.comments
+    comments: state.comments.comments,
+    user: state.comments.user
 });
 
 export default connect(mapStateToProps, { getComments })(CommentsList);  
