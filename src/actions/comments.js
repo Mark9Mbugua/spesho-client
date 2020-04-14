@@ -4,12 +4,17 @@ import { tokenConfig } from './auth';
 
 import { 
     GET_COMMENTS,
+    GET_COMMENTS_ERROR,
     CREATE_COMMENT,
     CREATE_COMMENT_ERROR,
     EDIT_COMMENT,
     EDIT_COMMENT_ERROR,
     DELETE_COMMENT,
-    DELETE_COMMENT_ERROR  
+    DELETE_COMMENT_ERROR,
+    GET_REPLIES,
+    GET_REPLIES_ERROR,
+    CREATE_REPLY,
+    CREATE_REPLY_ERROR  
 } from "./types";
 
 //get comments
@@ -22,7 +27,12 @@ export const getComments = id => dispatch => {
                 payload: res.data.results
             });
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          dispatch(returnErrors(err.response.data, err.response.status));
+          dispatch({
+            type: GET_COMMENTS_ERROR
+          });
+        });
 };
 
 // create a comment
@@ -85,5 +95,49 @@ export const deleteComment = id => (dispatch, getState) => {
         type: DELETE_COMMENT_ERROR
       });
     });
+};
+
+
+//get replies
+export const getReplies = id => dispatch => {
+  axios
+      .get(`http://127.0.0.1:8000/api/v1/comments/replies/?id=${id}`)
+      .then(res => {
+          dispatch({
+              type: GET_REPLIES,
+              payload: res.data.results
+          });
+      })
+      .catch(err => {
+        dispatch(returnErrors(err.response.data, err.response.status));
+        dispatch({
+          type: GET_REPLIES_ERROR
+        });
+      });
+};
+
+// create a reply
+export const createReply = (content, id, parentId) => (dispatch, getState) => {
+    
+  // Request body
+    const body = JSON.stringify({ content });
+  
+    axios
+      .post(`http://127.0.0.1:8000/api/v1/comments/create/?type=item&id=${id}&parent_id=${parentId}`, 
+        body, 
+        tokenConfig(getState)
+      )
+      .then(res =>
+        dispatch({
+          type: CREATE_REPLY,
+          payload: res.data
+        }),
+      )
+      .catch(err => {
+        dispatch(returnErrors(err.response.data, err.response.status));
+        dispatch({
+          type: CREATE_REPLY_ERROR
+        });
+      });
 };
 

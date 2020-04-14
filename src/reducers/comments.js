@@ -1,15 +1,21 @@
 import { 
     GET_COMMENTS,
+    GET_COMMENTS_ERROR,
     CREATE_COMMENT,
     CREATE_COMMENT_ERROR,
     EDIT_COMMENT,
     EDIT_COMMENT_ERROR,
     DELETE_COMMENT,
-    DELETE_COMMENT_ERROR
+    DELETE_COMMENT_ERROR,
+    GET_REPLIES,
+    GET_REPLIES_ERROR,
+    CREATE_REPLY,
+    CREATE_REPLY_ERROR
 } from "../actions/types.js";
 
 const initialState = {
-    comments: []
+    comments: [],
+    replies: []
 };
 
 export default function(state = initialState, action) {
@@ -42,8 +48,24 @@ export default function(state = initialState, action) {
                 comments: state.comments.filter(comment => comment.id !== action.payload)
             };
 
-        case EDIT_COMMENT_ERROR:
+        case GET_REPLIES:
+            return {
+                ...state,
+                replies: action.payload
+            }
+
+        case CREATE_REPLY:
+            return {
+                ...state,
+                replies: [action.payload, ...state.replies]
+            };
+    
+        case GET_COMMENTS_ERROR:
         case CREATE_COMMENT_ERROR:
+        case EDIT_COMMENT_ERROR:
+        case DELETE_COMMENT_ERROR:   
+        case GET_REPLIES_ERROR:
+        case CREATE_REPLY_ERROR:
             return {
                 ...state
             };

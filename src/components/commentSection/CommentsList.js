@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
+import ArrowDropDownTwoToneIcon from '@material-ui/icons/ArrowDropDownTwoTone';
+import ArrowDropUpTwoToneIcon from '@material-ui/icons/ArrowDropUpTwoTone';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { getComments } from '../../actions/comments';
 import { CommentsListContainer } from './commentList.styles';
@@ -11,6 +13,8 @@ import CreateCommentModal from './CreateCommentModal';
 import profileIcon from '../../images/profile-icon.svg';
 import EditAndDeleteCommentModal from './EditAndDeleteCommentModal';
 import EditCommentForm from './EditCommentForm';
+import RepliesList from './RepliesList';
+import CreateReplyForm from './CreateReplyForm';
 
 export class CommentsList extends Component {
     constructor(props) {
@@ -18,7 +22,9 @@ export class CommentsList extends Component {
         this.state = {
             showEditModal: false,
             clickedComment: null,
-            showEditForm: false
+            showEditForm: false,
+            showReplies: false,
+            showCreateReplyForm: false  
         };
     }
 
@@ -41,14 +47,29 @@ export class CommentsList extends Component {
         });
     }
 
+    toggleReplies = clickedId => {
+        this.setState({
+            showReplies: !this.state.showReplies,
+            clickedComment: clickedId
+        });
+    }
+
+    toggleCreateReplyForm = clickedId => {
+        this.setState({
+            showCreateReplyForm: !this.state.showCreateReplyForm,
+            clickedComment: clickedId
+        });
+    }
+
     static propTypes = {
         comments: PropTypes.array.isRequired
     };
 
     render() {
-        let { comments } = this.props.comments;
-        const { showEditModal, clickedComment, showEditForm } = this.state;
-        console.log(comments);
+        const { comments } = this.props.comments;
+        const { objectId } = this.props;
+        const { showEditModal, clickedComment, showEditForm, showReplies, showCreateReplyForm } = this.state;
+        //console.log(comments);
         
         return (
             <CommentsListContainer>
@@ -80,12 +101,43 @@ export class CommentsList extends Component {
                                 />
                             : <p>{comment.content}</p> }
                             <div className="comment-reaction">
-                                <Link to="#">Reply</Link>
-                                <p>Helpful Comment?</p>
-                                <p><ThumbUpAltOutlinedIcon /> {comment.likes_count}</p>
-                                <div className="vl"></div>
-                                <p><ThumbDownAltOutlinedIcon /> {comment.dislikes_count}</p>
-                            </div>            
+                                <Link to="#" onClick={() => this.toggleCreateReplyForm(comment.id)}>Reply</Link>
+                                { showCreateReplyForm && clickedComment === comment.id ?
+                                    <CreateReplyForm
+                                        className="add-reply"
+                                        itemId={objectId}
+                                        parentId={comment.id}
+                                        toggleCreateReplyForm={this.toggleCreateReplyForm} 
+                                    />
+                                :  
+                                    <div className="votes">
+                                        <p>Helpful Comment?</p>
+                                        <p><ThumbUpAltOutlinedIcon /> {comment.likes_count}</p>
+                                        <div className="vl"></div>
+                                        <p><ThumbDownAltOutlinedIcon /> {comment.dislikes_count}</p>
+                                    </div>     
+                                }
+                                
+                            </div>
+                            { comment.reply_count ?
+                                <Link 
+                                    to="#" 
+                                    className="view-replies"
+                                    onClick={() => this.toggleReplies(comment.id)}
+                                >  
+                                    { showReplies && clickedComment === comment.id ?
+                                        <span><ArrowDropUpTwoToneIcon /> Hide</span> 
+                                    : <span><ArrowDropDownTwoToneIcon /> View</span> 
+                                    } {comment.reply_count} replies
+                                </Link>
+                            : null }
+                            { showReplies && clickedComment === comment.id ?
+                                <RepliesList
+                                    className="replies-section"
+                                    id={comment.id}
+                                    parentId={objectId}
+                                />
+                            : null }            
                         </div>
                         <div className="more-icon">
                             <MoreVertIcon onClick={() => this.toggleEditModal(comment.id)}/>
