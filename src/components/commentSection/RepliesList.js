@@ -40,7 +40,7 @@ class RepliesList extends Component {
     }
 
     render() {
-        const { replies, parentId  } = this.props;
+        const { replies, user  } = this.props;
         const { showEditReplyModal, showEditReplyForm, clickedComment } = this.state;
         //console.log(replies);
         return (
@@ -71,17 +71,19 @@ class RepliesList extends Component {
                                 <p><ThumbDownAltOutlinedIcon /> {reply.dislikes_count}</p>
                             </div>          
                         </div>
-                        <div className="reply-more-icon">
-                        <MoreVertIcon onClick={() => this.toggleEditReplyModal(reply.id)}/>
-                        { showEditReplyModal && clickedComment === reply.id ? 
-                            <EditAndDeleteReplyModal 
-                                id={reply.id}
-                                content={reply.content}
-                                toggleEditForm={this.toggleEditReplyForm}
-                                toggleEditModal={this.toggleEditReplyModal}
-                            /> 
+                        { user && user.user_id == reply.user.id ?
+                            <div className="reply-more-icon">
+                                <MoreVertIcon onClick={() => this.toggleEditReplyModal(reply.id)}/>
+                                { showEditReplyModal && clickedComment === reply.id ? 
+                                    <EditAndDeleteReplyModal 
+                                        id={reply.id}
+                                        content={reply.content}
+                                        toggleEditForm={this.toggleEditReplyForm}
+                                        toggleEditModal={this.toggleEditReplyModal}
+                                    /> 
+                                : null }
+                            </div>
                         : null }
-                        </div>
                     </div>
                 ))}
             </RepliesListContainer>
@@ -90,7 +92,8 @@ class RepliesList extends Component {
 }
 
 const mapStateToProps = state => ({
-    replies: state.comments.replies
+    replies: state.comments.replies,
+    user: state.comments.user
 });
 
 export default connect(mapStateToProps, { getReplies })(RepliesList); 
