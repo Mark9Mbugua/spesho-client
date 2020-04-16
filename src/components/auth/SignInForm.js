@@ -1,6 +1,6 @@
 import React , {Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import { login } from '../../actions/auth';
 import { SignInFormContainer } from './signInForm.styles';
@@ -36,7 +36,12 @@ class SignUpForm extends Component{
     };
  
     render(){
-        console.log(this.props)
+        //console.log(this.props)
+        const { isAuthenticated }  = this.props;
+        if(isAuthenticated){
+            return <Redirect to="/" />
+        }
+
         return(
             <div>
                 <SignInFormContainer>

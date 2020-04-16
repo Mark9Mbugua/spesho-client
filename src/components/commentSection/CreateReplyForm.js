@@ -14,7 +14,6 @@ class EditCommentForm extends Component {
 
     componentDidMount() {
         this.textarea.focus();
-        //this.textarea.setSelectionRange(this.textarea.value.length, this.textarea.value.length);
         autosize(this.textarea);
     }
 
@@ -27,12 +26,13 @@ class EditCommentForm extends Component {
     handleSubmit = e => {
         e.preventDefault();
         const { content } = this.state;
-        const { itemId, parentId, toggleCreateReplyForm } = this.props;
+        const { itemId, parentId, toggleCreateReplyForm, showReplies } = this.props;
         
         // edit comment via createReply action
         this.props.createReply(content, itemId, parentId);
 
-        toggleCreateReplyForm();
+        toggleCreateReplyForm(parentId);
+        showReplies(parentId);
     
     };
 

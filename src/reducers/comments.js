@@ -21,8 +21,7 @@ import {
 
 const initialState = {
     comments: [],
-    replies: [],
-    user: null
+    replies: []
 };
 
 export default function(state = initialState, action) {
@@ -30,7 +29,6 @@ export default function(state = initialState, action) {
         case GET_COMMENTS:
             return {
                 ...state,
-                user: jwt_decode(localStorage.getItem('token')),
                 comments: action.payload
             };
         
@@ -59,7 +57,6 @@ export default function(state = initialState, action) {
         case GET_REPLIES:
             return {
                 ...state,
-                user: jwt_decode(localStorage.getItem('token')),
                 replies: action.payload
             }
 

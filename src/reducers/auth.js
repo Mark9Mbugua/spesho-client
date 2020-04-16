@@ -80,19 +80,19 @@ export default function(state = initialState, action) {
           token: action.payload.token,
           user: jwt_decode(action.payload.token)
         };
-        case AUTH_ERROR:
-        case LOGIN_FAIL:
-        case REGISTER_FAIL:
-        case LOGOUT_SUCCESS:
-          localStorage.removeItem('token');
-          return {
-            ...state,
-            token: null,
-            user: null,
-            profile: null,
-            isAuthenticated: false,
-            isLoading: false
-          };
+      case AUTH_ERROR:
+      case LOGIN_FAIL:
+      case REGISTER_FAIL:
+      case LOGOUT_SUCCESS:
+        localStorage.removeItem('token');
+        return {
+          ...state,
+          token: null,
+          user: null,
+          profile: null,
+          isAuthenticated: false,
+          isLoading: false
+        };
       default:
         return state;
     }
