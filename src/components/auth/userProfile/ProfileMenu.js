@@ -12,7 +12,9 @@ const ProfileMenu = ({ profile }) => {
                     <li className="menu-item">
                         <Link to="#" className="link">
                             <div className="link-icon">
-                                {profile && profile.user ? `${profile.user.username}` : ''}<ArrowDropDownTwoToneIcon />
+                                { profile && profile.user ? `${profile.user.username}` 
+                                    : 'My Account'
+                                }<ArrowDropDownTwoToneIcon />
                             </div>
                         </Link>
                         <ul className="dropdown-list">

@@ -7,7 +7,7 @@ import mobileNavIcon from '../../images/mobile-nav-icon.svg';
 import SearchBar from './SearchBar';
 import SignUp from '../signUp/SignUp';
 import SignIn from '../signIn/SignIn';
-import ProfileOverview from '../auth/userProfile/ProfileMenu';
+import ProfileMenu from '../auth/userProfile/ProfileMenu';
 import SiteLogo from './SiteLogo';
 
 const DesktopNavbar = props => {
@@ -23,7 +23,7 @@ const DesktopNavbar = props => {
 
     const authLinks = (
         <Fragment>
-            <ProfileOverview 
+            <ProfileMenu 
                 profile={profile}
                 isAuth={isAuth}
             />

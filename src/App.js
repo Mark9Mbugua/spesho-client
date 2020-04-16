@@ -4,13 +4,20 @@ import store from './store';
 import AppContainer from './components/appContainer/AppContainer';
 
 import './App.css';
+import { loadCurrentUser } from './actions/auth';
 
-const App = () => {
-    return (
-        <Provider store={store}>
-            <AppContainer />
-        </Provider>
-    );
+class App extends Component {
+    componentDidMount(){
+        store.dispatch(loadCurrentUser());
+    }
+    
+    render() {
+        return (
+            <Provider store={store}>
+                <AppContainer />
+            </Provider>
+        );
+    }
 }
 
 export default App;

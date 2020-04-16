@@ -22,9 +22,30 @@ import {
 
 
 // Check token & load user
+export const loadCurrentUser = () => (dispatch, getState) => {
+  // User loading
+  dispatch({ type: USER_LOADING });
+
+  axios
+    .get('http://127.0.0.1:8000/api/v1/accounts/user/', tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: AUTH_ERROR
+      });
+    });
+};
+
+// Check token & load user profile
 export const loadUserProfile = () => (dispatch, getState) => {
-    // User loading
-    dispatch({ type: USER_LOADING });
+    // User profile loading
+    dispatch({ type: PROFILE_LOADING });
   
     axios
       .get('http://127.0.0.1:8000/api/v1/accounts/user/profile', tokenConfig(getState))
@@ -174,10 +195,8 @@ export const login = ({ username, password }) => dispatch => {
         .then(res =>
             dispatch({
             type: LOGIN_SUCCESS,
-            payload: res.data,
-            history: history.push('/')
-            }),
-            
+            payload: res.data
+          }),    
         )
         .catch(err => {
             dispatch(
