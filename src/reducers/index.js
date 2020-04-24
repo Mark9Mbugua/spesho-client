@@ -5,6 +5,7 @@ import stores from './stores';
 import items from './items';
 import comments from './comments';
 import auth from './auth';
+import votes from './votes';
 import errors from './errors'; 
 
 export default combineReducers({
@@ -14,5 +15,6 @@ export default combineReducers({
     items,
     category,
     comments,
+    votes,
     errors,
 });

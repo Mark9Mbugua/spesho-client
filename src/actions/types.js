@@ -41,3 +41,7 @@ export const EDIT_REPLY = 'EDIT_REPLY';
 export const EDIT_REPLY_ERROR = 'EDIT_REPLY_ERROR';
 export const DELETE_REPLY = 'DELETE_REPLY';
 export const DELETE_REPLY_ERROR = 'DELETE_REPLY_ERROR';
+export const GET_VOTES = 'GET_VOTES';
+export const GET_VOTES_ERROR = 'GET_VOTES_ERROR';
+export const CREATE_VOTE = 'CREATE_VOTE';
+export const CREATE_VOTE_ERROR = 'CREATE_VOTE_ERROR';

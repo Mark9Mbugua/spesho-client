@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ShareIcon from '@material-ui/icons/Share';
 import { Link } from 'react-router-dom';
+import { getVotes } from '../../actions/votes';
 
 import { ItemCardContainer } from './itemCard.styles';
 
@@ -20,49 +21,67 @@ const useStyles = makeStyles(theme => ({
     },
     media: {
       height: 0,
-      paddingTop: '56.25%', // 16:9
+      paddingTop: '75%', // 16:9
+    },
+    buttons: {
+        paddingTop: 0,
+        marginTop: 0,
+        width: '100%',
+    },
+    icon: {
+        paddingTop: 0,
+        width: '30%',
+    },
+    divider: {
+        paddingRight: '10%',
+        width: '70%',
     },
   }));
 
-const ItemCard = ({ id, imageSrc, title, price, oldPrice, discount, description}) => {    
+const ItemCard = ({ id, imageSrc, title, price, oldPrice, votes, getVotes, likes}) => {
+    //console.log(votes)    
     const classes = useStyles();
+    
+    useEffect(() => {
+        getVotes(id);
+    }, []);
+
     return (
         <ItemCardContainer>
             <Card className={classes.root}>
-                <CardMedia
-                    className={classes.media}
-                    image={imageSrc}
-                    title={title}
-                />
-                <CardContent>
-                    <Typography variant="body2" color="textPrimary" component="p" display="block">
-                        {title}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p" display="block">
-                        Price: Ksh.{price}
-                    </Typography>
-                    <Typography variant="body2" color="error" component="p" display="block">
-                        Original Price: Ksh.{oldPrice}
-                    </Typography>
-                </CardContent>
-                <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                    </IconButton>
-                    <IconButton aria-label="share">
-                    <ShareIcon />
-                    </IconButton>
-                </CardActions>
-                <CardActions>
-                    <Link to={`/items/${id}`}>
-                        <Button size="small" color="primary" variant="outlined">
-                            View Details
-                        </Button>
+                <CardActions className={classes.actions}>
+                    <Link to={`/items/${id}`}>  
+                        <CardMedia
+                            className={classes.media}
+                            image={imageSrc}
+                            title={title}
+                        />
+                        <CardContent className={classes.content}>
+                            <Typography variant="body2" color="textPrimary" component="p" display="block">
+                                {title}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p" display="block">
+                                Price: Ksh.{price}
+                            </Typography>
+                            <Typography variant="body2" color="error" component="p" display="block">
+                                Original Price: Ksh.{oldPrice}
+                            </Typography>
+                        </CardContent>
                     </Link>
+                </CardActions>
+                <CardActions className={classes.buttons}>
+                    <IconButton className={classes.icon}>
+                    <ThumbUpAltOutlinedIcon className={classes.divider} />
+                    <span>{ likes }</span>
+                    </IconButton>
                 </CardActions>
             </Card>
         </ItemCardContainer>
     )
 }
 
-export default ItemCard
+const mapStateToProps = state => ({
+    votes: state.votes.votes
+});
+
+export default connect(mapStateToProps, { getVotes })(ItemCard);
