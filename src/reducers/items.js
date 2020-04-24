@@ -8,6 +8,7 @@ import {
 
 const initialState = {
     items: [],
+    item: {},
     loading: false
 };
 
@@ -22,11 +23,7 @@ export default function(state = initialState, action) {
         case GET_ITEM:
             return {
                 ...state,
-                items: state.items.map(item =>
-                    item.id === action.payload.id
-                        ? (item = action.payload)
-                        : item
-                    )
+                item: action.payload
             };
 
         case GET_ITEMS_BY_CATEGORY:

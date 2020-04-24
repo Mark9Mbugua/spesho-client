@@ -19,6 +19,8 @@ const ItemsContainer = (props) => {
                             discount={item.discount}
                             description={item.description}
                             dealUrl={item.deal_url}
+                            likes={item.likes_count}
+                            dislikes={item.dislikes_count}
                         />
                     </div>
                 ))}
