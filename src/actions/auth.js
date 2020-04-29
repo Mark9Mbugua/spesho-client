@@ -164,9 +164,9 @@ export const register = ({ email, first_name, last_name, username, password }) =
         .then(res =>
             dispatch({
                 type: REGISTER_SUCCESS,
-                payload: res.data,
-                history: history.push('/signin')
-            })
+                payload: res.data
+            }),
+            history.push('/signin')
         )
         .catch(err => {
             dispatch(

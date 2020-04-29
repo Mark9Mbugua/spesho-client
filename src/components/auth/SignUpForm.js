@@ -1,6 +1,6 @@
 import React , {Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { register } from '../../actions/auth';
 import { SignUpFormContainer } from './signUpForm.styles';
 import Footer from '../common/Footer';
@@ -37,9 +37,12 @@ class SignUpForm extends Component{
             username,
             password
         };
-        
-        this.props.register(user); 
-        
+        // Attempt to register
+        if (user.email && user.first_name && user.last_name && user.username && user.password){ 
+            this.props.register(user);
+        } else {
+            console.log('Kindly fill in all fields');
+        } 
     };
  
     render(){
