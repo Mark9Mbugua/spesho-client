@@ -10,8 +10,6 @@ class Header extends Component {
     super(props);
     this.state = {
       displayMobileNavbar: false,
-      isAuth: false,
-      profile: {},
       isLoaded: false
     }
   } 
@@ -44,7 +42,7 @@ class Header extends Component {
   }
 
   render() {
-    let { isAuth, profile } = this.props
+    let { isAuth, user } = this.props
     //console.log(this.props)
     if (window.location.pathname === '/signup' || window.location.pathname === '/signin') 
       return (
@@ -55,14 +53,14 @@ class Header extends Component {
     return (
       <NavbarContainer>
         <DesktopNavbar
-          isAuth={isAuth}
-          profile={profile} 
+          isAuth={isAuth} 
+          user={user}
           displayMobileNavbar={this.state.displayMobileNavbar}
           toggleMobileNavbar={this.toggleMobileNavbar} 
         />
         <MobileNavbar
           isAuth={isAuth}
-          profile={profile}  
+          user={user}  
           displayMobileNavbar={this.state.displayMobileNavbar} 
         />
       </NavbarContainer>

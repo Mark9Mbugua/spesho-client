@@ -12,7 +12,7 @@ import SiteLogo from './SiteLogo';
 
 const DesktopNavbar = props => {
     //console.log(props);
-    const { isAuth, profile } = props;
+    const { isAuth, user } = props;
 
     const guestLinks = (
         <Fragment>
@@ -24,8 +24,8 @@ const DesktopNavbar = props => {
     const authLinks = (
         <Fragment>
             <ProfileMenu 
-                profile={profile}
                 isAuth={isAuth}
+                user={user}
             />
         </Fragment>
     );

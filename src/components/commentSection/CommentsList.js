@@ -73,7 +73,7 @@ export class CommentsList extends Component {
     };
 
     render() {
-        const { comments, objectId, user, isAuthenticated } = this.props;
+        const { comments, objectId, user} = this.props;
         //console.log(user);
         const { showEditModal, clickedComment, showEditForm, showReplies, showCreateReplyForm } = this.state;
         
@@ -148,10 +148,11 @@ export class CommentsList extends Component {
                                     toggleEditForm={this.toggleEditForm}
                                     toggleEditModal={this.toggleEditModal}
                                     clickedComment={clickedComment}
+                                    user={user}
                                 />
                             : null }            
                         </div>
-                        { user && user.id == comment.user.id ?
+                        { user && user.username == comment.user.username ?
                             <div className="more-icon">
                                 <MoreVertIcon onClick={() => this.toggleEditModal(comment.id)}/>
                                 { showEditModal && clickedComment === comment.id ? 
@@ -172,9 +173,7 @@ export class CommentsList extends Component {
 }
 
 const mapStateToProps = state => ({
-    comments: state.comments.comments,
-    user: state.auth.user,
-    isAuthenticated: state.auth.isAuthenticated
+    comments: state.comments.comments
 });
 
 export default connect(mapStateToProps, { getComments })(CommentsList);  

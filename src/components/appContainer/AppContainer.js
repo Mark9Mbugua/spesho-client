@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
-import { loadUserProfile } from '../../actions/auth';
+import { loadUserProfile,loadCurrentUser } from '../../actions/auth';
 import Header from '../header/Header';
 import SignUpForm from '../auth/SignUpForm';
 import SignInForm from '../auth/SignInForm';
@@ -17,17 +17,16 @@ import PrivateRoute from '../common/PrivateRoute';
 class AppContainer extends Component {
 
     componentDidMount(){
-        this.props.loadUserProfile();
+        this.props.loadCurrentUser();
     }
 
     render() {
-        //console.log(this.props)
-        const { isAuthenticated, profile } = this.props
+        const { isAuthenticated, user } = this.props;
         return (
             <div>
                 <Header 
                     isAuth={isAuthenticated}
-                    profile={profile}
+                    user={user}
                 />
                 <Switch>
                     <Route exact path="/" component={Home} />
@@ -38,7 +37,7 @@ class AppContainer extends Component {
                         component={ItemsPerStorePage} 
                     />
                     <Route exact path="/items/:id" 
-                        component={ItemDetailPage} 
+                        render={(props) => <ItemDetailPage {...props} user={user} />} 
                     />
                     <Route exact path="/signup" 
                         component={SignUpForm} 
@@ -63,8 +62,8 @@ class AppContainer extends Component {
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
-    profile: state.auth.profile,
+    user: state.auth.user,
     error: state.errors
 });
 
-export default withRouter(connect(mapStateToProps, { loadUserProfile })(AppContainer))
+export default withRouter(connect(mapStateToProps, { loadCurrentUser })(AppContainer))

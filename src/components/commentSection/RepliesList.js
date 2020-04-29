@@ -71,7 +71,7 @@ class RepliesList extends Component {
                                 <p><ThumbDownAltOutlinedIcon /> {reply.dislikes_count}</p>
                             </div>          
                         </div>
-                        { user && user.id == reply.user.id ?
+                        { user && user.username == reply.user.username ?
                             <div className="reply-more-icon">
                                 <MoreVertIcon onClick={() => this.toggleEditReplyModal(reply.id)}/>
                                 { showEditReplyModal && clickedComment === reply.id ? 
@@ -92,8 +92,7 @@ class RepliesList extends Component {
 }
 
 const mapStateToProps = state => ({
-    replies: state.comments.replies,
-    user: state.auth.user
+    replies: state.comments.replies
 });
 
 export default connect(mapStateToProps, { getReplies })(RepliesList); 
