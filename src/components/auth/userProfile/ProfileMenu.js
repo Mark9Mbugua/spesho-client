@@ -4,7 +4,7 @@ import ArrowDropDownTwoToneIcon from '@material-ui/icons/ArrowDropDownTwoTone';
 import { ProfileItemsList } from './profileMenu.styles';
 import Logout from '../Logout';
 
-const ProfileMenu = ({ profile }) => {
+const ProfileMenu = ({ user }) => {
     return (
         <ul className="nav-links">
             <li>
@@ -12,7 +12,7 @@ const ProfileMenu = ({ profile }) => {
                     <li className="menu-item">
                         <Link to="#" className="link">
                             <div className="link-icon">
-                                { profile && profile.user ? `${profile.user.username}` 
+                                { user ? `${user.username}` 
                                     : 'My Account'
                                 }<ArrowDropDownTwoToneIcon />
                             </div>

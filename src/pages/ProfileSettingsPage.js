@@ -11,7 +11,6 @@ class ProfileSettingsPage extends Component {
     }
     render() {
         const { isAuthenticated, profile } = this.props;
-        //console.log(profile)
         return (
             <div>
                 <ProfileHeader 

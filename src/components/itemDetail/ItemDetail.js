@@ -23,10 +23,10 @@ class ItemDetail extends Component {
     };
 
     render() {
-        let { id, item, votes } = this.props;
+        let { id, item, votes, user } = this.props;
         const likes = votes.filter(vote => vote.vote_type === 1);
         const dislikes = votes.filter(vote => vote.vote_type === 2);
-        console.log(this.props)
+        console.log(user)
 
         return (
             <div>
@@ -74,7 +74,8 @@ class ItemDetail extends Component {
                         </div>
                         <CommentsList 
                             objectId={this.props.id} 
-                            commentsCount={item.comments_count} 
+                            commentsCount={item.comments_count}
+                            user={user} 
                         />
                     </div>                                         
                 </ItemDetailContainer>
