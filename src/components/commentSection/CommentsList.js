@@ -9,7 +9,7 @@ import ArrowDropUpTwoToneIcon from '@material-ui/icons/ArrowDropUpTwoTone';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { getComments } from '../../actions/comments';
 import { CommentsListContainer } from './commentList.styles';
-import CreateCommentModal from './CreateCommentModal';
+import CreateCommentForm from './CreateCommentForm';
 import profileIcon from '../../images/profile-icon.svg';
 import EditAndDeleteCommentModal from './EditAndDeleteCommentModal';
 import EditCommentForm from './EditCommentForm';
@@ -79,7 +79,7 @@ export class CommentsList extends Component {
         
         return (
             <CommentsListContainer>
-                <CreateCommentModal 
+                <CreateCommentForm 
                     id={this.props.objectId}
                 />
                 <hr />

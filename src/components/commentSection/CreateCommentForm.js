@@ -1,27 +1,27 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import autosize from "autosize";
-import { createReply } from '../../actions/comments';
+import { createComment } from '../../actions/comments';
 import { CreateReplyFormContainer } from './createReplyForm.styles';
 
 
-const CreateReplyForm = ({ itemId, parentId, toggleCreateReplyForm, showReplies, createReply } ) => {
+const CreateCommentForm = ({ id, createComment }) => {
     const contentRef = useRef()
     const [content, setContent] = useState('');
 
     useEffect(() => {
-        contentRef.current.focus();
+        //contentRef.current.focus();
         autosize(contentRef.current);
-    });
+      });
     
     const handleSubmit = e => {
         e.preventDefault();
 
-        // create reply via createReply action
-        createReply(content, itemId, parentId)
+        // create comment via createComment action
+        createComment(content, id);
 
-        toggleCreateReplyForm(parentId);
-        showReplies(parentId);
+        //clear textarea
+        setContent('');
     
     };
 
@@ -34,7 +34,7 @@ const CreateReplyForm = ({ itemId, parentId, toggleCreateReplyForm, showReplies,
                     name='content'
                     id='content'
                     ref={contentRef}
-                    placeholder="Add a public reply..."
+                    placeholder="Add a  public comment..."
                     rows={1}
                     defaultValue=""
                     value={content}
@@ -43,7 +43,7 @@ const CreateReplyForm = ({ itemId, parentId, toggleCreateReplyForm, showReplies,
                 <div className="reply-buttons">
                     <button 
                         className="cancel-button"
-                        onClick={toggleCreateReplyForm}
+                        onClick={e => setContent('')}
                     >
                         Cancel
                     </button>
@@ -61,4 +61,5 @@ const CreateReplyForm = ({ itemId, parentId, toggleCreateReplyForm, showReplies,
     )
 }
 
-export default connect(null, { createReply })(CreateReplyForm);
+export default connect(null, { createComment })(CreateCommentForm);
+

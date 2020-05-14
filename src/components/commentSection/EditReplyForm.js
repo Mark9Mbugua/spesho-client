@@ -1,80 +1,41 @@
-import React, { Component } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import autosize from "autosize";
 import { editReply } from '../../actions/comments';
 import { EditCommentFormContainer } from './editCommentForm.styles';
+import CommonEditForm from './CommonEditForm';
 
-class EditReplyForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            content: props.content,
-            id: props.id
-        };
-    }
+const EditReplyForm = (props) => {
+    const contentRef = useRef()
+    const [content, setContent] = useState(props.content);
 
-    componentDidMount() {
-        this.textarea.focus();
-        this.textarea.setSelectionRange(this.textarea.value.length, this.textarea.value.length);
-        autosize(this.textarea);
-    }
-
-    handleChange = e => {
-        const { name, value } = e.target;
-
-        this.setState({ [name]: value });
-    };
-
-    handleSubmit = e => {
+    useEffect(() => {
+        contentRef.current.focus();
+        contentRef.current.setSelectionRange(contentRef.current.value.length, contentRef.current.value.length);
+        autosize(contentRef.current);
+    });
+    
+    const handleSubmit = e => {
         e.preventDefault();
-        const { content, id } = this.state;
-        const { toggleEditForm } = this.props;
-        
-        // edit comment via editComment action
-        this.props.editReply(content, id);
 
-        toggleEditForm();
+        // edit reply via editReply action
+        props.editReply(content, props.id);
+
+        props.toggleEditForm();
     
     };
 
-    render() {
-        const { content } = this.state;
-        const { toggleEditForm } = this.props;
-        return (
-            <EditCommentFormContainer>
-                <form className="edit-form" onSubmit={this.handleSubmit}>
-                    <textarea
-                        className="edit-input" 
-                        type='textarea'
-                        name='content'
-                        id='content'
-                        ref={c => (this.textarea = c)}
-                        placeholder="type some text"
-                        rows={1}
-                        defaultValue=""
-                        value={content}
-                        onChange={this.handleChange} 
-                    />
-                    <div className="edit-buttons">
-                        <button 
-                            className="cancel-button"
-                            onClick={toggleEditForm}
-                        >
-                            Cancel
-                        </button>
-                        <div className="divider" />
-                        <button 
-                            className='edit-button' 
-                            type='submit' 
-                            value='submit'
-                        >
-                            Save
-                        </button>
-                    </div>
-                </form>
-            </EditCommentFormContainer>
-        )
-    }
+    return (
+        <CommonEditForm 
+            handleSubmit={handleSubmit}
+            contentRef={contentRef}
+            content={content}
+            setContent={setContent}
+            toggleEditForm={props.toggleEditForm}
+        />
+    )
 }
 
 export default connect(null, { editReply })(EditReplyForm);
+
+

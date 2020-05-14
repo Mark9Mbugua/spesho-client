@@ -34,6 +34,13 @@ export const ProfileSettingsContainer = styled.div`
             margin-top: 18px;
             width: 85%;
 
+            .user-details {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-between;
+                width: 100%;
+            }
+
             .phone-icon-button {
                 display: flex;
                 flex-flow: row wrap;
