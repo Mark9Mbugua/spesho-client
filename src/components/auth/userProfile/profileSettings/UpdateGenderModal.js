@@ -1,85 +1,71 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useRef, useState, useEffect } from 'react';
+import { connect, useSelector } from 'react-redux';
+import autosize from "autosize";
 import { updateUserProfile } from '../../../../actions/auth';
-import {
-    Button,
-    Modal,
-    ModalHeader,
-    ModalBody,
-    Form,
-    FormGroup,
-    Label,
-    Input
-} from 'reactstrap';
-import EditIcon from '@material-ui/icons/Edit';
+import { CreateReplyFormContainer } from '../../../commentSection/createReplyForm.styles';
 
-class UpdateGenderModal extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            gender: props.gender,
-            modal: false
-        };
-    }
 
-    toggle = () => {
-        this.setState({
-            modal: !this.state.modal
-        });
-    }
+const UpdateGenderModal = (props) => {
+    const genderRef = useRef()
+    let [gender, setGender] = useState(props.gender);
+    console.log(props);
+    console.log(gender);
 
-    handleSubmit = e => {
-        e.preventDefault(); 
-        let { gender } = this.state 
+    useEffect(() => {
+        genderRef.current.focus();
+        genderRef.current.setSelectionRange(genderRef.current.value.length, genderRef.current.value.length);
+        autosize(genderRef.current);
+    });
+    
+    const handleSubmit = e => {
+        e.preventDefault();
+
         gender = {gender: gender};
 
-        // update gender via updateUser action
-        this.props.updateUserProfile(gender);
+        // update bio via updateUser action
+        props.updateUserProfile(gender);
 
-        this.toggle()
+        //hide form on submission
+        props.toggleGenderForm()
     
     };
 
-    handleChange = e => {
-        const { name, value } = e.target;
-
-        this.setState({ [name]: value });
-    };
-
-    render() {
-        const { getProfile } = this.props;
-        //console.log(this.props)
-        return (
-            <div>
-                <EditIcon onClick={this.toggle} />
-                <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>Update Gender</ModalHeader>
-                    <ModalBody>
-                        <Form onSubmit={this.handleSubmit}>
-                            <FormGroup>
-                                <Label for='gender'>Gender</Label>
-                                <Input
-                                    type='text'
-                                    name='gender'
-                                    id='gender'
-                                    value={this.state.gender}
-                                    onChange={this.handleChange}
-                                />
-                                <Button color='dark' style={{ marginTop: '2rem' }}>
-                                    Update Gender
-                                </Button>
-                            </FormGroup>
-                        </Form>
-                    </ModalBody>
-                </Modal>
-            </div>
-        )
-    }
+    return (
+        <CreateReplyFormContainer>
+            <form className="reply-form" onSubmit={handleSubmit}>
+                <textarea
+                    className="reply-input" 
+                    type='textarea'
+                    name='bio'
+                    id='bio'
+                    ref={genderRef}
+                    placeholder="Edit Gender..."
+                    rows={1}
+                    value={gender}
+                    onChange={e => setGender(e.target.value)} 
+                />
+                <div className="reply-buttons">
+                    <button 
+                        className="cancel-button"
+                        onClick={e => props.genderBioForm}
+                    >
+                        Cancel
+                    </button>
+                    <div className="divider" />
+                    <button 
+                        className='reply-button' 
+                        type='submit' 
+                        value='submit'
+                    >
+                        Save
+                    </button>
+                </div>
+            </form>
+        </CreateReplyFormContainer>
+    )
 }
 
-const mapStateToProps = state => ({
-    profile: state.auth.profile,
-    error: state.errors
-});
+export default connect(null, { updateUserProfile })(UpdateGenderModal);
 
-export default connect(mapStateToProps, { updateUserProfile })(UpdateGenderModal)
+
+

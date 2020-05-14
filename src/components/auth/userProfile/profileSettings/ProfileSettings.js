@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import VisibilityOffTwoToneIcon from '@material-ui/icons/VisibilityOffTwoTone';
 import ChangeUserPassword from './ChangeUserPassword';
 import UpdateBioModal from './UpdateBioModal';
@@ -6,10 +6,17 @@ import UpdateGenderModal from './UpdateGenderModal';
 import UpdatePhoneModal from './UpdatePhoneModal';
 import VerifyCodeModal from './VerifyCodeModal';
 import UpdateBirthDate from './UpdateBirthDate';
-import { ProfileSettingsContainer } from './profileSettings.styles'; 
+import { ProfileSettingsContainer } from './profileSettings.styles';
+import EditIcon from '@material-ui/icons/Edit'; 
 
 const ProfileSettings = ({ getProfile }) => {
     //console.log(getProfile)
+    const [showBioForm, setShowBioForm] = useState(false);
+    const toggleBioForm = () => setShowBioForm(!showBioForm);
+
+    const [showGenderForm, setShowGenderForm] = useState(false);
+    const toggleGenderForm = () => setShowGenderForm(!showGenderForm);
+    
     return (
         <ProfileSettingsContainer>
             <div className="modal-container">
@@ -19,10 +26,19 @@ const ProfileSettings = ({ getProfile }) => {
                         <h3>Bio</h3>
                     </div>
                     <div className="edit">
-                        <span>{getProfile && getProfile.user ? `${getProfile.bio}` : 'Edit Bio'}</span>
-                        <div className="icon">
-                            <UpdateBioModal getProfile={getProfile} />
-                        </div>
+                        {showBioForm ? 
+                            <UpdateBioModal 
+                                toggleBioForm={toggleBioForm} 
+                                bio={getProfile.bio}
+                            />   
+                            : 
+                            <div className="user-details">
+                                <span>{getProfile && getProfile.user ? `${getProfile.bio}` : 'Edit Bio'}</span>
+                                <div className="icon">
+                                    <EditIcon onClick={toggleBioForm}/>
+                                </div>
+                            </div> 
+                        }
                     </div>
                 </div>
                 <hr />
@@ -31,10 +47,19 @@ const ProfileSettings = ({ getProfile }) => {
                         <h3>Gender</h3>
                     </div>
                     <div className="edit">
-                        <span>{getProfile && getProfile.user ? `${getProfile.gender}` : 'Edit Gender'}</span>
-                        <div className="icon">
-                            <UpdateGenderModal getProfile={getProfile} />
-                        </div>
+                        {showGenderForm ? 
+                            <UpdateGenderModal 
+                                toggleGenderForm={toggleGenderForm} 
+                                gender={getProfile.gender}
+                            />   
+                            : 
+                            <div className="user-details">
+                                <span>{getProfile && getProfile.user ? `${getProfile.gender}` : 'Edit Gender'}</span>
+                                <div className="icon">
+                                    <EditIcon onClick={toggleGenderForm}/>
+                                </div>
+                            </div> 
+                        }
                     </div>
                 </div>
                 <hr />

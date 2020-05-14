@@ -1,85 +1,68 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useRef, useState, useEffect } from 'react';
+import { connect, useSelector } from 'react-redux';
+import autosize from "autosize";
 import { updateUserProfile } from '../../../../actions/auth';
-import {
-    Button,
-    Modal,
-    ModalHeader,
-    ModalBody,
-    Form,
-    FormGroup,
-    Label,
-    Input
-} from 'reactstrap';
-import EditIcon from '@material-ui/icons/Edit';
+import { CreateReplyFormContainer } from '../../../commentSection/createReplyForm.styles';
 
-class UpdateBioModal extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            bio: props.bio,
-            modal: false
-        };
-    }
 
-    toggle = () => {
-        this.setState({
-            modal: !this.state.modal
-        });
-    }
+const UpdateBioModal = (props) => {
+    const bioRef = useRef()
+    let [bio, setBio] = useState(props.bio);
+    console.log(props);
+    console.log(bio);
 
-    handleSubmit = e => {
+    useEffect(() => {
+        bioRef.current.focus();
+        bioRef.current.setSelectionRange(bioRef.current.value.length, bioRef.current.value.length);
+        autosize(bioRef.current);
+    });
+    
+    const handleSubmit = e => {
         e.preventDefault();
-        let { bio } = this.state;  
         bio = {bio: bio};
-
         // update bio via updateUser action
-        this.props.updateUserProfile(bio);
+        props.updateUserProfile(bio);
 
-        this.toggle()
+        //hide form on submission
+        props.toggleBioForm()
     
     };
 
-    handleChange = e => {
-        const { name, value } = e.target;
-
-        this.setState({ [name]: value });
-    };
-
-    render() {
-        //const { getProfile } = this.props;
-        //console.log(getProfile)
-        return (
-            <div>
-                <EditIcon onClick={this.toggle} />
-                <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>Update Bio</ModalHeader>
-                    <ModalBody>
-                        <Form onSubmit={this.handleSubmit}>
-                            <FormGroup>
-                                <Label for='bio'>Bio</Label>
-                                <Input
-                                    type='text'
-                                    name='bio'
-                                    id='bio'
-                                    value={this.state.bio}
-                                    onChange={this.handleChange}
-                                />
-                                <Button color='dark' style={{ marginTop: '2rem' }}>
-                                    Update Bio
-                                </Button>
-                            </FormGroup>
-                        </Form>
-                    </ModalBody>
-                </Modal>
-            </div>
-        )
-    }
+    return (
+        <CreateReplyFormContainer>
+            <form className="reply-form" onSubmit={handleSubmit}>
+                <textarea
+                    className="reply-input" 
+                    type='textarea'
+                    name='bio'
+                    id='bio'
+                    ref={bioRef}
+                    placeholder="Edit Bio..."
+                    rows={1}
+                    value={bio}
+                    onChange={e => setBio(e.target.value)} 
+                />
+                <div className="reply-buttons">
+                    <button 
+                        className="cancel-button"
+                        onClick={e => props.toggleBioForm}
+                    >
+                        Cancel
+                    </button>
+                    <div className="divider" />
+                    <button 
+                        className='reply-button' 
+                        type='submit' 
+                        value='submit'
+                    >
+                        Save
+                    </button>
+                </div>
+            </form>
+        </CreateReplyFormContainer>
+    )
 }
 
-const mapStateToProps = state => ({
-    profile: state.auth.profile,
-    error: state.errors
-});
+export default connect(null, { updateUserProfile })(UpdateBioModal);
 
-export default connect(mapStateToProps, { updateUserProfile })(UpdateBioModal)
+
