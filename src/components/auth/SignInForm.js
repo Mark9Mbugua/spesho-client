@@ -1,8 +1,10 @@
 import React , {Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
+import { Alert } from 'reactstrap';
 
 import { login } from '../../actions/auth';
+import { clearErrors } from '../../actions/errors';
 import { SignInFormContainer } from './signInForm.styles';
 import { SignUpFormContainer } from './signUpForm.styles';
 import Footer from '../common/Footer';
@@ -12,6 +14,10 @@ class SignUpForm extends Component{
         username: '',
         password: ''
     };
+
+    componentDidMount(){
+        this.props.clearErrors();
+    }
 
     handleChange = e => {
         const { name, value } = e.target;
@@ -23,7 +29,6 @@ class SignUpForm extends Component{
         e.preventDefault();
 
         const { username, password } = this.state;
-        //const { isAuthenticated } = this.props;
 
         // Sign in user
         const user = {
@@ -37,7 +42,7 @@ class SignUpForm extends Component{
  
     render(){
         //console.log(this.props)
-        const { isAuthenticated }  = this.props;
+        const { isAuthenticated, error }  = this.props;
         if(isAuthenticated){
             return <Redirect to="/" />
         }
@@ -49,6 +54,12 @@ class SignUpForm extends Component{
                         <form onSubmit={this.handleSubmit} className="FormFields">
                             <h1>Sign In</h1>
                             <h5>Enter your details below to continue</h5>
+                            {error.msg.non_field_errors ?
+                                <Alert color="danger">
+                                    {error.msg.non_field_errors}
+                                </Alert>
+                                :null
+                            }
                             <div className="FormField">
                                 <input 
                                     type="text" 
@@ -59,6 +70,12 @@ class SignUpForm extends Component{
                                     onChange={this.handleChange} 
                                 />
                             </div>
+                            {error.msg.username ?
+                                <Alert color="danger">
+                                    <span>Username: {error.msg.username}</span>
+                                </Alert>
+                                : null
+                            }          
                             <div className="FormField">
                                 <input 
                                     type="password" 
@@ -69,6 +86,12 @@ class SignUpForm extends Component{
                                     onChange={this.handleChange} 
                                 />
                             </div>
+                            {error.msg.password ?
+                                <Alert color="danger">
+                                    <span>Password: {error.msg.password}</span>
+                                </Alert>
+                                : null
+                            }         
                             <div className="forgot-password">
                                 <a 
                                     href="http://localhost:8000/api/v1/accounts/reset/password_reset/" 
@@ -102,4 +125,4 @@ const mapStateToProps = state => ({
     error: state.errors
 });
 
-export default connect(mapStateToProps, { login })(SignUpForm);
+export default connect(mapStateToProps, { login, clearErrors })(SignUpForm);

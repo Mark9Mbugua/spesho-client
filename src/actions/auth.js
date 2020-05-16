@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { history } from '../helpers/history';
 import { returnErrors } from './errors';
 
 import {
@@ -10,9 +9,12 @@ import {
     LOGIN_FAIL,
     USER_LOADING,
     USER_LOADED,
+    LOAD_USER_FAILURE,
     PROFILE_LOADING,
     PROFILE_LOADED,
+    LOAD_PROFILE_FAILURE,
     UPDATE_PROFILE,
+    UPDATE_PROFILE_FAILURE,
     UPDATE_PHONE,
     CHANGE_PASSWORD_SUCCESS,
     CHANGE_PASSWORD_FAILURE,
@@ -37,7 +39,7 @@ export const loadCurrentUser = () => (dispatch, getState) => {
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
-        type: AUTH_ERROR
+        type: LOAD_USER_FAILURE
       });
     });
 };
@@ -58,7 +60,7 @@ export const loadUserProfile = () => (dispatch, getState) => {
       .catch(err => {
         dispatch(returnErrors(err.response.data, err.response.status));
         dispatch({
-          type: AUTH_ERROR
+          type: LOAD_PROFILE_FAILURE
         });
       });
 };
@@ -79,7 +81,7 @@ export const updateUserProfile = ({bio, avatar, birth_date, gender}) => (dispatc
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
-        type: AUTH_ERROR
+        type: UPDATE_PROFILE_FAILURE
       });
     });
 };
@@ -165,8 +167,7 @@ export const register = ({ email, first_name, last_name, username, password }) =
             dispatch({
                 type: REGISTER_SUCCESS,
                 payload: res.data
-            }),
-            history.push('/signin')
+            })
         )
         .catch(err => {
             dispatch(

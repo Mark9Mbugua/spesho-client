@@ -8,7 +8,6 @@ import InsertCommentTwoToneIcon from '@material-ui/icons/InsertCommentTwoTone';
 import ShoppingCartTwoToneIcon from '@material-ui/icons/ShoppingCartTwoTone';
 import WcTwoToneIcon from '@material-ui/icons/WcTwoTone';
 import { ProfileMainContainer } from './profileMain.styles';
-import ActivityTab from './activityTabs/ActivityTab';
 
 
 const ProfileMain = ({isAuth, profile}) => {
@@ -64,12 +63,6 @@ const ProfileMain = ({isAuth, profile}) => {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div className="lower-section">
-                <div className="my-activity">
-                    <h2 className="section-title">My Activity</h2>
-                    <ActivityTab />
                 </div>
             </div>
         </ProfileMainContainer>

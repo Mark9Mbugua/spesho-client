@@ -7,9 +7,12 @@ import {
   LOGIN_FAIL,
   USER_LOADING,
   USER_LOADED,
+  LOAD_USER_FAILURE,
   PROFILE_LOADING,
   PROFILE_LOADED,
+  LOAD_PROFILE_FAILURE,
   UPDATE_PROFILE,
+  UPDATE_PROFILE_FAILURE,
   UPDATE_PHONE,
   CHANGE_PASSWORD_SUCCESS,
   CHANGE_PASSWORD_FAILURE,
@@ -62,14 +65,16 @@ export default function(state = initialState, action) {
         };
       case CHANGE_PASSWORD_FAILURE:
         return {
-            ...state,
-            success: false
+            ...state
         };
       case REGISTER_SUCCESS:
+        localStorage.setItem('token', action.payload.token)
         return {
           ...state,
           isLoading: false,
-          user: action.payload
+          isAuthenticated: true,
+          user: action.payload,
+          token: action.payload.token
         };
       case LOGIN_SUCCESS:
         localStorage.setItem('token', action.payload.token)
@@ -93,6 +98,17 @@ export default function(state = initialState, action) {
           isAuthenticated: false,
           isLoading: false
         };
+        case LOAD_USER_FAILURE:
+        case LOAD_PROFILE_FAILURE:
+          return {
+              ...state
+          };
+        case UPDATE_PROFILE_FAILURE:
+          return {
+            isAuthenticated: true,
+            ...state
+          };
+
       default:
         return state;
     }
