@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import autosize from "autosize";
+import { Alert } from 'reactstrap';
 import { createComment } from '../../actions/comments';
 import { CreateReplyFormContainer } from './createReplyForm.styles';
 

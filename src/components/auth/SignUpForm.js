@@ -1,20 +1,23 @@
 import React , {Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
+import { Alert } from 'reactstrap';
 import { register } from '../../actions/auth';
+import { clearErrors } from '../../actions/errors';
 import { SignUpFormContainer } from './signUpForm.styles';
 import Footer from '../common/Footer';
 
 class SignUpForm extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            email: '',
-            first_name: '',
-            last_name: '',
-            username: '',
-            password: ''
-        };
+    state = {
+        email: '',
+        first_name: '',
+        last_name: '',
+        username: '',
+        password: ''
+    };
+
+    componentDidMount(){
+        this.props.clearErrors();
     }
 
     handleChange = e => {
@@ -27,7 +30,6 @@ class SignUpForm extends Component{
         e.preventDefault();
 
         const { email, first_name, last_name, username, password } = this.state;
-        //const { isAuthenticated } = this.props;
 
         // Create user object
         const user = {
@@ -40,13 +42,15 @@ class SignUpForm extends Component{
         // Attempt to register
         if (user.email && user.first_name && user.last_name && user.username && user.password){ 
             this.props.register(user);
-        } else {
-            console.log('Kindly fill in all fields');
-        } 
+        }
     };
  
     render(){
-        //console.log(this.props)
+        const { isAuthenticated, error }  = this.props;
+        if(isAuthenticated){
+            return <Redirect to="/" />
+        }
+
         return(
             <div>
                 <SignUpFormContainer>
@@ -60,7 +64,8 @@ class SignUpForm extends Component{
                                 className="input" 
                                 placeholder="First Name" 
                                 name="first_name"  
-                                onChange={this.handleChange} 
+                                onChange={this.handleChange}
+                                required 
                             />
                         </div>
                         <div className="FormField">
@@ -70,7 +75,8 @@ class SignUpForm extends Component{
                                 className="input" 
                                 placeholder="Last Name" 
                                 name="last_name"  
-                                onChange={this.handleChange} 
+                                onChange={this.handleChange}
+                                required 
                             />
                         </div>
                         <div className="FormField">
@@ -80,9 +86,16 @@ class SignUpForm extends Component{
                                 className="input" 
                                 placeholder="Username" 
                                 name="username"  
-                                onChange={this.handleChange} 
+                                onChange={this.handleChange}
+                                required 
                             />
                         </div>
+                        {error.msg.username ?
+                            <Alert color="danger">
+                                <span>Username: {error.msg.username}</span>
+                            </Alert>
+                            : null
+                        } 
                         <div className="FormField">
                             <input 
                                 type="email" 
@@ -90,9 +103,16 @@ class SignUpForm extends Component{
                                 className="input" 
                                 placeholder="Email" 
                                 name="email"
-                                onChange={this.handleChange} 
+                                onChange={this.handleChange}
+                                required 
                             />
                         </div>
+                        {error.msg.email ?
+                            <Alert color="danger">
+                                <span>Email: {error.msg.email}</span>
+                            </Alert>
+                            : null
+                        }
                         <div className="FormField">
                             <input 
                                 type="password" 
@@ -100,9 +120,16 @@ class SignUpForm extends Component{
                                 className="input" 
                                 placeholder="Password" 
                                 name="password" 
-                                onChange={this.handleChange} 
+                                onChange={this.handleChange}
+                                required 
                             />
                         </div>
+                        {error.msg.password ?
+                            <Alert color="danger">
+                                <span>Password: {error.msg.password}</span>
+                            </Alert>
+                            :null
+                        }
                         <div className="ButtonField">
                             <button className="FormButton">
                                 Sign Up
@@ -123,8 +150,9 @@ class SignUpForm extends Component{
 }
 
 const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user,
     error: state.errors
 });
 
-export default connect(mapStateToProps, { register })(SignUpForm);
+export default connect(mapStateToProps, { register, clearErrors })(SignUpForm);

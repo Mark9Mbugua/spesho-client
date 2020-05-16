@@ -23,7 +23,7 @@ class ItemDetail extends Component {
     };
 
     render() {
-        let { id, item, votes, user } = this.props;
+        let { id, item, votes, user, isAuthenticated } = this.props;
         const likes = votes.filter(vote => vote.vote_type === 1);
         const dislikes = votes.filter(vote => vote.vote_type === 2);
         console.log(user)
@@ -85,6 +85,7 @@ class ItemDetail extends Component {
 }
 
 const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated,
     item: state.items.item,
     votes: state.votes.votes
 });

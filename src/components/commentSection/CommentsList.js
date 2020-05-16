@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Alert } from 'reactstrap';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 import ArrowDropDownTwoToneIcon from '@material-ui/icons/ArrowDropDownTwoTone';
@@ -73,15 +74,19 @@ export class CommentsList extends Component {
     };
 
     render() {
-        const { comments, objectId, user} = this.props;
+        const { comments, objectId, user, isAuthenticated} = this.props;
         //console.log(user);
         const { showEditModal, clickedComment, showEditForm, showReplies, showCreateReplyForm } = this.state;
         
         return (
             <CommentsListContainer>
-                <CreateCommentForm 
-                    id={this.props.objectId}
-                />
+                {isAuthenticated ? 
+                    <CreateCommentForm 
+                        id={this.props.objectId}
+                    />
+                    :
+                    <Alert color="info"><Link to="/signin">Sign in</Link> to add a comment</Alert>
+                }
                 <hr />
                 <div className="comments-header">
                     <h2>{comments.length} Comments</h2>
@@ -108,7 +113,11 @@ export class CommentsList extends Component {
                                 : <p>{comment.content}</p> 
                             }
                             <div className="comment-reaction">
-                                <Link to="#" onClick={() => this.toggleCreateReplyForm(comment.id)}>Reply</Link>
+                                {isAuthenticated ?
+                                    <Link to="#" onClick={() => this.toggleCreateReplyForm(comment.id)}>Reply</Link>
+                                    :
+                                    <Link to="/signin">Sign in to reply</Link>
+                                }
                                 { showCreateReplyForm && clickedComment === comment.id ?
                                     <CreateReplyForm
                                         className="add-reply"
@@ -173,6 +182,7 @@ export class CommentsList extends Component {
 }
 
 const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated,
     comments: state.comments.comments
 });
 
