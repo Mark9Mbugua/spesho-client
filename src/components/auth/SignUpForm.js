@@ -134,12 +134,12 @@ class SignUpForm extends Component{
                             <button className="FormButton">
                                 Sign Up
                             </button> 
-                            <Link to="/signin" className="loginLink">I'm already a member</Link>
+                            <Link to="/signin" className="authLink">I'm already a member</Link>
                         </div>
                     </form>
                     <div className="termsLink">
-                        <p>By creating an account, you agree to our <a 
-                        href="" className="termsLink">terms of service</a>  and <a 
+                        <p>By creating an account, you agree to our<a 
+                        href="" className="termsLink"> terms of service</a> and <a 
                         href="" className="termsLink">Privacy Policy</a></p>
                     </div>
                 </SignUpFormContainer>

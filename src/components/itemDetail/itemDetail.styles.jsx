@@ -1,33 +1,31 @@
 import styled from 'styled-components';
 
 export const ItemDetailContainer = styled.div`
-    display: flex;
-    flex-flow: column nowrap;
+    display: grid;
     padding: 15px;
+    grid-gap: 20px;
     margin: 20px 250px 40px 25px;
-    border: 1px solid #cccccc;
+
+    @media screen and (max-width: 767px) {
+        margin: 0;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        margin: 0;
+    }
 
     .item-section {
         flex: 1;
         .header {
             display: flex;
-            flex-flow: row nowrap;
-            border-bottom: 1px solid #cccccc;
-            justify-content: space-around;
+            flex-flow: row wrap;
+            justify-content: space-between;
             padding: 15px 15px 0;
-            text-align: center;
-    
-            .menu {
-                width: 65%;
-                float: left;
-                border-bottom: 1px solid #cccccc;
-              }
+            text-align: start;
             
             .brand {
-                float: right;
                 width: 10%;
                 font-weight: bold;
-                border-bottom: 1px solid #cccccc;
                 text-align: center;
             }
         
@@ -35,25 +33,30 @@ export const ItemDetailContainer = styled.div`
         .main {
             width: 100%;
             margin-top: 0;
-            display: flex;
-            flex-flow: row nowrap;
+            display: grid;
+            grid-gap: 20px;
+            grid-template-areas:
+                'main-left main-right';
             padding: 15px;
             border-bottom: 1px solid #cccccc;
+
+            @media screen and (max-width: 767px) {
+                grid-template-areas:
+                    'main-right' 
+                    'main-left';
+            }
     
             .main-left {
+                grid-area: main-left;
                 display: flex;
                 flex-flow: column nowrap;
-                border-bottom: 1px solid #cccccc;
                 padding: 15px;
-                float-left;
-                width:55%;
                 margin-top: 0;
     
                 .prices {
                     display: flex;
-                    flex-flow: row nowrap;
+                    flex-flow: row wrap;
                     justify-content: space-around;
-                    align-items: left;
     
                     .price {
                         margin-left: 5%;
@@ -91,12 +94,11 @@ export const ItemDetailContainer = styled.div`
             }
         
             .main-right {
+                grid-area: main-right;
                 display: flex;
                 flex-flow: column nowrap;
                 justify-content: right;
                 items-align: center;
-                border-bottom: 1px solid #cccccc;
-                width: 45%;
     
                 .image-container {
                     display: flex;
@@ -104,7 +106,6 @@ export const ItemDetailContainer = styled.div`
                     justify-content: right;
                     items-align: center;
                     padding: 0;
-                    border-bottom: 1px solid #cccccc;
                     width: 100%;
                     height: 80%;
                     
@@ -152,20 +153,15 @@ export const ItemDetailContainer = styled.div`
                     flex-flow: row nowrap;
                     justify-content: space-around;
                     items-align: center;
-                    border-bottom: 1px solid #cccccc;
                 }
             }
         
             .comment-section {
-                width: 100%;
-                margin-top: 0;
-                display: flex;
-                flex-flow: row nowrap;
+                margin-top: 20px;
+                display: grid;
                 padding: 15px;
-                border-bottom: 1px solid #cccccc;
             }
-          }
+        }
     }
-
     
 `

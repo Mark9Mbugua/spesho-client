@@ -1,44 +1,41 @@
 import styled from 'styled-components';
 
 export const MobileNavbarContainer = styled.nav`
-    width: 40vw;
+    top: 50px;
+    width: 100vw;
+    height: calc(100vh - 50px);
     background: ${ props => props.theme.primary };
-    align-self: flex-end;
-
-    transition: transform 1s;
+    transition: transform 0.5s;
     transform: translateX( ${ props => props.displayMobileNavbar ? ("0%"): ("100%") });
-    
-    position: ${ props => props.displayMobileNavbar ? ("relative"): ("absolute") };
+    position: absolute;
 
     .nav-links {
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: space-around;
-        align-items: center;
-
-        height: 50vh;
-        
+        display: block;
+        text-align: center;
         list-style: none;
-        margin-bottom: 0;
-        font-size: 20px;
+
+        li {
+            border-bottom: 1px solid #6F6B5D;
+            height: 70px;
+            line-height: 70px;
+        }
     }
 
     .auth-buttons {
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: space-around;
-        align-items: center;
-
-        height: 50vh;
-        margin-top: 0;
-
+        margin: 0;
+        padding: 0;
     }
 
-    .auth-buttons SignIn {
-        color: white; 
+    .auth, .item-link {
+        display:block;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #6F6B5D;
+        height: 70px;
+        line-height: 70px;
     }
-    
-    .link {
+        
+    .link, .item-link {
         color: white;
         font-size: 2.5vh;
         text-decoration: none;

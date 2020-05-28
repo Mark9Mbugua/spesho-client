@@ -46,18 +46,18 @@ class RepliesList extends Component {
         return (
             <RepliesListContainer>
                 {replies.map(reply => (
-                    <div key={reply.id} className="reply-main">
-                        <div className="reply-user-details">
-                            <div className="reply-user-icon">
+                    <div key={reply.id} className="main-section">
+                        <div className="user-details">
+                            <div className="user-icon">
                                 <img src={profileIcon} alt="logo icon" />
                             </div>
-                            <div className="reply-user-info">
-                                <p className="reply-username">{reply.user.username}</p>
-                                <p className="reply-date-joined">Joined {reply.user.created_on}</p>
+                            <div className="user-info">
+                                <p className="username">{reply.user.username}</p>
+                                <p className="date-joined">Joined {reply.user.created_on}</p>
                             </div> 
                         </div>
-                        <div className="reply-comment-details">
-                            <p className="reply-date-created">{reply.created_on}</p>
+                        <div className="comment-details">
+                            <p className="date-created">{reply.created_on}</p>
                             { showEditReplyForm && clickedComment === reply.id ?
                                 <EditReplyForm 
                                     id={reply.id}
@@ -65,14 +65,16 @@ class RepliesList extends Component {
                                     toggleEditForm={this.toggleEditReplyForm} 
                                 />
                             : <p>{reply.content}</p> }
-                            <div className="reply-comment-reaction">
-                                <p><ThumbUpAltOutlinedIcon /> {reply.likes_count}</p>
-                                <div className="reply-vl"></div>
-                                <p><ThumbDownAltOutlinedIcon /> {reply.dislikes_count}</p>
+                            <div className="comment-reaction">
+                                <div className="votes">
+                                    <span><ThumbUpAltOutlinedIcon /> {reply.likes_count}</span>
+                                    <div className="vl"></div>
+                                    <span><ThumbDownAltOutlinedIcon /> {reply.dislikes_count}</span>
+                                </div>     
                             </div>          
                         </div>
                         { user && user.username == reply.user.username ?
-                            <div className="reply-more-icon">
+                            <div className="more-icon">
                                 <MoreVertIcon onClick={() => this.toggleEditReplyModal(reply.id)}/>
                                 { showEditReplyModal && clickedComment === reply.id ? 
                                     <EditAndDeleteReplyModal 

@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 
 export const EditCommentFormContainer = styled.div`
-    transition: margin 1s ease-in-out;
-    margin-top: 5px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 450px;
+
+    @media (max-width: 767px) {
+        grid-template-columns: 1fr;
+    }
 
     .edit-form {
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: space-around;
-        width: 65%;
+        display: grid;
+        align-items: grid-start;
         
         .edit-input {
             border: none;

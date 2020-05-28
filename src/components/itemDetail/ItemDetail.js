@@ -26,7 +26,6 @@ class ItemDetail extends Component {
         let { id, item, votes, user, isAuthenticated } = this.props;
         const likes = votes.filter(vote => vote.vote_type === 1);
         const dislikes = votes.filter(vote => vote.vote_type === 2);
-        console.log(user)
 
         return (
             <div>

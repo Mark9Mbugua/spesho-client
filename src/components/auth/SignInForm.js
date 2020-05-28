@@ -103,13 +103,13 @@ class SignUpForm extends Component{
                                 <button className="FormButton">
                                     Sign In
                                 </button> 
-                                <Link to="/signup" className="signupLink">Not a member? Sign Up</Link>
+                                <Link to="/signup" className="authLink">Not a member? Sign Up</Link>
                             </div>
                         </form>
                         <div className="termsLink">
-                            <p>By clicking Sign In, you have read and agree to the <a 
-                            href="" className="termsLink">Dealie Terms of Service </a>  and <a 
-                            href="" className="termsLink">Acceptable Use Policies.</a></p>
+                            <p>By clicking Sign In, you have read and agree to the<a 
+                            href="" className="termsLink"> Dealie Terms of Service </a> and <a 
+                            href="" className="termsLink"> Acceptable Use Policies.</a></p>
                         </div>
                     </SignUpFormContainer>
                 </SignInFormContainer>

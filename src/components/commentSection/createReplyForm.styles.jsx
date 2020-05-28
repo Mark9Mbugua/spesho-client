@@ -5,10 +5,12 @@ export const CreateReplyFormContainer = styled.div`
     margin-left: 20px;
 
     .reply-form {
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: space-around;
-        width: 450px;
+        display: grid;
+        grid-template-columns: 450px;
+
+        @media (max-width: 767px) {
+            grid-template-columns: 1fr;
+        }
         
         .reply-input {
             border: none;

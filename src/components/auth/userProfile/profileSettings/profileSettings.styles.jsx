@@ -1,29 +1,40 @@
 import styled from 'styled-components';
 
 export const ProfileSettingsContainer = styled.div`
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    align-items: center;
     padding: 30px;
+    margin: 0 auto;
+    width: 50%;
 
-    .modal-container {
-        width: 70%;
-        margin-left: 9%;
-    
-        .page-title {
-            text-align: center;
-            margin-left: -38%;
-            margin-bottom: 30px;
+    @media (max-width: 767px) {
+        width: 100%;
+    }
+
+    .page-title {
+        text-align: start;
+        margin-bottom: 30px;
+
+        @media (max-width: 767px) {
+            font-size: 4vh;
         }
+    }
 
-        hr {margin-left: 45px}
+    .modal-heading h3 {
+        @media (max-width: 767px) {
+            font-size: 3.5vh;
+        }
     }
 
     .modal-body {
         display: flex;
-        flex-flow: column nowrap;
+        flex-flow: column wrap;
         justify-content: space-between;
         align-content: stretch;
         overflow: hidden;
         padding: 5px;
-        margin-left: 200px;
 
         .edit {
             display: flex;
@@ -32,7 +43,6 @@ export const ProfileSettingsContainer = styled.div`
             align-items: center;
             overflow: hidden;
             margin-top: 18px;
-            width: 85%;
 
             .user-details {
                 display: flex;
@@ -62,16 +72,21 @@ export const ProfileSettingsContainer = styled.div`
         align-content: stretch;
         overflow: hidden;
         padding: 5px;
-        margin-left: 200px;
         
         .edit-date {
             display: flex;
             flex-flow: row wrap;
             justify-content: space-between;
-            align-items: center;
+            align-items: stretch;
             overflow: hidden;
             margin-top: 18px;
-            width: 85%;
+
+            @media (max-width: 767px) {
+                flex-flow: column wrap;
+                justify-content: center;
+                align-items: start;
+                margin-top: 5px;
+            }
         }
     }
 `

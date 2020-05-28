@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 const signUpStyles = css`
     background: ${ props => props.theme.secondary }
-    color:white;
+    color: white;
 `
 
 const signInStyles = css`
@@ -39,6 +39,6 @@ export const ButtonContainer = styled.button`
     @media screen and (max-width: 768px) {
         background: inherit;
         margin-top: 0;
-        font-size: 18px;
+        font-size: 2.5vh;
     }    
 `

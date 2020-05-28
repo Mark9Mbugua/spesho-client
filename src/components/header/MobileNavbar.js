@@ -6,24 +6,27 @@ import SignIn from '../signIn/SignIn';
 import Logout from '../auth/Logout';
 
 const MobileNavbar = props => {
-    const { isAuth, profile } = props;
+    const { isAuth, user } = props;
     const guestLinks = (
         <Fragment>
-            <SignIn />
-            <SignUp />
+            <SignIn toggleMobileNavbar={props.toggleMobileNavbar} />
+            <SignUp toggleMobileNavbar={props.toggleMobileNavbar} />
         </Fragment>
     );
 
     const authLinks = (
         <Fragment>
-            <p>{profile && profile.user ? `${profile.user.username}` : ''}</p>
-            <Logout />
+            <Logout toggleMobileNavbar={props.toggleMobileNavbar} />
         </Fragment>
     );
 
     return (
         <MobileNavbarContainer displayMobileNavbar={props.displayMobileNavbar}>
-            <MobileNavLinks isMobileLink={true} />
+            <MobileNavLinks 
+                isMobileLink={true}
+                isAuth={isAuth}
+                toggleMobileNavbar={props.toggleMobileNavbar} 
+            />
             <div className="auth-buttons">
                 {isAuth ? authLinks : guestLinks}
             </div>
