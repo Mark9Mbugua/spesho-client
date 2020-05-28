@@ -47,7 +47,7 @@ const UpdateGenderModal = (props) => {
                 <div className="reply-buttons">
                     <button 
                         className="cancel-button"
-                        onClick={e => props.genderBioForm}
+                        onClick={e => props.toggleGenderForm}
                     >
                         Cancel
                     </button>

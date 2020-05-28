@@ -1,70 +1,87 @@
 import styled from 'styled-components';
 
 export const ProfileHeaderContainer = styled.nav`
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    justify-content: center;
     align-items: center;
-    overflow: hidden;
-    padding: 50px;
-
+    grid-gap: 10px;
     background: #ccc;
     color: black;
+    min-height: 15vh;
 
-    height: 15vh;
+    @media (max-width: 767px) {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 5px;
+        padding-bottom: 5px;
+    }
 
     .user-details {
         display: flex;
         flex-flow: row nowrap;
-        item-align:center;
-        margin-top: 34px;
+        justify-content: center;
+
+        @media (max-width: 767px) {
+            flex-flow: column nowrap;
+            align-items: center;
+        }
 
         .profile-icon {
-            padding-right: 0;
-            margin-top: 4px;  
-            flex: 1;
+            width: 25%;
+            
+            @media (max-width: 767px) {
+                width: 50%;
+                padding: 5px;
+            } 
+
             img {
-                width:72%;
-                height: 72%;
+                width: 95%;
             }
         }
 
         .username {
             font-size: 3.5vh;
-            margin-top: 34px;
-            margin-left: -15%;
+            padding-top: 20px;
+
+            @media (max-width: 767px) {
+                font-size: 2.7vh;
+                padding-top: 5px;
+            }
         }
     }
 
     .profile-items {
-        display: flex;
-        flex-flow: row nowrap;
-        padding-left: 120px;
-        padding-right: 0;
-        justify-content: space-around;
-        width: 60%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        justify-items: center;
+
+        @media (max-width: 767px) {
+            grid-gap: 15px;
+            justify-items: start;
+            align-items: center;
+
+        }
 
         .item-group {
             display: flex;
-            flex-flow: row nowrap;
-            item-align:center;
-            margin-top: 30px;
-            padding: 0;
-            width: 20%;
+            flex-flow: row wrap;
 
-    
             .item-icon {
-                padding-right: 0;  
+                width: 25px;
+                padding-right: 2px;
+                
+                @media (max-width: 767px) {
+                    width: 20px;
+                }
+
                 img {
-                    width: 30%;
-                    height: 30%;
+                    width: 100%;
                 }
             }
     
             .item-title {
                 font-size: 2.5vh;
-                margin-left: -75%;
-
+                
                 .profile-link {
                     text-decoration: none;
                     color: black;

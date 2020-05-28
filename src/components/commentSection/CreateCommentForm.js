@@ -37,7 +37,6 @@ const CreateCommentForm = ({ id, createComment }) => {
                     ref={contentRef}
                     placeholder="Add a  public comment..."
                     rows={1}
-                    defaultValue=""
                     value={content}
                     onChange={e => setContent(e.target.value)} 
                 />

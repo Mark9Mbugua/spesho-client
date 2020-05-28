@@ -36,7 +36,6 @@ const CreateReplyForm = ({ itemId, parentId, toggleCreateReplyForm, showReplies,
                     ref={contentRef}
                     placeholder="Add a public reply..."
                     rows={1}
-                    defaultValue=""
                     value={content}
                     onChange={e => setContent(e.target.value)} 
                 />

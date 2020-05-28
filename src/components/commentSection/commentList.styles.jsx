@@ -1,69 +1,82 @@
 import styled from 'styled-components';
 
 export const CommentsListContainer = styled.div`
-    display: flex;
-    flex-flow: column nowrap;
+    display: grid;
+    grid-gap: 20px;
     padding: 15px 15px 15px 30px;
-    border-bottom: 1px solid #cccccc;
 
-    .main {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
+    .main-section {
+        display: grid;
         border-bottom: 1px solid #cccccc;
+        margin-bottom: 15px;
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-areas:
+            'user-details comment-details more-icon';
+
+        @media (max-width: 767px) {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                'more-icon'
+                'user-details' 
+                'comment-details';
+        }
 
         .user-details {
-            margin-right: auto;
+            grid-area: user-details;
             display: flex;
-            flex-flow: row nowrap;
-            item-align:center;
-            
+            flex-flow: row wrap;
+            item-align:left;           
 
             .user-icon { 
-                margin-bottom: auto; 
-                flex: 1;
+                margin-bottom: auto;
+                width: 70px;
+                height: 70px;
+                justify-content: center; 
                 img {
-                    width:75%;
-                    height: 75%;
+                    width:90%;
+                    height: 90%;
                 }
             }
             
             .user-info {
-                margin-left: -4%;
                 display: flex;
-                flex: 2;
-                flex-flow: column nowrap;
-
+                flex-flow: column wrap;
                 .username {font-weight: bold}
                 .date-joined {color: grey;}
             }
         }
 
         .comment-details {
-            margin-right: auto;
-            margin-left: 8%;
+            grid-area: comment-details;
             display: flex;
+            margin-right: auto;
             flex: 2;
-            flex-flow: column nowrap;
+            flex-flow: column wrap;
 
             .date-created {color: grey;}
+
+            .edit-comment-form {
+                width: 450px;
+            }
             
             .comment-reaction {
                 display: flex;
                 flex-flow: row nowrap;
                 justify-content: flex-start;
 
-                .add-reply {
-
-                }
-
                 .votes {
                     p {
                         color: grey;
                         padding: 0 5px 0 20px;
                     }
+
+                    span {
+                        color: grey;
+                        padding: 0 5px;
+                        margin: 0;
+                    }
                     display: flex;
-                    flex-flow: row nowrap;
+                    flex-flow: row wrap;
                     justify-content: space-around;
 
                     .vl {
@@ -72,6 +85,7 @@ export const CommentsListContainer = styled.div`
                     }
                 }
             }
+
             .view-replies {
                 text-decoration: none;
                                 
@@ -80,10 +94,14 @@ export const CommentsListContainer = styled.div`
                 }
             }
         }
-
+        
         .more-icon {
+            grid-area: more-icon;
+            margin-left: auto;
             padding-top: 35px;
-            .edit-modal {
+
+            @media (max-width: 767px) {
+                padding-top: 0;
             }
         }
     }

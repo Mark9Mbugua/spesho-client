@@ -3,15 +3,23 @@ import styled from 'styled-components';
 export const ProfileMainContainer = styled.div`
     display: flex;
     flex-flow: column nowrap;
-    justify-content: space-around;
-    align-content: stretch;
+    justify-content: center;
     overflow: hidden;
     padding: 20px;
 
     .page-title {
-        text-align: center;
-        margin-left: -38%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
         margin-bottom: 25px;
+        padding-left: 50px;
+
+        @media (max-width: 767px) {
+            grid-template-columns: 1fr;
+            font-size: 3.8vh;
+            justify-items: start;
+            padding-left: 0;
+        }
     }
 
     .section-title {
@@ -21,16 +29,22 @@ export const ProfileMainContainer = styled.div`
     }
 
     .upper-section {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        align-content: stretch;
+        width: 80%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-gap: 15px;
+        justify-items: center;
+
+        @media (max-width: 767px) {
+            grid-gap: 30px;
+            width: 100%;
+            justify-items: start;
+        }
 
         .my-stats {
             display: flex;
             flex-flow: column nowrap;
-            align-items: stretch;
-            padding: 0 0 0 150px;
+            justify-content: flex-start;
 
             .stats-section {
                 display: flex;
@@ -59,12 +73,4 @@ export const ProfileMainContainer = styled.div`
         }
 
     }
-
-    .lower-section {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        align-content: stretch;
-        margin-left: -21%;
-        padding-top: 15px;
 `

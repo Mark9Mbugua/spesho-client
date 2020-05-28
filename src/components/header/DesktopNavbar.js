@@ -11,7 +11,6 @@ import ProfileMenu from '../auth/userProfile/ProfileMenu';
 import SiteLogo from './SiteLogo';
 
 const DesktopNavbar = props => {
-    //console.log(props);
     const { isAuth, user } = props;
 
     const guestLinks = (
@@ -38,7 +37,7 @@ const DesktopNavbar = props => {
             </div>  
             <NavLinks />
             <div className="right-navbar">
-                <SearchBar />
+                <SearchBar className="right-navbar" />
             </div>
             <div className="auth-buttons">
                   {isAuth ? authLinks : guestLinks}  

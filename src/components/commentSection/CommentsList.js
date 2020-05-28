@@ -81,7 +81,8 @@ export class CommentsList extends Component {
         return (
             <CommentsListContainer>
                 {isAuthenticated ? 
-                    <CreateCommentForm 
+                    <CreateCommentForm
+                        className="create-comment"  
                         id={this.props.objectId}
                     />
                     :
@@ -92,7 +93,7 @@ export class CommentsList extends Component {
                     <h2>{comments.length} Comments</h2>
                 </div>
                 {comments.map(comment => (
-                    <div key={comment.id} className="main">
+                    <div key={comment.id} className="main-section">
                         <div className="user-details">
                             <div className="user-icon">
                                 <img src={profileIcon} alt="logo icon" />
@@ -105,7 +106,8 @@ export class CommentsList extends Component {
                         <div className="comment-details">
                             <p className="date-created">{comment.created_on}</p>
                             { showEditForm && clickedComment === comment.id ?
-                                <EditCommentForm 
+                                <EditCommentForm
+                                    className="edit-comment-form" 
                                     id={comment.id}
                                     content={comment.content}
                                     toggleEditForm={this.toggleEditForm} 
@@ -114,7 +116,11 @@ export class CommentsList extends Component {
                             }
                             <div className="comment-reaction">
                                 {isAuthenticated ?
-                                    <Link to="#" onClick={() => this.toggleCreateReplyForm(comment.id)}>Reply</Link>
+                                    <Link 
+                                        to="#" 
+                                        onClick={() => this.toggleCreateReplyForm(comment.id)}>
+                                        Reply
+                                    </Link>
                                     :
                                     <Link to="/signin">Sign in to reply</Link>
                                 }
@@ -129,37 +135,38 @@ export class CommentsList extends Component {
                                     :  
                                     <div className="votes">
                                         <p>Helpful Comment?</p>
-                                        <p><ThumbUpAltOutlinedIcon /> {comment.likes_count}</p>
+                                        <span><ThumbUpAltOutlinedIcon /> {comment.likes_count}</span>
                                         <div className="vl"></div>
-                                        <p><ThumbDownAltOutlinedIcon /> {comment.dislikes_count}</p>
+                                        <span><ThumbDownAltOutlinedIcon /> {comment.dislikes_count}</span>
                                     </div>     
                                 }
                                 
                             </div>
-                            { comment.reply_count ?
-                                <Link 
-                                    to="#" 
-                                    className="view-replies"
-                                    onClick={() => this.toggleReplies(comment.id)}
-                                >  
-                                    { showReplies && clickedComment === comment.id ?
-                                        <span><ArrowDropUpTwoToneIcon /> Hide</span> 
-                                    : <span><ArrowDropDownTwoToneIcon /> View</span> 
-                                    } {comment.reply_count} replies
-                                </Link>
-                            : null }
-                            { showReplies && clickedComment === comment.id ?
-                                <RepliesList
-                                    className="replies-section"
-                                    id={comment.id}
-                                    parentId={objectId}
-                                    showEditModal={showEditModal}
-                                    toggleEditForm={this.toggleEditForm}
-                                    toggleEditModal={this.toggleEditModal}
-                                    clickedComment={clickedComment}
-                                    user={user}
-                                />
-                            : null }            
+                            <div className="replies-section">
+                                { comment.reply_count ?
+                                    <Link 
+                                        to="#" 
+                                        className="view-replies"
+                                        onClick={() => this.toggleReplies(comment.id)}
+                                    >  
+                                        { showReplies && clickedComment === comment.id ?
+                                            <span><ArrowDropUpTwoToneIcon /> Hide</span> 
+                                        : <span><ArrowDropDownTwoToneIcon /> View</span> 
+                                        } {comment.reply_count} replies
+                                    </Link>
+                                : null }
+                                { showReplies && clickedComment === comment.id ?
+                                    <RepliesList
+                                        id={comment.id}
+                                        parentId={objectId}
+                                        showEditModal={showEditModal}
+                                        toggleEditForm={this.toggleEditForm}
+                                        toggleEditModal={this.toggleEditModal}
+                                        clickedComment={clickedComment}
+                                        user={user}
+                                    />
+                                : null }
+                            </div>            
                         </div>
                         { user && user.username == comment.user.username ?
                             <div className="more-icon">

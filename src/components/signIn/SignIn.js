@@ -2,9 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CustomButton from '../common/CustomButton';
 
-const SignIn = () => {
+const SignIn = ({ toggleMobileNavbar }) => {
     return (
-        <Link to='/signin'>
+        <Link 
+            to='/signin' 
+            className='auth'
+            onClick={toggleMobileNavbar}
+        >
             <CustomButton isSignIn>
                 Sign In
             </CustomButton>

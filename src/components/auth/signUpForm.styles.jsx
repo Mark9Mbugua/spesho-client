@@ -10,20 +10,42 @@ export const SignUpFormContainer = styled.div`
     height: 100vh;
     margin: -35px 0 0;
 
+    @media (max-width: 767px) {
+        margin: 0;
+        padding: 25px 0;
+        justify-content: flex-start;
+        background: #FFFFFF;
+    }
+
     h1 {
         font-weight: bold;
         margin: 4%;
+
+        @media (max-width: 767px) {
+            font-size: 3.5vh;
+        }
+    }
+
+    h4 {
+        @media (max-width: 767px) {
+            font-size: 3vh;
+        } 
     }
     
     .FormFields {
         background-color: #FFFFFF;
         align-items: center;
         justify-content: center;
-        flex-direction: column;
+        flex-flow: column wrap;
         padding: 8px 50px;
         text-align: center;
         width: 30%;
         border-radius: 2%;
+
+        @media (max-width: 767px) {
+            width: 100%;
+            padding: 5px 10px;
+        }
         
         .FormField {
             input {
@@ -40,7 +62,19 @@ export const SignUpFormContainer = styled.div`
         }
             
         .ButtonField {
-            padding: 12px 15px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 10px;
+
+            @media (max-width: 767px) {
+                grid-template-columns: 1fr;
+                padding: 8px;
+            }
+
+            .authLink {
+                padding: 8px;
+            }
 
             button {
                 border-radius: 20px;
@@ -73,8 +107,18 @@ export const SignUpFormContainer = styled.div`
 
     .termsLink {
         padding-top: 25px;
+        overflow: hidden;
         p {
             font-size: 12px;
+        }
+
+        @media (max-width: 767px) {
+            padding: 0;
+            margin-left: 5px;
+            
+            p {
+                font-size: 13px;
+            }
         }
     }
 

@@ -26,8 +26,8 @@ class Header extends Component {
   }
 
   toggleMobileNavbar = () => {
-    this.setState(prevState => {
-      return {displayMobileNavbar: !prevState.displayMobileNavbar }
+    this.setState({
+      displayMobileNavbar: !this.state.displayMobileNavbar 
     })
   }
 
@@ -42,8 +42,7 @@ class Header extends Component {
   }
 
   render() {
-    let { isAuth, user } = this.props
-    //console.log(this.props)
+    let { isAuth, user } = this.props;
     if (window.location.pathname === '/signup' || window.location.pathname === '/signin') 
       return (
         <NavbarContainer>
@@ -61,7 +60,8 @@ class Header extends Component {
         <MobileNavbar
           isAuth={isAuth}
           user={user}  
-          displayMobileNavbar={this.state.displayMobileNavbar} 
+          displayMobileNavbar={this.state.displayMobileNavbar}
+          toggleMobileNavbar={this.toggleMobileNavbar} 
         />
       </NavbarContainer>
     );

@@ -30,7 +30,6 @@ class CreateLikeVote extends Component {
     render() {
         const { id, votes, user, userVoteType } = this.props;
         const likes = votes.filter(vote => vote.vote_type === 1);
-        console.log(this.props);
           
         return (
             <div>

@@ -11,6 +11,8 @@ import ItemDetailPage from '../../pages/ItemDetailPage';
 import ProfilePage from '../../pages/ProfilePage';
 import SavedItemsPage from '../../pages/SavedItemsPage';
 import ProfileSettingsPage from '../../pages/ProfileSettingsPage';
+import MobileCategoriesPage from '../../pages/MobileCategoriesPage';
+import MobileStoresPage from '../../pages/MobileStoresPage';
 import Home from '../../pages/Home';
 import PrivateRoute from '../common/PrivateRoute';
 
@@ -35,6 +37,12 @@ class AppContainer extends Component {
                     />
                     <Route exact path="/items/store/:id" 
                         component={ItemsPerStorePage} 
+                    />
+                    <Route exact path="/categories" 
+                        component={MobileCategoriesPage} 
+                    />
+                    <Route exact path="/stores" 
+                        component={MobileStoresPage} 
                     />
                     <Route exact path="/items/:id" 
                         render={(props) => <ItemDetailPage {...props} user={user} />} 

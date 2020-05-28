@@ -31,7 +31,6 @@ class CreateLikeVote extends Component {
         let { id, votes, user, userVoteType } = this.props;
         const { voteType } = this.state;
         const dislikes = votes.filter(vote => vote.vote_type === 2);  
-        console.log(votes);
         return (
             <div>
                 <ThumbDownAltOutlinedIcon 
