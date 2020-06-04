@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const SignUpFormContainer = styled.div`
     box-sizing: border-box;
@@ -16,110 +17,103 @@ export const SignUpFormContainer = styled.div`
         justify-content: flex-start;
         background: #FFFFFF;
     }
+`;
 
-    h1 {
-        font-weight: bold;
-        margin: 4%;
+export const FormFields = styled.form`
+    background-color: #FFFFFF;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column wrap;
+    padding: 8px 50px;
+    text-align: center;
+    width: 30%;
+    border-radius: 2%;
 
-        @media (max-width: 767px) {
-            font-size: 3.5vh;
-        }
+    @media (max-width: 767px) {
+        width: 100%;
+        padding: 5px 10px;
     }
+`;
 
-    h4 {
-        @media (max-width: 767px) {
-            font-size: 3vh;
-        } 
-    }
+export const MainHeader = styled.h1`
+    font-weight: bold;
+    margin: 4%;
     
-    .FormFields {
-        background-color: #FFFFFF;
-        align-items: center;
-        justify-content: center;
-        flex-flow: column wrap;
-        padding: 8px 50px;
-        text-align: center;
-        width: 30%;
-        border-radius: 2%;
+    @media (max-width: 767px) {
+        font-size: 3.5vh;
+    }
+`;
 
-        @media (max-width: 767px) {
-            width: 100%;
-            padding: 5px 10px;
-        }
+export const SubHeader = styled.h5`
+    @media (max-width: 767px) {
+        font-size: 3vh;
+    }
+`;
+
+export const FormButton = styled.button`
+    border-radius: 20px;
+    border: 1px solid #FF4B2B;
+    background-color: #FF4B2B;
+    color: #FFFFFF;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    transition: transform 80ms ease-in;
+    margin-right: 5%;
+    
+    &:focus {
+        outline: none;
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+`;
+
+export const FormInput = styled.input`
+    background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+
+    &:focus {
+        outline: none;
+    }
+`;
+
+export const ButtonFields = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 10px;
+
+    @media (max-width: 767px) {
+        grid-template-columns: 1fr;
+        padding: 8px;
+    }
+`;
+
+export const AuthLink = styled(Link)`
+    padding: 8px;
+`;
+
+export const PasswordReset = styled.div`
+    padding: 8px;
+`;
+
+export const Terms = styled.div`
+    padding-top: 25px;
+    overflow: hidden;
+    p {
+        font-size: 12px;
+    }
+
+    @media (max-width: 767px) {
+        padding: 0;
+        margin-left: 5px;
         
-        .FormField {
-            input {
-                background-color: #eee;
-                border: none;
-                padding: 12px 15px;
-                margin: 8px 0;
-                width: 100%;
-            }
-
-            input:focus {
-                outline: none;
-            }
-        }
-            
-        .ButtonField {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            padding: 10px;
-
-            @media (max-width: 767px) {
-                grid-template-columns: 1fr;
-                padding: 8px;
-            }
-
-            .authLink {
-                padding: 8px;
-            }
-
-            button {
-                border-radius: 20px;
-                border: 1px solid #FF4B2B;
-                background-color: #FF4B2B;
-                color: #FFFFFF;
-                padding: 12px 45px;
-                letter-spacing: 1px;
-                transition: transform 80ms ease-in;
-                margin-right: 5%;
-            }
-
-            button:active {
-                transform: scale(0.95);
-            }
-
-            button:focus {
-                outline: none;
-            }
-
-            button.ghost {
-                background-color: transparent;
-                border-color: #FFFFFF;
-            }
-        }
-        .forgot-password {
-            padding: 8px;
-        }
-    }
-
-    .termsLink {
-        padding-top: 25px;
-        overflow: hidden;
         p {
-            font-size: 12px;
-        }
-
-        @media (max-width: 767px) {
-            padding: 0;
-            margin-left: 5px;
-            
-            p {
-                font-size: 13px;
-            }
+            font-size: 13px;
         }
     }
-
-`
+`;

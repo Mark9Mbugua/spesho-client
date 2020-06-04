@@ -1,109 +1,113 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import EditCommentForm from './EditCommentForm';
 
 export const CommentsListContainer = styled.div`
     display: grid;
     grid-gap: 20px;
     padding: 15px 15px 15px 30px;
+`;
 
-    .main-section {
-        display: grid;
-        border-bottom: 1px solid #cccccc;
-        margin-bottom: 15px;
-        grid-template-columns: 1fr 2fr 1fr;
+export const MainSection = styled.div`
+    display: grid;
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 15px;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas:
+        'user-details comment-details more-icon';
+
+    @media (max-width: 767px) {
+        grid-template-columns: 1fr;
         grid-template-areas:
-            'user-details comment-details more-icon';
+            'more-icon'
+            'user-details' 
+            'comment-details';
+    }
+`;
 
-        @media (max-width: 767px) {
-            grid-template-columns: 1fr;
-            grid-template-areas:
-                'more-icon'
-                'user-details' 
-                'comment-details';
-        }
+export const UserDetails = styled.div`
+    grid-area: user-details;
+    display: flex;
+    flex-flow: row wrap;
+`;
 
-        .user-details {
-            grid-area: user-details;
-            display: flex;
-            flex-flow: row wrap;
-            item-align:left;           
+export const UserIcon = styled.div`
+    margin-bottom: auto;
+    width: 70px;
+    height: 70px;
+    justify-content: center; 
+    img {
+        width:90%;
+        height: 90%;
+    }
+`;
 
-            .user-icon { 
-                margin-bottom: auto;
-                width: 70px;
-                height: 70px;
-                justify-content: center; 
-                img {
-                    width:90%;
-                    height: 90%;
-                }
-            }
-            
-            .user-info {
-                display: flex;
-                flex-flow: column wrap;
-                .username {font-weight: bold}
-                .date-joined {color: grey;}
-            }
-        }
+export const UserInfo = styled.div`
+    display: flex;
+    flex-flow: column wrap;
+`;
 
-        .comment-details {
-            grid-area: comment-details;
-            display: flex;
-            margin-right: auto;
-            flex: 2;
-            flex-flow: column wrap;
+export const Username = styled.p`
+    font-weight: bold;
+`;
 
-            .date-created {color: grey;}
+export const Date = styled.p`
+    color: grey;
+`;
 
-            .edit-comment-form {
-                width: 450px;
-            }
-            
-            .comment-reaction {
-                display: flex;
-                flex-flow: row nowrap;
-                justify-content: flex-start;
+export const CommentDetails = styled.div`
+    grid-area: comment-details;
+    display: flex;
+    margin-right: auto;
+    flex: 2;
+    flex-flow: column wrap;
+`;
 
-                .votes {
-                    p {
-                        color: grey;
-                        padding: 0 5px 0 20px;
-                    }
+export const EditForm = styled(EditCommentForm)`
+    width: 450px;
+`;
 
-                    span {
-                        color: grey;
-                        padding: 0 5px;
-                        margin: 0;
-                    }
-                    display: flex;
-                    flex-flow: row wrap;
-                    justify-content: space-around;
+export const CommentReaction = styled.div`
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+`;
 
-                    .vl {
-                        border-left: 1px solid #cccccc;
-                        margin-bottom: 5%;
-                    }
-                }
-            }
-
-            .view-replies {
-                text-decoration: none;
-                                
-                &:focus {
-                    cursor: pointer;
-                }
-            }
-        }
-        
-        .more-icon {
-            grid-area: more-icon;
-            margin-left: auto;
-            padding-top: 35px;
-
-            @media (max-width: 767px) {
-                padding-top: 0;
-            }
-        }
+export const Votes = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    
+    p {
+        color: grey;
+        padding: 0 5px 0 20px;
     }
 
-`
+    span {
+        color: grey;
+        padding: 0 5px;
+        margin: 0;
+    }
+`;
+
+export const ViewReplies = styled(Link)`
+    text-decoration: none;                    
+    &:focus {
+        cursor: pointer;
+    }
+`;
+
+export const VL = styled.div`
+    border-left: 1px solid #cccccc;
+    margin-bottom: 5%;
+`;
+
+export const MoreIcon = styled.div`
+    grid-area: more-icon;
+    margin-left: auto;
+    padding-top: 35px;
+
+    @media (max-width: 767px) {
+        padding-top: 0;
+    }
+`;

@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
-export const CategoriesList = styled.ul`
+export const MenuList = styled.ul`
     display: flex;
+`;
 
-    .menu-item ul {
+export const MenuItem = styled.li`
+    ul {
         display: none;
     }
 
-    .menu-item:hover ul {
+    &:hover ul {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -18,4 +20,4 @@ export const CategoriesList = styled.ul`
         background: ${ props => props.theme.primary };
         z-index: 1;
     }
-`
+`;

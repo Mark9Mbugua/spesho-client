@@ -1,33 +1,42 @@
 import React, { Fragment } from 'react';
-import { MobileNavbarContainer } from './mobileNavbar.styles'
+import { 
+    MobileNavbarContainer, 
+    MenuLink 
+} from './mobileNavbar.styles'
+import { ItemLink } from '../auth/userProfile/profileMenu.styles';
 import MobileNavLinks from './MobileNavLinks';
 import SignUp from '../signUp/SignUp';
 import SignIn from '../signIn/SignIn';
 import Logout from '../auth/Logout';
 
-const MobileNavbar = props => {
-    const { isAuth, user } = props;
+const MobileNavbar = ({ isAuth, toggleMobileNavbar, displayMobileNavbar }) => {
     const guestLinks = (
         <Fragment>
-            <SignIn toggleMobileNavbar={props.toggleMobileNavbar} />
-            <SignUp toggleMobileNavbar={props.toggleMobileNavbar} />
+            <SignIn toggleMobileNavbar={toggleMobileNavbar} />
+            <SignUp toggleMobileNavbar={toggleMobileNavbar} />
         </Fragment>
     );
 
     const authLinks = (
         <Fragment>
-            <Logout toggleMobileNavbar={props.toggleMobileNavbar} />
+            <ItemLink 
+                to='/profile'
+                onClick={toggleMobileNavbar}
+            >
+                My Profile
+            </ItemLink>
+            <Logout toggleMobileNavbar={toggleMobileNavbar} />
         </Fragment>
     );
 
     return (
-        <MobileNavbarContainer displayMobileNavbar={props.displayMobileNavbar}>
+        <MobileNavbarContainer displayMobileNavbar={displayMobileNavbar}>
             <MobileNavLinks 
                 isMobileLink={true}
                 isAuth={isAuth}
-                toggleMobileNavbar={props.toggleMobileNavbar} 
+                toggleMobileNavbar={toggleMobileNavbar} 
             />
-            <div className="auth-buttons">
+            <div>
                 {isAuth ? authLinks : guestLinks}
             </div>
         </MobileNavbarContainer>

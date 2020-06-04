@@ -5,7 +5,7 @@ export const EditAndDeleteContainer = styled.div`
     width: 100px;
     height: 90px;
     color: white;
-    display: flex:
+    display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-content: center;
@@ -19,4 +19,4 @@ export const EditAndDeleteContainer = styled.div`
     transition: margin 1s ease-in-out;
     margin: 5px 150px 0 0;
     
-`
+`;

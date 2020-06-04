@@ -1,6 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ProfileHeaderContainer } from './profileHeader.styles';
+import { 
+    ProfileHeaderContainer,
+    UserDetails,
+    ProfileIcon,
+    Username,
+    ProfileItems,
+    ItemGroup,
+    ItemIcon,
+    ItemTitle,
+    ProfileLink
+ } from './profileHeader.styles';
 import profileIcon from '../../../../images/profile-icon.svg';
 import userIcon from '../../../../images/user-icon.svg';
 import itemIcon from '../../../../images/saved-item-icon.svg';
@@ -9,47 +19,46 @@ import settingsIcon from '../../../../images/settings-icon.svg';
 const ProfileHeader = ({isAuth, profile}) => {
     return (
         <ProfileHeaderContainer>
-            <div className="user-details">
-                <div className="profile-icon">
+            <UserDetails>
+                <ProfileIcon>
                     <img src={profileIcon} alt="logo icon" />
-                </div>
-                <div className="username">
+                </ProfileIcon>
+                <Username>
                     {profile && profile.user ? `${profile.user.username}` : ''}
-                </div>
-            </div>
-            <div className="profile-items">
-                <div className="item-group">
-                    <div className="item-icon">
+                </Username>
+            </UserDetails>
+            <ProfileItems>
+                <ItemGroup>
+                    <ItemIcon>
                         <img src={userIcon} alt="logo icon" />
-                    </div>
-                    <div className="item-title">
-                    <Link to="/profile" className="profile-link">
-                        My Profile    
-                    </Link>
-                       
-                    </div>
-                </div>
-                <div className="item-group">
-                    <div className="item-icon">
+                    </ItemIcon>
+                    <ItemTitle>
+                        <ProfileLink to="/profile">
+                            My Profile    
+                        </ProfileLink>  
+                    </ItemTitle>
+                </ItemGroup>
+                <ItemGroup>
+                    <ItemIcon>
                         <img src={itemIcon} alt="logo icon" />
-                    </div>
-                    <div className="item-title">
-                    <Link to="/saved-items" className="profile-link">
-                        Saved Items    
-                    </Link>
-                    </div>
-                </div>
-                <div className="item-group">
-                    <div className="item-icon">
+                    </ItemIcon>
+                    <ItemTitle>
+                        <ProfileLink to="/saved-items">
+                            Saved Items    
+                        </ProfileLink>
+                    </ItemTitle>
+                </ItemGroup>
+                <ItemGroup>
+                    <ItemIcon>
                         <img src={settingsIcon} alt="logo icon" />
-                    </div>
-                    <div className="item-title">
-                        <Link to='/settings' className="profile-link">
+                    </ItemIcon>
+                    <ItemTitle>
+                        <ProfileLink to='/settings'>
                             Profile Settings  
-                        </Link>
-                    </div>
-                </div>
-            </div>
+                        </ProfileLink>
+                    </ItemTitle>
+                </ItemGroup>
+            </ProfileItems>
         </ProfileHeaderContainer>
     )
 }

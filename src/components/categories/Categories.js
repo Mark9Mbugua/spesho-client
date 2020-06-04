@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getCategories } from '../../actions/categories';
-import { CategoriesList } from './categories-styles';
+import { 
+     MenuList,
+     MenuItem 
+} from '../common/menu-list.styles';
+import { NavLinkItem } from '../header/desktopNavbar.styles';
 
 export class Categories extends Component {
 
@@ -17,20 +21,20 @@ export class Categories extends Component {
 
     render() {
         return (
-            <CategoriesList>
-                <li className="menu-item">
-                    <Link to="#" className="link">categories</Link> 
-                    <ul className="dropdown-list">
+            <MenuList>
+                <MenuItem>
+                    <NavLinkItem to="#">categories</NavLinkItem> 
+                    <ul>
                         { this.props.categories.map(category =>(
                             <li key={category.id}>
-                                <Link to={`/items/category/${category.id}`} className="link">
+                                <NavLinkItem to={`/items/category/${category.id}`}>
                                     {category.category_name}    
-                                </Link>      
+                                </NavLinkItem>      
                             </li>
                         )) }
                     </ul>
-                </li>     
-            </CategoriesList>         
+                </MenuItem>     
+            </MenuList>         
         );    
     }
 }

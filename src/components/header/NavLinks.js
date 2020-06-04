@@ -1,19 +1,20 @@
 import React from 'react';
 import Categories from '../categories/Categories';
 import Stores from '../stores/Stores';
+import { NavbarLinks } from './desktopNavbar.styles';
 
 
 const NavLinks = () => { 
 
     return (
-        <ul className="nav-links">
+        <NavbarLinks>
             <li>
                 <Categories />
             </li>
             <li>
                 <Stores />
             </li>
-        </ul>
+        </NavbarLinks>
     )
 }
 

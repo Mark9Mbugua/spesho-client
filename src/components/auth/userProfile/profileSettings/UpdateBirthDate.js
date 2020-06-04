@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
 import { updateUserProfile } from '../../../../actions/auth';
-import { DateForm } from './updateBirthDate.styles'; 
+import { 
+    DateForm,
+    DateButton,
+    SetDate
+} from './updateBirthDate.styles'; 
  
 import "react-datepicker/dist/react-datepicker.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -36,6 +39,7 @@ class UpdateBirthDate extends Component {
         const birthDate = this.formatDate(birth_date);
         birth_date = {birth_date: birthDate};
         console.log(birth_date);
+        
         // update birth date via updateUser action
         this.props.updateUserProfile(birth_date);
 
@@ -51,15 +55,15 @@ class UpdateBirthDate extends Component {
         return (
             <form onSubmit={ this.handleSubmit }>
                 <DateForm>
-                    <div className="date-picker">
+                    <SetDate>
                         <DatePicker
                             selected={ this.state.birth_date }
                             onChange={ this.handleChange }
                             name="birthDate"
                             dateFormat="yyyy-MM-dd"
                         />
-                    </div>
-                    <button className="date-button">Update</button>
+                    </SetDate>
+                    <DateButton>Update</DateButton>
                 </DateForm>
             </form>
         );

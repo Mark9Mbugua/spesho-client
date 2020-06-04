@@ -1,5 +1,9 @@
 import React from 'react';
-import { FooterContainer } from './footer.styles';
+import { 
+  FooterContainer,
+  FooterMiddle, 
+  FooterBottom 
+} from './footer.styles';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
@@ -7,7 +11,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 const Footer = () => {
   return (
     <FooterContainer>
-      <div className="footer-middle">
+      <FooterMiddle>
         <div className="container">
           <div className="row">
             {/* Column 1 */}
@@ -78,14 +82,14 @@ const Footer = () => {
             </div>
           </div>
           {/* Footer Bottom */}
-          <div className="footer-bottom">
+          <FooterBottom>
             <p className="text-xs-center">
               &copy;{new Date().getFullYear()} Dealie - All Rights
               Reserved
             </p>
-          </div>
+          </FooterBottom>
         </div>
-      </div>
+      </FooterMiddle>
     </FooterContainer>
   );
 }

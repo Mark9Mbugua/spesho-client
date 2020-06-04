@@ -1,56 +1,62 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import ArrowDropDownTwoToneIcon from '@material-ui/icons/ArrowDropDownTwoTone';
-import { ProfileItemsList } from './profileMenu.styles';
+import { 
+    ProfileItemsList,
+    ItemLink 
+} from './profileMenu.styles';
+import { 
+    NavbarLinks, 
+    NavLinkItem
+} from '../../header/desktopNavbar.styles';
 import Logout from '../Logout';
 
 const ProfileMenu = ({ user }) => {
     return (
-        <ul className="nav-links">
+        <NavbarLinks>
             <li>
                 <ProfileItemsList>
                     <li className="menu-item">
-                        <Link to="#" className="link">
-                            <div className="link-icon">
+                        <NavLinkItem to="#">
+                            <div>
                                 { user ? `${user.username}` 
                                     : 'My Account'
                                 }<ArrowDropDownTwoToneIcon />
                             </div>
-                        </Link>
-                        <ul className="dropdown-list">
-                            <li className="link-body">
-                                <Link to="/profile" className="item-link">
+                        </NavLinkItem>
+                        <ul>
+                            <li>
+                                <ItemLink to="/profile">
                                     ProfileOverview    
-                                </Link>      
+                                </ItemLink>      
                             </li>
-                            <li className="link-body">
-                                <Link to="#" className="item-link">
+                            <li>
+                                <ItemLink to="#">
                                     My Deal Alerts    
-                                </Link>      
+                                </ItemLink>      
                             </li>
-                            <li className="link-body">
-                                <Link to="/saved-items" className="item-link">
+                            <li>
+                                <ItemLink to="/saved-items">
                                     Saved Items    
-                                </Link>      
+                                </ItemLink>      
                             </li>
-                            <li className="link-body">
-                                <Link to="#" className="item-link">
+                            <li>
+                                <ItemLink to="#">
                                     Notifications    
-                                </Link>      
+                                </ItemLink>      
                             </li>
-                            <li className="link-body">
-                                <Link to='/settings' className="item-link">
+                            <li>
+                                <ItemLink to='/settings'>
                                     Profile Settings  
-                                </Link>      
+                                </ItemLink>      
                             </li>
-                            <li className="link-body">
+                            <li>
                                 <Logout />      
                             </li>
                         </ul>
                     </li>
                 </ProfileItemsList>
             </li>
-        </ul> 
+        </NavbarLinks> 
     );
 }
 

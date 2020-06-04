@@ -7,18 +7,16 @@ export const SavedItemsContainer = styled.div`
     align-content: stretch;
     overflow: hidden;
     padding: 20px;
+`;
 
-    .page-title {
-        text-align: center;
-        margin-left: -38%;
-        margin-bottom: 25px;
-    }
+export const PageTitle = styled.h2`
+    text-align: center;
+    margin-bottom: 25px;
+`;
 
-    .upper-section {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        align-content: stretch;
-
-    }
-`
+export const UpperSection = styled.div`
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-content: stretch;
+`;

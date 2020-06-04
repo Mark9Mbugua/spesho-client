@@ -3,7 +3,15 @@ import { connect } from 'react-redux';
 import autosize from "autosize";
 import { Alert } from 'reactstrap';
 import { createComment } from '../../actions/comments';
-import { CreateReplyFormContainer } from './createReplyForm.styles';
+import { 
+    CreateReplyFormContainer,
+    ReplyForm,
+    ReplyInput,
+    ReplyButtons,
+    Divider,
+    ReplyButton,
+    CancelButton
+} from './createReplyForm.styles';
 
 
 const CreateCommentForm = ({ id, createComment }) => {
@@ -28,35 +36,34 @@ const CreateCommentForm = ({ id, createComment }) => {
 
     return (
         <CreateReplyFormContainer>
-            <form className="reply-form" onSubmit={handleSubmit}>
-                <textarea
-                    className="reply-input" 
+            <ReplyForm onSubmit={handleSubmit}>
+                <ReplyInput 
                     type='textarea'
                     name='content'
                     id='content'
                     ref={contentRef}
-                    placeholder="Add a  public comment..."
+                    placeholder="Add a public comment..."
                     rows={1}
                     value={content}
                     onChange={e => setContent(e.target.value)} 
                 />
-                <div className="reply-buttons">
-                    <button 
+                <ReplyButtons>
+                    <CancelButton 
                         className="cancel-button"
                         onClick={e => setContent('')}
                     >
                         Cancel
-                    </button>
-                    <div className="divider" />
-                    <button 
+                    </CancelButton>
+                    <Divider />
+                    <ReplyButton 
                         className='reply-button' 
                         type='submit' 
                         value='submit'
                     >
                         Save
-                    </button>
-                </div>
-            </form>
+                    </ReplyButton>
+                </ReplyButtons>
+            </ReplyForm>
         </CreateReplyFormContainer>
     )
 }

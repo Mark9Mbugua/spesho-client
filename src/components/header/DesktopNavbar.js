@@ -1,7 +1,12 @@
 import React, { Fragment } from 'react';
-import { DesktopNavbarContainer } from './desktopNavbar.styles';
-import { MyMobileNavButton } from './desktopNavbar.styles';
-import { Link } from 'react-router-dom';
+import { 
+    DesktopNavbarContainer,
+    Logo,
+    LogoLink,
+    RightNav,
+    AuthButtons, 
+    MyMobileNavButton 
+} from './desktopNavbar.styles';
 import NavLinks from './NavLinks';
 import mobileNavIcon from '../../images/mobile-nav-icon.svg';
 import SearchBar from './SearchBar';
@@ -32,16 +37,16 @@ const DesktopNavbar = props => {
     return (
         <DesktopNavbarContainer>
             <SiteLogo />
-            <div className="logo">
-                <Link to="/" className="logo-link">Dealie</Link>
-            </div>  
+            <Logo>
+                <LogoLink to="/">Dealie</LogoLink>
+            </Logo>  
             <NavLinks />
-            <div className="right-navbar">
-                <SearchBar className="right-navbar" />
-            </div>
-            <div className="auth-buttons">
+            <RightNav>
+                <SearchBar />
+            </RightNav>
+            <AuthButtons>
                   {isAuth ? authLinks : guestLinks}  
-            </div>
+            </AuthButtons>
             <MyMobileNavButton
                 displayMobileNavbar={props.displayMobileNavbar}
                 onClick={props.toggleMobileNavbar}

@@ -6,6 +6,19 @@ import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import profileIcon from '../../images/profile-icon.svg';
 import { RepliesListContainer } from './repliesList.styles';
+import { 
+    MainSection,
+    UserDetails,
+    UserIcon,
+    UserInfo,
+    Username,
+    Date,
+    CommentDetails,
+    CommentReaction,
+    Votes,
+    VL,
+    MoreIcon
+} from './commentList.styles'; 
 import EditAndDeleteReplyModal from './EditAndDeleteReplyModal';
 import EditReplyForm from './EditReplyForm';
 
@@ -46,18 +59,18 @@ class RepliesList extends Component {
         return (
             <RepliesListContainer>
                 {replies.map(reply => (
-                    <div key={reply.id} className="main-section">
-                        <div className="user-details">
-                            <div className="user-icon">
+                    <MainSection key={reply.id}>
+                        <UserDetails className='user-details'>
+                            <UserIcon>
                                 <img src={profileIcon} alt="logo icon" />
-                            </div>
-                            <div className="user-info">
-                                <p className="username">{reply.user.username}</p>
-                                <p className="date-joined">Joined {reply.user.created_on}</p>
-                            </div> 
-                        </div>
-                        <div className="comment-details">
-                            <p className="date-created">{reply.created_on}</p>
+                            </UserIcon>
+                            <UserInfo>
+                                <Username>{reply.user.username}</Username>
+                                <Date>Joined {reply.user.created_on}</Date>
+                            </UserInfo> 
+                        </UserDetails>
+                        <CommentDetails className='comment-details'>
+                            <Date>{reply.created_on}</Date>
                             { showEditReplyForm && clickedComment === reply.id ?
                                 <EditReplyForm 
                                     id={reply.id}
@@ -65,16 +78,16 @@ class RepliesList extends Component {
                                     toggleEditForm={this.toggleEditReplyForm} 
                                 />
                             : <p>{reply.content}</p> }
-                            <div className="comment-reaction">
-                                <div className="votes">
+                            <CommentReaction>
+                                <Votes>
                                     <span><ThumbUpAltOutlinedIcon /> {reply.likes_count}</span>
-                                    <div className="vl"></div>
+                                    <VL />
                                     <span><ThumbDownAltOutlinedIcon /> {reply.dislikes_count}</span>
-                                </div>     
-                            </div>          
-                        </div>
+                                </Votes>     
+                            </CommentReaction>          
+                        </CommentDetails>
                         { user && user.username == reply.user.username ?
-                            <div className="more-icon">
+                            <MoreIcon className="more-icon">
                                 <MoreVertIcon onClick={() => this.toggleEditReplyModal(reply.id)}/>
                                 { showEditReplyModal && clickedComment === reply.id ? 
                                     <EditAndDeleteReplyModal 
@@ -84,9 +97,9 @@ class RepliesList extends Component {
                                         toggleEditModal={this.toggleEditReplyModal}
                                     /> 
                                 : null }
-                            </div>
+                            </MoreIcon>
                         : null }
-                    </div>
+                    </MainSection>
                 ))}
             </RepliesListContainer>
         );

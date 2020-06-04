@@ -1,5 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { 
+    NavLinks, 
+    MenuLinks,
+    MenuLink
+} from './mobileNavbar.styles';
 
 const MobileNavLinks = ({ isMobileLink, toggleMobileNavbar }) => { 
     let tempTabIndex
@@ -8,28 +12,26 @@ const MobileNavLinks = ({ isMobileLink, toggleMobileNavbar }) => {
     }
     
     return (
-        <ul className="nav-links">
-            <li>
-                <Link 
+        <NavLinks>
+            <MenuLinks>
+                <MenuLink 
                     to="/categories" 
-                    className="link" 
                     tabIndex={tempTabIndex}
                     onClick={toggleMobileNavbar}
                 >
                     categories
-                </Link> 
-            </li>
-            <li>
-                <Link 
+                </MenuLink> 
+            </MenuLinks>
+            <MenuLinks>
+                <MenuLink 
                     to="/stores"
-                    className="link" 
                     tabIndex={tempTabIndex}
                     onClick={toggleMobileNavbar}
                 >
                     stores
-                </Link>
-            </li>
-        </ul>
+                </MenuLink>
+            </MenuLinks>
+        </NavLinks>
     )
 }
 

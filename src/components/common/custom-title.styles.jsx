@@ -11,4 +11,4 @@ export const TitleContainer = styled.div`
     @media screen and (max-width: 768px) {
         margin: 3% 0 -7% 3.8%;
     }
-`
+`;

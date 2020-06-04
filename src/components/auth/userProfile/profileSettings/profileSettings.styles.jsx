@@ -12,81 +12,81 @@ export const ProfileSettingsContainer = styled.div`
     @media (max-width: 767px) {
         width: 100%;
     }
+`;
 
-    .page-title {
-        text-align: start;
-        margin-bottom: 30px;
+export const PageTitle = styled.h1`
+    text-align: start;
+    margin-bottom: 30px;
 
-        @media (max-width: 767px) {
-            font-size: 4vh;
-        }
+    @media (max-width: 767px) {
+        font-size: 4vh;
     }
+`;
 
-    .modal-heading h3 {
-        @media (max-width: 767px) {
+export const Attribute = styled.div`
+    @media (max-width: 767px) {
+        h3 {
             font-size: 3.5vh;
         }
     }
+`;
 
-    .modal-body {
-        display: flex;
+export const AttributeBody = styled.div`
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-content: stretch;
+    overflow: hidden;
+    padding: 5px;
+`;
+
+export const EditAttribute = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 18px;
+`;
+
+export const DateBody = styled.div`
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-content: stretch;
+    overflow: hidden;
+    padding: 5px;
+`;
+
+export const UserDetails = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 100%;
+`;
+
+export const EditDate = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    overflow: hidden;
+    margin-top: 18px;
+
+    @media (max-width: 767px) {
         flex-flow: column wrap;
-        justify-content: space-between;
-        align-content: stretch;
-        overflow: hidden;
-        padding: 5px;
-
-        .edit {
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: space-between;
-            align-items: center;
-            overflow: hidden;
-            margin-top: 18px;
-
-            .user-details {
-                display: flex;
-                flex-flow: row wrap;
-                justify-content: space-between;
-                width: 100%;
-            }
-
-            .phone-icon-button {
-                display: flex;
-                flex-flow: row wrap;
-                justify-content: space-between;
-                
-                .phone-icon {
-                    padding: 5px 20px 0 0;
-
-                }
-            }
-
-        }
+        justify-content: center;
+        align-items: start;
+        margin-top: 5px;
     }
+`;
 
-    .date-body {
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: space-between;
-        align-content: stretch;
-        overflow: hidden;
-        padding: 5px;
-        
-        .edit-date {
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: space-between;
-            align-items: stretch;
-            overflow: hidden;
-            margin-top: 18px;
+export const PhoneButtons = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+`;
 
-            @media (max-width: 767px) {
-                flex-flow: column wrap;
-                justify-content: center;
-                align-items: start;
-                margin-top: 5px;
-            }
-        }
-    }
-`
+export const PhoneIcon = styled.div`
+    padding: 5px 20px 0 0;
+`;
