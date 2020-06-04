@@ -32,6 +32,7 @@ class UpdatePhoneModal extends Component {
         e.preventDefault();
         let { phone } = this.state;  
         let phone_number = {phone_number: phone};
+        
         // update phone via updatePhoneNumber action
         console.log(phone_number);
         this.props.updatePhoneNumber(phone_number);
@@ -47,8 +48,6 @@ class UpdatePhoneModal extends Component {
     };
 
     render() {
-        //const { getProfile } = this.props;
-        //console.log(this.props)
         return (
             <div>
                 <EditIcon onClick={this.toggle} />

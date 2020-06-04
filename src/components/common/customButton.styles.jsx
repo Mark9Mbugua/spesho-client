@@ -1,18 +1,18 @@
 import styled, { css } from 'styled-components';
 
 const signUpStyles = css`
-    background: ${ props => props.theme.secondary }
+    background: ${ props => props.theme.secondary };
     color: white;
-`
+`;
 
 const signInStyles = css`
     background: white;
-    color:${ props => props.theme.secondary }
+    color: ${ props => props.theme.secondary };
 
     @media screen and (max-width: 768px) {
         color: white;
     }
-`
+`;
 
 const getButtonStyles = props => {
     if (props.isSignIn) {
@@ -41,4 +41,4 @@ export const ButtonContainer = styled.button`
         margin-top: 0;
         font-size: 2.5vh;
     }    
-`
+`;

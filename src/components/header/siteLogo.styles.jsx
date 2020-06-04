@@ -6,14 +6,13 @@ export const LogoContainer = styled.button`
     width: 7vh;
     border: none;
     margin-left: 4%;
-
-    @media screen and (max-width: 768px) {
-        margin-right: 3%;
-    }
     
     &:focus {
         background: rgba(0, 0, 0, 0.1);
         outline: none;
     }
 
+    @media screen and (max-width: 768px) {
+        margin-right: 3%;
+    }
 `

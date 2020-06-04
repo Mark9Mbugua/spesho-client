@@ -2,7 +2,15 @@ import React, { useRef, useState, useEffect } from 'react';
 import { connect, useSelector } from 'react-redux';
 import autosize from "autosize";
 import { updateUserProfile } from '../../../../actions/auth';
-import { CreateReplyFormContainer } from '../../../commentSection/createReplyForm.styles';
+import { 
+    CreateReplyFormContainer,
+    ReplyForm,
+    ReplyInput,
+    ReplyButtons,
+    Divider,
+    ReplyButton,
+    CancelButton
+} from '../../../commentSection/createReplyForm.styles';
 
 
 const UpdateBioModal = (props) => {
@@ -30,9 +38,8 @@ const UpdateBioModal = (props) => {
 
     return (
         <CreateReplyFormContainer>
-            <form className="reply-form" onSubmit={handleSubmit}>
-                <textarea
-                    className="reply-input" 
+            <ReplyForm onSubmit={handleSubmit}>
+                <ReplyInput 
                     type='textarea'
                     name='bio'
                     id='bio'
@@ -42,23 +49,21 @@ const UpdateBioModal = (props) => {
                     value={bio}
                     onChange={e => setBio(e.target.value)} 
                 />
-                <div className="reply-buttons">
-                    <button 
-                        className="cancel-button"
+                <ReplyButtons>
+                    <CancelButton 
                         onClick={e => props.toggleBioForm}
                     >
                         Cancel
-                    </button>
-                    <div className="divider" />
-                    <button 
-                        className='reply-button' 
+                    </CancelButton>
+                    <Divider />
+                    <ReplyButton 
                         type='submit' 
                         value='submit'
                     >
                         Save
-                    </button>
-                </div>
-            </form>
+                    </ReplyButton>
+                </ReplyButtons>
+            </ReplyForm>
         </CreateReplyFormContainer>
     )
 }

@@ -6,7 +6,26 @@ import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 import InsertCommentTwoToneIcon from '@material-ui/icons/InsertCommentTwoTone';
 import { getItem } from '../../actions/items';
 import { getVotes } from '../../actions/votes';
-import { ItemDetailContainer } from './itemDetail.styles';
+import { 
+    ItemDetailContainer,
+    ItemSection,
+    Header,
+    BrandName,
+    Main,
+    MainLeft,
+    Prices,
+    Price,
+    OriginalPrice,
+    Discount,
+    CommentsCount,
+    Description,
+    MainRight,
+    ImageContainer,
+    Image,
+    DealButton,
+    DealVote,
+    Votes
+} from './itemDetail.styles';
 import CommentsList from '../commentSection/CommentsList';
 import CreateLikeVote from '../votesSection/CreateDislikeVote';
 import CreateDislikeVote from '../votesSection/CreateLikeVote';
@@ -30,53 +49,53 @@ class ItemDetail extends Component {
         return (
             <div>
                 <ItemDetailContainer>
-                    <div className="item-section">
-                        <div className="header">
+                    <ItemSection>
+                        <Header>
                             <h2 className="menu">{item.deal_title}</h2>
-                            <p className="brand">{item.brand}</p>
-                        </div>
-                        <div className="main">
-                            <div className="main-left">
-                                <div className="prices">
-                                    <div className="price">
+                            <BrandName>{item.brand}</BrandName>
+                        </Header>
+                        <Main>
+                            <MainLeft className='main-left'>
+                                <Prices>
+                                    <Price>
                                         <p>Ksh {item.price}</p>
-                                    </div>
-                                    <div className="original-price">
+                                    </Price>
+                                    <OriginalPrice>
                                         <p>Ksh {item.original_price}</p>
-                                    </div>
-                                    <div className="discount">
+                                    </OriginalPrice>
+                                    <Discount>
                                         <p>{item.discount}% off</p>
-                                    </div>
-                                </div>
-                                <div className="comments-count">
+                                    </Discount>
+                                </Prices>
+                                <CommentsCount>
                                     <p><InsertCommentTwoToneIcon /> {item.comments_count} comments</p>
-                                </div>
-                                <div className="description">
+                                </CommentsCount>
+                                <Description>
                                     <p>{item.description}</p>
-                                </div>
-                            </div>
-                            <div className="main-right">
-                                <div className="image-container">
-                                    <img className="image" src={item.src} alt="nav icon" />
-                                    <button className="deal-button">See Deal</button>
+                                </Description>
+                            </MainLeft>
+                            <MainRight className="main-right">
+                                <ImageContainer>
+                                    <Image src={item.src} alt="nav icon" />
+                                    <DealButton>See Deal</DealButton>
                                     <hr />
-                                </div>
-                                <div className="good-deal">
+                                </ImageContainer>
+                                <DealVote>
                                     <p>Good Deal?</p>
-                                </div>
-                                <div className="votes">
+                                </DealVote>
+                                <Votes>
                                     <CreateDislikeVote id={id} />
                                     <CreateLikeVote id={id}/>
                                     <hr />
-                                </div>  
-                            </div>
-                        </div>
+                                </Votes>  
+                            </MainRight>
+                        </Main>
                         <CommentsList 
                             objectId={this.props.id} 
                             commentsCount={item.comments_count}
                             user={user} 
                         />
-                    </div>                                         
+                    </ItemSection>                                         
                 </ItemDetailContainer>
             </div>
         )

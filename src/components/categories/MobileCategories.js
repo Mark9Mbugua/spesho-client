@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { getCategories } from '../../actions/categories';
-import { ListContainer } from './mobileCategories-styles';
+import { 
+    ListContainer,
+    MobileMenuList,
+    MobileMenuListItem,
+    ListLink
+} from '../common/mobileMenuList.styles';
 
 const MobileCategories = ({ getCategories, categories }) => {
     useEffect(() => {
@@ -12,18 +16,17 @@ const MobileCategories = ({ getCategories, categories }) => {
     return (
         <ListContainer>
             <h4>All Deal Categories</h4>
-             <ul>
+             <MobileMenuList>
                 {categories.map(category =>(
-                    <li key={category.id}>
-                        <Link 
+                    <MobileMenuListItem key={category.id}>
+                        <ListLink 
                             to={`/items/category/${category.id}`}
-                            className='list-link' 
                         >
                             {category.category_name}    
-                        </Link>      
-                    </li>
+                        </ListLink>      
+                    </MobileMenuListItem>
                 )) }
-            </ul>
+            </MobileMenuList>
         </ListContainer>
     )
 }

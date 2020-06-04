@@ -4,7 +4,17 @@ import { Link, Redirect } from 'react-router-dom';
 import { Alert } from 'reactstrap';
 import { register } from '../../actions/auth';
 import { clearErrors } from '../../actions/errors';
-import { SignUpFormContainer } from './signUpForm.styles';
+import { 
+    SignUpFormContainer,
+    MainHeader,
+    SubHeader,
+    FormInput,
+    FormButton,
+    AuthLink,
+    ButtonFields,
+    FormFields,
+    Terms 
+} from './signUpForm.styles';
 import Footer from '../common/Footer';
 
 class SignUpForm extends Component{
@@ -54,94 +64,82 @@ class SignUpForm extends Component{
         return(
             <div>
                 <SignUpFormContainer>
-                    <form onSubmit={this.handleSubmit} className="FormFields">
-                        <h1>Join Dealie</h1>
-                        <h4>Find and share great deals</h4>
-                        <div className="FormField">
-                            <input 
-                                type="text" 
-                                id="first_name" 
-                                className="input" 
-                                placeholder="First Name" 
-                                name="first_name"  
-                                onChange={this.handleChange}
-                                required 
-                            />
-                        </div>
-                        <div className="FormField">
-                            <input 
-                                type="text" 
-                                id="last_name" 
-                                className="input" 
-                                placeholder="Last Name" 
-                                name="last_name"  
-                                onChange={this.handleChange}
-                                required 
-                            />
-                        </div>
-                        <div className="FormField">
-                            <input 
-                                type="text" 
-                                id="username" 
-                                className="input" 
-                                placeholder="Username" 
-                                name="username"  
-                                onChange={this.handleChange}
-                                required 
-                            />
-                        </div>
+                    <FormFields onSubmit={this.handleSubmit}>
+                        <MainHeader>Join Dealie</MainHeader>
+                        <SubHeader>Find and share great deals</SubHeader>
+                        <FormInput 
+                            type="text" 
+                            id="first_name"  
+                            placeholder="First Name" 
+                            name="first_name"  
+                            onChange={this.handleChange}
+                            required 
+                        />
+                        <FormInput 
+                            type="text" 
+                            id="last_name"  
+                            placeholder="Last Name" 
+                            name="last_name"  
+                            onChange={this.handleChange}
+                            required 
+                        />
+                        <FormInput 
+                            type="text" 
+                            id="username"  
+                            placeholder="Username" 
+                            name="username"  
+                            onChange={this.handleChange}
+                            required 
+                        />
                         {error.msg.username ?
                             <Alert color="danger">
                                 <span>Username: {error.msg.username}</span>
                             </Alert>
                             : null
                         } 
-                        <div className="FormField">
-                            <input 
-                                type="email" 
-                                id="email" 
-                                className="input" 
-                                placeholder="Email" 
-                                name="email"
-                                onChange={this.handleChange}
-                                required 
-                            />
-                        </div>
+                        <FormInput 
+                            type="email" 
+                            id="email"  
+                            placeholder="Email" 
+                            name="email"
+                            onChange={this.handleChange}
+                            required 
+                        />
                         {error.msg.email ?
                             <Alert color="danger">
                                 <span>Email: {error.msg.email}</span>
                             </Alert>
                             : null
                         }
-                        <div className="FormField">
-                            <input 
-                                type="password" 
-                                id="password" 
-                                className="input" 
-                                placeholder="Password" 
-                                name="password" 
-                                onChange={this.handleChange}
-                                required 
-                            />
-                        </div>
+                        <FormInput 
+                            type="password" 
+                            id="password"  
+                            placeholder="Password" 
+                            name="password" 
+                            onChange={this.handleChange}
+                            required 
+                        />
                         {error.msg.password ?
                             <Alert color="danger">
                                 <span>Password: {error.msg.password}</span>
                             </Alert>
                             :null
                         }
-                        <div className="ButtonField">
-                            <button className="FormButton">
+                        <ButtonFields>
+                            <FormButton>
                                 Sign Up
-                            </button> 
-                            <Link to="/signin" className="authLink">I'm already a member</Link>
-                        </div>
-                    </form>
-                    <div className="termsLink">
-                        <p>By creating an account, you agree to our<a 
-                        href="" className="termsLink"> terms of service</a> and <a 
-                        href="" className="termsLink">Privacy Policy</a></p>
-                    </div>
+                            </FormButton> 
+                            <AuthLink to="/signin">I'm already a member</AuthLink>
+                        </ButtonFields>
+                    </FormFields>
+                    <Terms>
+                        <p>
+                            By creating an account, you agree to our
+                            <a href=""> terms of service </a> 
+                            and 
+                            <a href=""> privacy Policy</a>
+                        </p>
+                    </Terms>
                 </SignUpFormContainer>
                 <Footer />
             </div>

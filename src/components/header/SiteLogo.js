@@ -6,7 +6,7 @@ import logoIcon from '../../images/logo-icon.svg';
 const SiteLogo = () => {
     return (
         <LogoContainer>
-            <Link to="/" className="site-logo">
+            <Link to="/">
                 <img src={logoIcon} alt="logo icon" />
             </Link>
         </LogoContainer>

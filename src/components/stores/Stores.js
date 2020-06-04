@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { getStores } from '../../actions/stores';
-import { StoresList } from './stores-styles';
+import { 
+    MenuList,
+    MenuItem 
+} from '../common/menu-list.styles';
+import { NavLinkItem } from '../header/desktopNavbar.styles';
 
 export class Stores extends Component {
     state = {
@@ -21,20 +25,20 @@ export class Stores extends Component {
 
     render() {
         return (
-            <StoresList>
-                <li className="menu-item">
-                    <Link to="#" className="link">stores</Link> 
-                    <ul className="dropdown-list">
+            <MenuList>
+                <MenuItem>
+                    <NavLinkItem to="#">stores</NavLinkItem> 
+                    <ul>
                         { this.props.stores.map(store =>(
                             <li key={store.id}>
-                                <Link to ={`/items/store/${store.id}`} className="link">
+                                <NavLinkItem to ={`/items/store/${store.id}`}>
                                     {store.store_name}    
-                                </Link>      
+                                </NavLinkItem>      
                             </li>
                         )) }
                     </ul>
-                </li>     
-            </StoresList>
+                </MenuItem>     
+            </MenuList>
         );
     }
 }

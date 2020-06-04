@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const MobileNavbarContainer = styled.nav`
     top: 50px;
@@ -8,37 +9,28 @@ export const MobileNavbarContainer = styled.nav`
     transition: transform 0.5s;
     transform: translateX( ${ props => props.displayMobileNavbar ? ("0%"): ("100%") });
     position: absolute;
+`;
 
-    .nav-links {
-        display: block;
-        text-align: center;
-        list-style: none;
+export const NavLinks = styled.ul`
+    display: block;
+    text-align: center;
+    list-style: none;
+`;
 
-        li {
-            border-bottom: 1px solid #6F6B5D;
-            height: 70px;
-            line-height: 70px;
-        }
-    }
+export const MenuLinks = styled.li`
+    border-bottom: 1px solid #6F6B5D;
+    height: 70px;
+    line-height: 70px;
+`;
 
-    .auth-buttons {
-        margin: 0;
-        padding: 0;
-    }
-
-    .auth, .item-link {
-        display:block;
-        width: 100%;
-        text-align: center;
-        border-bottom: 1px solid #6F6B5D;
-        height: 70px;
-        line-height: 70px;
-    }
-        
-    .link, .item-link {
-        color: white;
-        font-size: 2.5vh;
+export const MenuLink = styled(Link)`
+    color: white;
+    font-size: 2.5vh;
+    text-decoration: none;
+    &:focus {
+        background: rgba(0, 0, 0, 0.1);
+        outline: none;
         text-decoration: none;
+        color: white;
     }
-
-`
+`;

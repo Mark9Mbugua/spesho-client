@@ -2,11 +2,21 @@ import React , {Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { Alert } from 'reactstrap';
-
 import { login } from '../../actions/auth';
 import { clearErrors } from '../../actions/errors';
 import { SignInFormContainer } from './signInForm.styles';
-import { SignUpFormContainer } from './signUpForm.styles';
+import { 
+    SignUpFormContainer,
+    MainHeader,
+    SubHeader,
+    FormInput,
+    FormButton,
+    AuthLink,
+    ButtonFields,
+    PasswordReset,
+    FormFields,
+    Terms
+} from './signUpForm.styles';
 import Footer from '../common/Footer';
 
 class SignUpForm extends Component{
@@ -51,66 +61,63 @@ class SignUpForm extends Component{
             <div>
                 <SignInFormContainer>
                     <SignUpFormContainer>
-                        <form onSubmit={this.handleSubmit} className="FormFields">
-                            <h1>Sign In</h1>
-                            <h5>Enter your details below to continue</h5>
+                        <FormFields onSubmit={this.handleSubmit}>
+                            <MainHeader>Sign In</MainHeader>
+                            <SubHeader>Enter your details below to continue</SubHeader>
                             {error.msg.non_field_errors ?
                                 <Alert color="danger">
                                     {error.msg.non_field_errors}
                                 </Alert>
                                 :null
                             }
-                            <div className="FormField">
-                                <input 
-                                    type="text" 
-                                    id="username" 
-                                    className="input" 
-                                    placeholder="Username" 
-                                    name="username"
-                                    onChange={this.handleChange} 
-                                />
-                            </div>
+                            <FormInput 
+                                type="text" 
+                                id="username"  
+                                placeholder="Username" 
+                                name="username"
+                                onChange={this.handleChange} 
+                            />
                             {error.msg.username ?
                                 <Alert color="danger">
                                     <span>Username: {error.msg.username}</span>
                                 </Alert>
                                 : null
                             }          
-                            <div className="FormField">
-                                <input 
-                                    type="password" 
-                                    id="password" 
-                                    className="input" 
-                                    placeholder="Password" 
-                                    name="password" 
-                                    onChange={this.handleChange} 
-                                />
-                            </div>
+                            <FormInput 
+                                type="password" 
+                                id="password"  
+                                placeholder="Password" 
+                                name="password" 
+                                onChange={this.handleChange} 
+                            />
                             {error.msg.password ?
                                 <Alert color="danger">
                                     <span>Password: {error.msg.password}</span>
                                 </Alert>
                                 : null
                             }         
-                            <div className="forgot-password">
+                            <PasswordReset>
                                 <a 
                                     href="http://localhost:8000/api/v1/accounts/reset/password_reset/" 
                                     className="password-link">
                                         Forgot password?
                                 </a>
-                            </div>
-                            <div className="ButtonField">
-                                <button className="FormButton">
+                            </PasswordReset>
+                            <ButtonFields>
+                                <FormButton>
                                     Sign In
-                                </button> 
-                                <Link to="/signup" className="authLink">Not a member? Sign Up</Link>
-                            </div>
-                        </form>
-                        <div className="termsLink">
-                            <p>By clicking Sign In, you have read and agree to the<a 
-                            href="" className="termsLink"> Dealie Terms of Service </a> and <a 
-                            href="" className="termsLink"> Acceptable Use Policies.</a></p>
-                        </div>
+                                </FormButton> 
+                                <AuthLink to="/signup">Not a member? Sign Up</AuthLink>
+                            </ButtonFields>
+                        </FormFields>
+                        <Terms>
+                            <p>
+                                By clicking Sign In, you have read and agree to the
+                                <a href=""> Dealie Terms of Service </a> 
+                                and 
+                                <a href=""> Acceptable Use Policies.</a>
+                            </p>
+                        </Terms>
                     </SignUpFormContainer>
                 </SignInFormContainer>
                 <Footer />

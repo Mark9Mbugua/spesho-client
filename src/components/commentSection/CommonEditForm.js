@@ -13,7 +13,6 @@ const CommonEditForm = ({ handleSubmit,contentRef,content, setContent, toggleEdi
                     ref={contentRef}
                     placeholder="Edit current comment..."
                     rows={1}
-                    defaultValue=""
                     value={content}
                     onChange={e => setContent(e.target.value)} 
                 />
