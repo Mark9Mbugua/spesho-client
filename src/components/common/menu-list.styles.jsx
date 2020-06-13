@@ -16,7 +16,7 @@ export const MenuItem = styled.li`
         align-items: center;
         position: absolute;
         margin-top: -1%;
-        max-width:380px;
+        max-width: 380px;
         background: ${ props => props.theme.primary };
         z-index: 1;
     }
