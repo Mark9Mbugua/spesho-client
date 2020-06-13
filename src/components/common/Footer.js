@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';  
 import { 
   FooterContainer,
   FooterMiddle, 
@@ -34,7 +35,7 @@ const Footer = () => {
               <h4>About</h4>
               <ul className="list-unstyled">
                 <li>
-                  <a href="#">About Us</a>
+                  <Link to="/about-us">About Us</Link>
                 </li>
                 <li>
                   <a href="#">FAQ</a>

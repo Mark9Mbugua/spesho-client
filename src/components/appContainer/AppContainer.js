@@ -13,6 +13,7 @@ import SavedItemsPage from '../../pages/SavedItemsPage';
 import ProfileSettingsPage from '../../pages/ProfileSettingsPage';
 import MobileCategoriesPage from '../../pages/MobileCategoriesPage';
 import MobileStoresPage from '../../pages/MobileStoresPage';
+import AboutUsPage from '../../pages/AboutUsPage';
 import Home from '../../pages/Home';
 import PrivateRoute from '../common/PrivateRoute';
 
@@ -52,6 +53,9 @@ class AppContainer extends Component {
                     />
                     <Route exact path="/signin" 
                         component={SignInForm} 
+                    />
+                    <Route exact path="/about-us" 
+                        component={AboutUsPage} 
                     />
                     <PrivateRoute exact path="/profile" 
                         component={ProfilePage} 
