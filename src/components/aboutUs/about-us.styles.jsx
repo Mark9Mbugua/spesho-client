@@ -7,10 +7,9 @@ export const AboutUsContainer = styled.div`
     align-items: center;
 `;
 
-export const Section = styled.section`
+const Section = styled.section`
     min-height: 100vh;
     border-bottom: 1px solid #ccc;
-    grid-gap: 0;
 `;
 
 export const IntroSection = styled(Section)`
@@ -19,7 +18,12 @@ export const IntroSection = styled(Section)`
     display: grid;
     align-items: center;
     justify-items: center;
-    min-height: 92vh; 
+    min-height: 92vh;
+
+    @media screen and (max-width: 768px) {
+        background-image: none;
+        min-height: 50vh;
+    } 
 `;
 
 export const SubSection = styled(Section)`
@@ -34,6 +38,11 @@ export const Introduction = styled.div`
     background: ${ props => props.theme.accent };
     z-index: 1;
     opacity: 0.98;
+
+    @media screen and (max-width: 768px) {
+        z-index: -1;
+        height: 100%;  
+    }
 `;
 
 export const Summary = styled.div`
@@ -41,13 +50,24 @@ export const Summary = styled.div`
     grid-gap: 50px;
     grid-template-columns: 1fr 1fr;
     align-items: center;
+    background: #ccc;
+    border-radius: 5px;
+
+    @media screen and (max-width: 768px) {
+        grid-template-columns: 1fr;
+        grid-gap: 10px;
+    }
 `;
 
 export const SummarySection = styled(Section)`
-    min-height: 70vh;
+    min-height: 85vh;
     display: grid;
     justify-items: center;
     align-items: center;
+`;
+
+export const StepsSection = styled(SummarySection)`
+    min-height: 60vh;
 `;
 
 export const SummaryBody = styled.div`
@@ -55,12 +75,21 @@ export const SummaryBody = styled.div`
     justify-items: center;
     align-items: center;
     width: 70%;
+
+    @media screen and (max-width: 768px) {
+        width: 85%;
+    }   
 `;
 
 export const SummaryDetails = styled.div`
     display: grid;
-    grid-template-rows: 1fr 1.2fr;
+    grid-template-rows: 1fr 1fr;
     justify-items: center;
+    align-items: center;
+
+    @media screen and (max-width: 768px) {
+        grid-template-rows: 1fr;
+    }
 `;
 
 export const SummaryImg = styled.img`
@@ -98,8 +127,12 @@ export const IntroDescription = styled(Description)`
 
 export const Products = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 50px;
+
+    @media screen and (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
 `;
 
 export const ProductContainer = styled.div`
@@ -127,20 +160,30 @@ export const ImageContainer = styled.div`
     align-items: center;
     justify-items: center;
     background: #cccccc;
-    opacity: 0.7; 
+    opacity: 0.7;
+
+    @media screen and (max-width: 768px) {
+        height: 10vh;
+        width: 20vw;  
+    } 
 `;
 
 export const Content = styled.div`
     display: flex;
     flex-flow: column nowrap;
+    padding: 0 10px;
 `;
 
 export const ImgContainer = styled.div`
     padding-bottom: 10px;
+
+    @media screen and (max-width: 768px) {
+        padding-bottom: 5px;  
+    }
 `;
 
 export const CategoriesSection = styled(Section)`
-    min-height: 90vh;
+    min-height: 70vh;
     display: grid;
     align-items: center;
     justify-items: center;

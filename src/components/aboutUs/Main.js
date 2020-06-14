@@ -7,7 +7,6 @@ import {
     IntroTitle,
     Introduction,
     IntroSection,
-    Section,
     SectionTitle,
     SubTitle,
     Summary,
@@ -22,7 +21,8 @@ import {
     ImageContainer,
     Content,
     ImgContainer,
-    CategoriesSection
+    CategoriesSection,
+    StepsSection
 } from './about-us.styles';
 import logoIcon from '../../images/logo-icon.svg';
 import feedbackIcon from '../../images/feedback.svg';
@@ -52,7 +52,7 @@ const Main = () => {
                     </IntroDescription>
                 </Introduction>
             </IntroSection>
-            <SummarySection>
+            <StepsSection>
                 <SummaryBody>
                     <SectionTitle>
                         How it works
@@ -83,7 +83,7 @@ const Main = () => {
                         </SummaryDetails>
                     </Summary>
                 </SummaryBody>
-            </SummarySection>
+            </StepsSection>
             <SummarySection>
                 <SummaryBody>
                     <SectionTitle>
