@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
-import { loadUserProfile,loadCurrentUser } from '../../actions/auth';
+import { loadCurrentUser } from '../../actions/auth';
 import Header from '../header/Header';
 import SignUpForm from '../auth/SignUpForm';
 import SignInForm from '../auth/SignInForm';
