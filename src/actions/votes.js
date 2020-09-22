@@ -6,10 +6,11 @@ import {
     GET_VOTES,
     GET_VOTES_ERROR,
     CREATE_VOTE,
-    CREATE_VOTE_ERROR
+    CREATE_VOTE_ERROR,
+    DELETE_VOTE,
+    DELETE_VOTE_ERROR,
   
 } from "./types";
-
 
 //get votes
 export const getVotes = id => dispatch => {
@@ -51,5 +52,20 @@ export const createItemVote = (id, vote_type) => (dispatch, getState) => {
       });
 }
 
-
-
+// delete an item vote
+export const deleteItemVote = id => (dispatch, getState) => {
+  axios
+    .delete(`http://127.0.0.1:8000/api/v1/votes/${id}`, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: DELETE_VOTE,
+        payload: id
+      }),
+    )
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: DELETE_VOTE_ERROR
+      });
+    });
+};

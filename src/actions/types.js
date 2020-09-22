@@ -48,3 +48,5 @@ export const GET_VOTES = 'GET_VOTES';
 export const GET_VOTES_ERROR = 'GET_VOTES_ERROR';
 export const CREATE_VOTE = 'CREATE_VOTE';
 export const CREATE_VOTE_ERROR = 'CREATE_VOTE_ERROR';
+export const DELETE_VOTE = 'DELETE_VOTE';
+export const DELETE_VOTE_ERROR = 'DELETE_VOTE_ERROR';
