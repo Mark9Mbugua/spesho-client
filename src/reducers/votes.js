@@ -2,7 +2,9 @@ import {
     GET_VOTES,
     GET_VOTES_ERROR,
     CREATE_VOTE,
-    CREATE_VOTE_ERROR
+    CREATE_VOTE_ERROR,
+    DELETE_VOTE,
+    DELETE_VOTE_ERROR
 
 
 } from "../actions/types.js";
@@ -29,8 +31,15 @@ export default function(state = initialState, action) {
                 votes: [action.payload, ...state.votes]
             };
         
+        case DELETE_VOTE:
+            return {
+                ...state,
+                votes: state.votes.filter(vote => vote.id !== action.payload)
+            };
+        
         case CREATE_VOTE_ERROR:
         case GET_VOTES_ERROR:
+        case DELETE_VOTE_ERROR:
             return {
                 ...state
             };
