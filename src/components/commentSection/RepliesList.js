@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from "react";
 import { connect } from 'react-redux';
 import { getReplies } from '../../actions/comments';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
@@ -21,93 +21,96 @@ import {
 } from './commentList.styles'; 
 import EditAndDeleteReplyModal from './EditAndDeleteReplyModal';
 import EditReplyForm from './EditReplyForm';
+import CreateLikeVote from '../votesSection/CreateDislikeVote';
+import CreateDislikeVote from '../votesSection/CreateLikeVote';
 
 
-class RepliesList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showEditReplyModal: false,
-            clickedComment: null,
-            showEditReplyForm: false
-        };
+const RepliesList = ({id, getReplies, replies, user}) => {
+    const [showEditReplyModal, setShowEditReplyModal] = useState(false);
+    const [clickedComment, setClickedComment] = useState(null);
+    const [showEditReplyForm, setShowEditReplyForm] = useState(false);
+
+    useEffect(() => {
+        getReplies(id);
+    }, [replies]);
+
+    const toggleEditReplyModal = clickedId => {
+        setShowEditReplyModal(!showEditReplyModal);
+        setClickedComment(clickedId);
     }
 
-    componentDidMount() {
-        let { id } = this.props;
-        this.props.getReplies(id);
-    };
-
-    toggleEditReplyModal = clickedId => {
-        this.setState({
-            showEditReplyModal: !this.state.showEditReplyModal,
-            clickedComment: clickedId
-        });
+    const toggleEditReplyForm = clickedId => {
+        setShowEditReplyForm(!showEditReplyForm);
+        setClickedComment(clickedId);
     }
 
-    toggleEditReplyForm = clickedId => {
-        this.setState({
-            showEditReplyForm: !this.state.showEditReplyForm,
-            clickedComment: clickedId
-        });
-    }
 
-    render() {
-        const { replies, user  } = this.props;
-        const { showEditReplyModal, showEditReplyForm, clickedComment } = this.state;
-        //console.log(replies);
-        return (
-            <RepliesListContainer>
-                {replies.map(reply => (
-                    <MainSection key={reply.id}>
-                        <UserDetails className='user-details'>
-                            <UserIcon>
-                                <img src={profileIcon} alt="logo icon" />
-                            </UserIcon>
-                            <UserInfo>
-                                <Username>{reply.user.username}</Username>
-                                <Date>Joined {reply.user.created_on}</Date>
-                            </UserInfo> 
-                        </UserDetails>
-                        <CommentDetails className='comment-details'>
-                            <Date>{reply.created_on}</Date>
-                            { showEditReplyForm && clickedComment === reply.id ?
-                                <EditReplyForm 
+
+    return (
+        <RepliesListContainer>
+            {replies.map(reply => (
+                <MainSection key={reply.id}>
+                    <UserDetails className='user-details'>
+                        <UserIcon>
+                            <img src={profileIcon} alt="logo icon" />
+                        </UserIcon>
+                        <UserInfo>
+                            <Username>{reply.user.username}</Username>
+                            <Date>Joined {reply.user.created_on}</Date>
+                        </UserInfo> 
+                    </UserDetails>
+                    <CommentDetails className='comment-details'>
+                        <Date>{reply.created_on}</Date>
+                        { showEditReplyForm && clickedComment === reply.id ?
+                            <EditReplyForm 
+                                id={reply.id}
+                                content={reply.content}
+                                toggleEditForm={toggleEditReplyForm} 
+                            />
+                        : <p>{reply.content}</p> }
+                        <CommentReaction>
+                            <Votes>
+                                <span>
+                                    <CreateDislikeVote 
+                                        id={reply.id}
+                                        modelType='comment'
+                                        dislikes={reply.dislikes_count}
+                                        likes={reply.likes_count}
+                                    />
+                                </span>
+                                <VL />
+                                <span>
+                                    <CreateLikeVote 
+                                        id={reply.id}
+                                        modelType='comment'
+                                        likes={reply.likes_count}
+                                        dislikes={reply.dislikes_count}
+                                    />
+                                </span>
+                            </Votes>     
+                        </CommentReaction>          
+                    </CommentDetails>
+                    { user && user.username == reply.user.username ?
+                        <MoreIcon className="more-icon">
+                            <MoreVertIcon onClick={() => toggleEditReplyModal(reply.id)}/>
+                            { showEditReplyModal && clickedComment === reply.id ? 
+                                <EditAndDeleteReplyModal 
                                     id={reply.id}
                                     content={reply.content}
-                                    toggleEditForm={this.toggleEditReplyForm} 
-                                />
-                            : <p>{reply.content}</p> }
-                            <CommentReaction>
-                                <Votes>
-                                    <span><ThumbUpAltOutlinedIcon /> {reply.likes_count}</span>
-                                    <VL />
-                                    <span><ThumbDownAltOutlinedIcon /> {reply.dislikes_count}</span>
-                                </Votes>     
-                            </CommentReaction>          
-                        </CommentDetails>
-                        { user && user.username == reply.user.username ?
-                            <MoreIcon className="more-icon">
-                                <MoreVertIcon onClick={() => this.toggleEditReplyModal(reply.id)}/>
-                                { showEditReplyModal && clickedComment === reply.id ? 
-                                    <EditAndDeleteReplyModal 
-                                        id={reply.id}
-                                        content={reply.content}
-                                        toggleEditForm={this.toggleEditReplyForm}
-                                        toggleEditModal={this.toggleEditReplyModal}
-                                    /> 
-                                : null }
-                            </MoreIcon>
-                        : null }
-                    </MainSection>
-                ))}
-            </RepliesListContainer>
-        );
-    }
+                                    toggleEditForm={toggleEditReplyForm}
+                                    toggleEditModal={toggleEditReplyModal}
+                                /> 
+                            : null }
+                        </MoreIcon>
+                    : null }
+                </MainSection>
+            ))}
+        </RepliesListContainer>
+    );
 }
 
 const mapStateToProps = state => ({
     replies: state.comments.replies
 });
 
-export default connect(mapStateToProps, { getReplies })(RepliesList); 
+export default connect(mapStateToProps, { getReplies })(RepliesList);
