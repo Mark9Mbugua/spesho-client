@@ -13,7 +13,7 @@ import {
 } from './createReplyForm.styles';
 
 
-const CreateReplyForm = ({ itemId, parentId, toggleCreateReplyForm, showReplies, createReply } ) => {
+const CreateReplyForm = ({ itemId, parentId, toggleCreateReplyForm, showCommentReplies, createReply } ) => {
     const contentRef = useRef()
     const [content, setContent] = useState('');
 
@@ -29,7 +29,7 @@ const CreateReplyForm = ({ itemId, parentId, toggleCreateReplyForm, showReplies,
         createReply(content, itemId, parentId)
 
         toggleCreateReplyForm(parentId);
-        showReplies(parentId);
+        showCommentReplies(parentId);
     
     };
 

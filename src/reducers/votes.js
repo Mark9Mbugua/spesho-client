@@ -34,7 +34,8 @@ export default function(state = initialState, action) {
         case DELETE_VOTE:
             return {
                 ...state,
-                votes: state.votes.filter(vote => vote.id !== action.payload)
+                votes: state.votes.filter(vote => vote.id !== action.payload),
+                user: action.payload.user
             };
         
         case CREATE_VOTE_ERROR:
