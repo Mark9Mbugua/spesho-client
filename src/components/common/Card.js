@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ShareIcon from '@material-ui/icons/Share';
 import { Link } from 'react-router-dom';
-import { getVotes } from '../../actions/votes';
+import { getItemVotes } from '../../actions/votes';
 
 import { ItemCardContainer } from './itemCard.styles';
 
@@ -38,12 +38,12 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-const ItemCard = ({ id, imageSrc, title, price, oldPrice, votes, getVotes, likes}) => {
+const ItemCard = ({ id, imageSrc, title, price, oldPrice, votes, getItemVotes, likes}) => {
     //console.log(votes)    
     const classes = useStyles();
     
     useEffect(() => {
-        getVotes(id);
+        getItemVotes(id);
     }, []);
 
     return (
@@ -84,4 +84,4 @@ const mapStateToProps = state => ({
     votes: state.votes.votes
 });
 
-export default connect(mapStateToProps, { getVotes })(ItemCard);
+export default connect(mapStateToProps, { getItemVotes })(ItemCard);

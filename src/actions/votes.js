@@ -13,9 +13,9 @@ import {
 } from "./types";
 
 //get votes
-export const getVotes = id => dispatch => {
+export const getItemVotes = id => dispatch => {
     axios
-        .get(`http://127.0.0.1:8000/api/v1/votes/item/?id=${id}`)
+        .get(`http://127.0.0.1:8000/api/v1/votes/model/?id=${id}`)
         .then(res => {
             dispatch({
                 type: GET_VOTES,
@@ -31,13 +31,13 @@ export const getVotes = id => dispatch => {
 };
 
 // create an item Vote
-export const createItemVote = (id, vote_type) => (dispatch, getState) => {
+export const createItemVote = (id, vote_type, modelType) => (dispatch, getState) => {
     
   // Request body
     const body = JSON.stringify({ vote_type });
   
     axios
-      .post(`http://127.0.0.1:8000/api/v1/votes/create/?type=item&id=${id}`, body, tokenConfig(getState))
+      .post(`http://127.0.0.1:8000/api/v1/votes/create/?type=${modelType}&id=${id}`, body, tokenConfig(getState))
       .then(res =>
         dispatch({
           type: CREATE_VOTE,

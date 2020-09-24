@@ -2,26 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 import { getItem } from '../../actions/items';
-import {getVotes, createItemVote, deleteItemVote } from '../../actions/votes';
+import {getItemVotes, createItemVote, deleteItemVote } from '../../actions/votes';
 
 
-const CreateDislikeVote = ({id, getItem, getVotes, votes, user, createItemVote, deleteItemVote }) => {
+const CreateDislikeVote = ({ id, getItem, getItemVotes, votes, user, createItemVote, deleteItemVote, dislikes, modelType }) => {
     const [voteType] = useState(2);
     const [bgColor, setBgColor] = useState('');
     const [click, setClick] = useState(false);
-    const [clickedVote, setClickedVote] = useState(null);
-    const dislikes = votes.filter(vote => vote.vote_type === 2);
     const userId = user ? user.id : null;
-    //console.log(voteToDeleteId);
-    console.log(click);
+    //console.log(userId);
+    // console.log(votes);
 
     const onDislikeClick = id => {
-        // const voters = votes.map(vote => vote.user);
         if (!userId || voteType === 2 ) {
-            createItemVote(id, voteType);
+            createItemVote(id, voteType, modelType);
             setBgColor('red');
             setClick(true);
-            console.log(click);
         }
     };
 
@@ -33,14 +29,14 @@ const CreateDislikeVote = ({id, getItem, getVotes, votes, user, createItemVote, 
             deleteItemVote(voteId);
             setBgColor('');
             setClick(false);
-            console.log(click);
+        
         }
     };
 
     useEffect(() => {
-        console.log(dislikes);
+        // console.log(dislikes);
         getItem(id);
-        getVotes(id);
+        getItemVotes(id);
     },[JSON.stringify(dislikes)]);
 
     return (
@@ -48,7 +44,7 @@ const CreateDislikeVote = ({id, getItem, getVotes, votes, user, createItemVote, 
             <ThumbDownAltOutlinedIcon 
                 onClick={() => click === false ? onDislikeClick(id): onDislikeUnclick()}
                 style={{color: bgColor}} 
-            /><span> {dislikes.length}</span>
+            /><span> {dislikes}</span>
         </div>
     )
 }
@@ -60,5 +56,5 @@ const mapStateToProps = state => ({
     item: state.items.item
 });
 
-export default connect(mapStateToProps, { getVotes, getItem, createItemVote, deleteItemVote })
+export default connect(mapStateToProps, { getItemVotes, getItem, createItemVote, deleteItemVote })
 (CreateDislikeVote);

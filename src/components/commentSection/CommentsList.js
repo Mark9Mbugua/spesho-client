@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Alert } from 'reactstrap';
-import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
-import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 import ArrowDropDownTwoToneIcon from '@material-ui/icons/ArrowDropDownTwoTone';
 import ArrowDropUpTwoToneIcon from '@material-ui/icons/ArrowDropUpTwoTone';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { getComments } from '../../actions/comments';
+import CreateLikeVote from '../votesSection/CreateDislikeVote';
+import CreateDislikeVote from '../votesSection/CreateLikeVote';
+import { getItemVotes } from '../../actions/votes';
 import { 
     CommentsListContainer,
     MainSection,
@@ -31,178 +31,174 @@ import EditAndDeleteCommentModal from './EditAndDeleteCommentModal';
 import RepliesList from './RepliesList';
 import CreateReplyForm from './CreateReplyForm';
 
-export class CommentsList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showEditModal: false,
-            clickedComment: null,
-            showEditForm: false,
-            showReplies: false,
-            showCreateReplyForm: false  
-        };
+const CommentsList = ({id, getComments, objectId, comments, user, isAuthenticated, votes, getItemVotes}) => {
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [clickedComment, setClickedComment] = useState(null);
+    const [showEditForm, setShowEditForm] = useState(false);
+    const [showReplies, setShowReplies] = useState(false);
+    const [showCreateReplyForm, setShowCreateReplyForm] = useState(false);
+    console.log(votes);
+
+    useEffect(() => {
+        getComments(objectId);
+    }, [comments]);
+
+    // useEffect(() => {
+    //     //getComments(objectId);
+    //     comments.map(comment => getItemVotes(comment.id));
+    // }, []);
+
+    const toggleEditModal = clickedId => {
+        setShowEditModal(!showEditModal);
+        setClickedComment(clickedId);
     }
 
-    componentDidMount() {
-        let { objectId } = this.props;
-        this.props.getComments(objectId);
-    };
-
-    toggleEditModal = clickedId => {
-        this.setState({
-            showEditModal: !this.state.showEditModal,
-            clickedComment: clickedId
-        });
+    const toggleEditForm = clickedId => {
+        setShowEditForm(!showEditForm);
+        setClickedComment(clickedId);
     }
 
-    toggleEditForm = clickedId => {
-        this.setState({
-            showEditForm: !this.state.showEditForm,
-            clickedComment: clickedId
-        });
+    const toggleReplies = clickedId => {
+        setShowReplies(!showReplies);
+        setClickedComment(clickedId);
     }
 
-    toggleReplies = clickedId => {
-        this.setState({
-            showReplies: !this.state.showReplies,
-            clickedComment: clickedId
-        });
+    const toggleCreateReplyForm = clickedId => {
+        setShowCreateReplyForm(!showCreateReplyForm);
+        setClickedComment(clickedId);
     }
 
-    toggleCreateReplyForm = clickedId => {
-        this.setState({
-            showCreateReplyForm: !this.state.showCreateReplyForm,
-            clickedComment: clickedId
-        });
+    const showCommentReplies = clickedId => {
+        setShowReplies(true);
+        setClickedComment(clickedId);
     }
-
-    showReplies = clickedId => {
-        this.setState({
-            showReplies: true,
-            clickedComment: clickedId
-        });
-    }
-
-    static propTypes = {
-        comments: PropTypes.array.isRequired
-    };
-
-    render() {
-        const { comments, objectId, user, isAuthenticated} = this.props;
-        //console.log(user);
-        const { showEditModal, clickedComment, showEditForm, showReplies, showCreateReplyForm } = this.state;
-        
-        return (
-            <CommentsListContainer>
-                {isAuthenticated ? 
-                    <CreateCommentForm
-                        className='create-comment'  
-                        id={this.props.objectId}
-                    />
-                    :
-                    <Alert color="info"><Link to="/signin">Sign in</Link> to add a comment</Alert>
-                }
-                <hr />
-                <div className="comments-header">
-                    <h2>{comments.length} Comments</h2>
-                </div>
-                {comments.map(comment => (
-                    <MainSection key={comment.id}>
-                        <UserDetails className='user-details'>
-                            <UserIcon>
-                                <img src={profileIcon} alt="logo icon" />
-                            </UserIcon>
-                            <UserInfo>
-                                <Username>{comment.user.username}</Username>
-                                <Date>Joined {comment.user.created_on}</Date>
-                            </UserInfo> 
-                        </UserDetails>
-                        <CommentDetails className='comment-details'>
-                            <Date>{comment.created_on}</Date>
-                            { showEditForm && clickedComment === comment.id ?
-                                <EditForm 
+    return (
+        <CommentsListContainer>
+            {isAuthenticated ? 
+                <CreateCommentForm
+                    className='create-comment'  
+                    id={objectId}
+                />
+                :
+                <Alert color="info"><Link to="/signin">Sign in</Link> to add a comment</Alert>
+            }
+            <hr />
+            <div className="comments-header">
+                <h2>{comments.length} Comments</h2>
+            </div>
+            {comments.map(comment => (
+                <MainSection key={comment.id}>
+                    <UserDetails className='user-details'>
+                        <UserIcon>
+                            <img src={profileIcon} alt="logo icon" />
+                        </UserIcon>
+                        <UserInfo>
+                            <Username>{comment.user.username}</Username>
+                            <Date>Joined {comment.user.created_on}</Date>
+                        </UserInfo> 
+                    </UserDetails>
+                    <CommentDetails className='comment-details'>
+                        <Date>{comment.created_on}</Date>
+                        { showEditForm && clickedComment === comment.id ?
+                            <EditForm 
+                                id={comment.id}
+                                content={comment.content}
+                                toggleEditForm={this.toggleEditForm} 
+                            />
+                            : <p>{comment.content}</p> 
+                        }
+                        <CommentReaction>
+                            {isAuthenticated ?
+                                <Link 
+                                    to="#" 
+                                    onClick={() => toggleCreateReplyForm(comment.id)}>
+                                    Reply
+                                </Link>
+                                :
+                                <Link to="/signin">Sign in to reply</Link>
+                            }
+                            { showCreateReplyForm && clickedComment === comment.id ?
+                                <CreateReplyForm
+                                    className="add-reply"
+                                    itemId={objectId}
+                                    parentId={comment.id}
+                                    toggleCreateReplyForm={toggleCreateReplyForm}
+                                    showCommentReplies={showCommentReplies} 
+                                />
+                                :  
+                                <Votes>
+                                    <p>Helpful Comment?</p>
+                                    <span>
+                                        <CreateDislikeVote 
+                                            id={comment.id}
+                                            modelType='comment'
+                                            votes={votes}
+                                            dislikes={comment.dislikes_count}
+                                            likes={comment.likes_count}
+                                        />
+                                    </span>
+                                    <VL />
+                                    <span>
+                                        <CreateLikeVote 
+                                            id={comment.id}
+                                            modelType='comment'
+                                            votes={votes}
+                                            likes={comment.likes_count}
+                                            dislikes={comment.dislikes_count}
+                                        />
+                                    </span>
+                                </Votes>     
+                            }
+                            
+                        </CommentReaction>
+                        <div className="replies-section">
+                            { comment.reply_count ?
+                                <ViewReplies 
+                                    to="#"
+                                    onClick={() => toggleReplies(comment.id)}
+                                >  
+                                    { showReplies && clickedComment === comment.id ?
+                                        <span><ArrowDropUpTwoToneIcon /> Hide</span> 
+                                    : <span><ArrowDropDownTwoToneIcon /> View</span> 
+                                    } {comment.reply_count} replies
+                                </ViewReplies>
+                            : null }
+                            { showReplies && clickedComment === comment.id ?
+                                <RepliesList
+                                    id={comment.id}
+                                    parentId={objectId}
+                                    showEditModal={showEditModal}
+                                    toggleEditForm={toggleEditForm}
+                                    toggleEditModal={toggleEditModal}
+                                    clickedComment={clickedComment}
+                                    user={user}
+                                />
+                            : null }
+                        </div>            
+                    </CommentDetails>
+                    { user && user.username == comment.user.username ?
+                        <MoreIcon className="more-icon">
+                            <MoreVertIcon onClick={() => toggleEditModal(comment.id)}/>
+                            { showEditModal && clickedComment === comment.id ? 
+                                <EditAndDeleteCommentModal 
                                     id={comment.id}
                                     content={comment.content}
-                                    toggleEditForm={this.toggleEditForm} 
-                                />
-                                : <p>{comment.content}</p> 
-                            }
-                            <CommentReaction>
-                                {isAuthenticated ?
-                                    <Link 
-                                        to="#" 
-                                        onClick={() => this.toggleCreateReplyForm(comment.id)}>
-                                        Reply
-                                    </Link>
-                                    :
-                                    <Link to="/signin">Sign in to reply</Link>
-                                }
-                                { showCreateReplyForm && clickedComment === comment.id ?
-                                    <CreateReplyForm
-                                        className="add-reply"
-                                        itemId={objectId}
-                                        parentId={comment.id}
-                                        toggleCreateReplyForm={this.toggleCreateReplyForm}
-                                        showReplies={this.showReplies} 
-                                    />
-                                    :  
-                                    <Votes>
-                                        <p>Helpful Comment?</p>
-                                        <span><ThumbUpAltOutlinedIcon /> {comment.likes_count}</span>
-                                        <VL />
-                                        <span><ThumbDownAltOutlinedIcon /> {comment.dislikes_count}</span>
-                                    </Votes>     
-                                }
-                                
-                            </CommentReaction>
-                            <div className="replies-section">
-                                { comment.reply_count ?
-                                    <ViewReplies 
-                                        to="#"
-                                        onClick={() => this.toggleReplies(comment.id)}
-                                    >  
-                                        { showReplies && clickedComment === comment.id ?
-                                            <span><ArrowDropUpTwoToneIcon /> Hide</span> 
-                                        : <span><ArrowDropDownTwoToneIcon /> View</span> 
-                                        } {comment.reply_count} replies
-                                    </ViewReplies>
-                                : null }
-                                { showReplies && clickedComment === comment.id ?
-                                    <RepliesList
-                                        id={comment.id}
-                                        parentId={objectId}
-                                        showEditModal={showEditModal}
-                                        toggleEditForm={this.toggleEditForm}
-                                        toggleEditModal={this.toggleEditModal}
-                                        clickedComment={clickedComment}
-                                        user={user}
-                                    />
-                                : null }
-                            </div>            
-                        </CommentDetails>
-                        { user && user.username == comment.user.username ?
-                            <MoreIcon className="more-icon">
-                                <MoreVertIcon onClick={() => this.toggleEditModal(comment.id)}/>
-                                { showEditModal && clickedComment === comment.id ? 
-                                    <EditAndDeleteCommentModal 
-                                        id={comment.id}
-                                        content={comment.content}
-                                        toggleEditForm={this.toggleEditForm}
-                                        toggleEditModal={this.toggleEditModal}
-                                    /> 
-                                : null }
-                            </MoreIcon>
-                        : null }
-                    </MainSection>
-                ))}
-            </CommentsListContainer>
-        );    
-    }
+                                    toggleEditForm={toggleEditForm}
+                                    toggleEditModal={toggleEditModal}
+                                /> 
+                            : null }
+                        </MoreIcon>
+                    : null }
+                </MainSection>
+            ))}
+        </CommentsListContainer>
+    );
 }
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
-    comments: state.comments.comments
+    comments: state.comments.comments,
+    votes: state.votes.votes
 });
 
-export default connect(mapStateToProps, { getComments })(CommentsList);  
+export default connect(mapStateToProps, { getComments, getItemVotes })(CommentsList);
