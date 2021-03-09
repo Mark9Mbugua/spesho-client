@@ -1,28 +1,18 @@
-import React, { Component, Fragment } from "react";
-import {
-    Modal,
-    ModalHeader,
-    ModalBody,
-    NavLink
-  } from 'reactstrap';
+import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getCategories } from '../../actions/categories';
+import { 
+     MenuList,
+     MenuItem 
+} from '../common/menu-list.styles';
+import { NavLinkItem } from '../header/desktopNavbar.styles';
 
 export class Categories extends Component {
 
-    state = {
-        modal: false,
-    };
-
     static propTypes = {
         categories: PropTypes.array.isRequired
-    };
-
-    toggle = () => {
-        this.setState({
-            modal: !this.state.modal
-        });
     };
 
     componentDidMount() {
@@ -31,23 +21,20 @@ export class Categories extends Component {
 
     render() {
         return (
-            <Fragment>
-                <NavLink onMouseOver={this.toggle} href='#'>
-                    Categories
-                </NavLink>
-
-                <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>Categories</ModalHeader>
-                    <ModalBody>
+            <MenuList>
+                <MenuItem>
+                    <NavLinkItem to="#">categories</NavLinkItem> 
+                    <ul>
                         { this.props.categories.map(category =>(
-                                <NavLink key={category.id} 
-                                href={`/items/category/${category.id}`}>
-                                    {category.category_name}
-                                </NavLink>      
+                            <li key={category.id}>
+                                <NavLinkItem to={`/items/category/${category.id}`}>
+                                    {category.category_name}    
+                                </NavLinkItem>      
+                            </li>
                         )) }
-                    </ModalBody>
-                </Modal>
-            </Fragment>
+                    </ul>
+                </MenuItem>     
+            </MenuList>         
         );    
     }
 }
