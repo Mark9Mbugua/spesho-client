@@ -9,9 +9,16 @@ const CreateLikeVote = ({ id, getItem, getItemVotes, votes, user, createItemVote
     const [voteType] = useState(1);
     const [bgColor, setBgColor] = useState('');
     const [click, setClick] = useState(false);
-    //const likes = votes.filter(vote => vote.vote_type === 1);
+
     const userId = user ? user.id : null;
-    //console.log(userId);
+
+    // console.log('comment votes', votes);
+    
+    useEffect(() => {
+        // console.log(likes);
+        getItem(id);
+        getItemVotes(id);
+    },[JSON.stringify(likes)]);
 
     const onLikeClick = id => {
         const userId = user ? user.id : null;
@@ -32,12 +39,6 @@ const CreateLikeVote = ({ id, getItem, getItemVotes, votes, user, createItemVote
             setClick(false);
         }
     };
-
-    useEffect(() => {
-        // console.log(likes);
-        getItem(id);
-        getItemVotes(id);
-    },[JSON.stringify(likes)]);
  
     return (
         <div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from 'react-redux';
 import { getReplies } from '../../actions/comments';
+import { getItemVotes } from '../../actions/votes';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -25,14 +26,14 @@ import CreateLikeVote from '../votesSection/CreateDislikeVote';
 import CreateDislikeVote from '../votesSection/CreateLikeVote';
 
 
-const RepliesList = ({id, getReplies, replies, user}) => {
+const RepliesList = ({id, getReplies, replies, user, votes}) => {
     const [showEditReplyModal, setShowEditReplyModal] = useState(false);
     const [clickedComment, setClickedComment] = useState(null);
     const [showEditReplyForm, setShowEditReplyForm] = useState(false);
 
     useEffect(() => {
         getReplies(id);
-    }, [replies]);
+    }, [votes]);
 
     const toggleEditReplyModal = clickedId => {
         setShowEditReplyModal(!showEditReplyModal);
@@ -110,7 +111,8 @@ const RepliesList = ({id, getReplies, replies, user}) => {
 }
 
 const mapStateToProps = state => ({
-    replies: state.comments.replies
+    replies: state.comments.replies,
+    votes: state.votes.votes
 });
 
-export default connect(mapStateToProps, { getReplies })(RepliesList);
+export default connect(mapStateToProps, { getReplies, getItemVotes })(RepliesList);

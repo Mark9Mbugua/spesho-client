@@ -37,15 +37,19 @@ const CommentsList = ({id, getComments, objectId, comments, user, isAuthenticate
     const [showEditForm, setShowEditForm] = useState(false);
     const [showReplies, setShowReplies] = useState(false);
     const [showCreateReplyForm, setShowCreateReplyForm] = useState(false);
-    console.log(votes);
+    console.log('All votes:', votes);
+
+    const likes = votes.filter(vote => vote.vote_type === 1);
+    const dislikes = votes.filter(vote => vote.vote_type === 2);
+    const upvotes = JSON.stringify(likes);
+    const downvotes = JSON.stringify(dislikes);
 
     useEffect(() => {
         getComments(objectId);
-    }, [comments]);
+    }, [votes]);
 
     // useEffect(() => {
-    //     //getComments(objectId);
-    //     comments.map(comment => getItemVotes(comment.id));
+    //     commentVotes = comments.map(comment => getItemVotes(comment.id));
     // }, []);
 
     const toggleEditModal = clickedId => {

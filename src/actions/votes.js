@@ -30,6 +30,24 @@ export const getItemVotes = id => dispatch => {
         });
 };
 
+//get ALL votes
+export const getAllVotes = () => dispatch => {
+  axios
+      .get('http://127.0.0.1:8000/api/v1/votes/')
+      .then(res => {
+          dispatch({
+              type: GET_VOTES,
+              payload: res.data.results
+          });
+      })
+      .catch(err => {
+        dispatch(returnErrors(err.response.data, err.response.status));
+        dispatch({
+          type: GET_VOTES_ERROR
+        });
+      });
+};
+
 // create an item Vote
 export const createItemVote = (id, vote_type, modelType) => (dispatch, getState) => {
     
