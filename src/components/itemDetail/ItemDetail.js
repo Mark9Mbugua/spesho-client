@@ -41,6 +41,8 @@ const ItemDetail = ({getItem, getItemVotes, id, item, votes, user, isAuthenticat
         getItemVotes(id);
     },[upvotes, downvotes]);
 
+    console.log('item votes:', votes);
+
     return (
         <div>
             <ItemDetailContainer>
@@ -99,7 +101,7 @@ const ItemDetail = ({getItem, getItemVotes, id, item, votes, user, isAuthenticat
                         objectId={id} 
                         commentsCount={item.comments_count}
                         user={user}
-                        votes={votes} 
+                        // itemvotes={votes} 
                     />
                 </ItemSection>                                         
             </ItemDetailContainer>   

@@ -12,6 +12,12 @@ const CreateDislikeVote = ({ id, getItem, getItemVotes, votes, user, createItemV
     const userId = user ? user.id : null;
     //console.log(userId);
     // console.log(votes);
+    useEffect(() => {
+        // console.log(dislikes);
+        getItem(id);
+        getItemVotes(id);
+    },[JSON.stringify(dislikes)]);
+
 
     const onDislikeClick = id => {
         if (!userId || voteType === 2 ) {
@@ -32,12 +38,6 @@ const CreateDislikeVote = ({ id, getItem, getItemVotes, votes, user, createItemV
         
         }
     };
-
-    useEffect(() => {
-        // console.log(dislikes);
-        getItem(id);
-        getItemVotes(id);
-    },[JSON.stringify(dislikes)]);
 
     return (
         <div>
