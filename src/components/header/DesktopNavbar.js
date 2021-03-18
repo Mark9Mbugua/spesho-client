@@ -1,4 +1,7 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect} from 'react';
+import { connect } from 'react-redux';
+
+import { getAllItems } from '../../actions/items';
 
 import { 
     DesktopNavbarContainer,
@@ -7,7 +10,6 @@ import {
     RightNav,
     AuthButtons, 
     MyMobileNavButton,
-    SearchResultsModal,
     CloseIcon 
 } from './desktopNavbar.styles';
 import NavLinks from './NavLinks';
@@ -16,13 +18,25 @@ import closeIcon from '../../images/close.svg';
 import SearchBar from './SearchBar';
 import SignUp from '../signUp/SignUp';
 import SignIn from '../signIn/SignIn';
+import SearchResultsModal from '../searchResultsModal/SearchResultsModal';
 import ProfileMenu from '../auth/userProfile/ProfileMenu';
 import SiteLogo from './SiteLogo';
 
-const DesktopNavbar = ({isAuth, user, displayMobileNavbar, toggleMobileNavbar}) => {
+const DesktopNavbar = ({isAuth, user, displayMobileNavbar, toggleMobileNavbar, getAllItems, items}) => {
+    useEffect(() => {
+        getAllItems();
+    }, []);
+
     const [showSearchResultsModal, setShowSearchResultsModal] = useState(false);
     const openSearchResultsModal = () => setShowSearchResultsModal(true);
     const closeSearchResultsModal = () => setShowSearchResultsModal(false);
+    const [input, setInput] = useState('');
+
+    const filteredItems = items.filter(item => {
+        if (input.length == 0) {
+            return '';
+        } else return item.deal_title.toLowerCase().includes(input.toLowerCase())
+    });
 
     const guestLinks = (
         <Fragment>
@@ -54,6 +68,9 @@ const DesktopNavbar = ({isAuth, user, displayMobileNavbar, toggleMobileNavbar}) 
                     <SearchBar 
                         openResultsModal={openSearchResultsModal}
                         showResultsModal={showSearchResultsModal}
+                        input={input}
+                        setInput={setInput}
+                        // onChange={updateInput}
                     />
                     {
                         showSearchResultsModal ?                     
@@ -78,9 +95,10 @@ const DesktopNavbar = ({isAuth, user, displayMobileNavbar, toggleMobileNavbar}) 
             </DesktopNavbarContainer>
             {
                 showSearchResultsModal ?                     
-                    <SearchResultsModal>
-                        <p>Start typing to search.</p>
-                    </SearchResultsModal>
+                    <SearchResultsModal
+                        input={input}
+                        filteredItems={filteredItems}
+                    />
                 :
                     null
             }
@@ -88,4 +106,8 @@ const DesktopNavbar = ({isAuth, user, displayMobileNavbar, toggleMobileNavbar}) 
     )
 }
 
-export default DesktopNavbar
+const mapStateToProps = state => ({
+    items: state.items.items
+});
+
+export default connect(mapStateToProps, { getAllItems })(DesktopNavbar);

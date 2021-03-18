@@ -6,7 +6,7 @@ SearchGlass,
 SearchBarInput 
 } from './searchBar.styles';
 
-const SearchBar = ({ openResultsModal, showResultsModal }) => {
+const SearchBar = ({ openResultsModal, showResultsModal, input, setInput }) => {
 
   return (
     <Search>
@@ -17,6 +17,8 @@ const SearchBar = ({ openResultsModal, showResultsModal }) => {
         aria-label="Search"
         onClick={openResultsModal} 
         showResultsModal={showResultsModal}
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
       />
     </Search>
   );

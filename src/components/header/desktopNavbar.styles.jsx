@@ -12,22 +12,6 @@ export const DesktopNavbarContainer = styled.nav`
     height: 8vh;
 `;
 
-export const SearchResultsModal = styled.div`
-    position: absolute;
-    background: ${ props => props.theme.primary };
-    height: 80vh;
-    width: 80%;
-    left: 10%;
-    top: 8%;
-    z-index: 2;
-    
-    p {
-        color: white;
-        text-align: center;
-        margin-top: 5%;
-    }
-`;
-
 export const CloseIcon = styled.img`
     height: 15px;
     width: 15px;
