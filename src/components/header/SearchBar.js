@@ -6,12 +6,20 @@ SearchGlass,
 SearchBarInput 
 } from './searchBar.styles';
 
-const SearchBar = () => {
+const SearchBar = ({ openResultsModal, showResultsModal, input, setInput }) => {
 
   return (
     <Search>
       <SearchGlass />
-      <SearchBarInput type="search" placeholder="Search.." aria-label="Search" />
+      <SearchBarInput 
+        type="search" 
+        placeholder="Search.." 
+        aria-label="Search"
+        onClick={openResultsModal} 
+        showResultsModal={showResultsModal}
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
     </Search>
   );
 }

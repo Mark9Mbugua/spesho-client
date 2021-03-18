@@ -22,7 +22,7 @@ export const SearchGlass = styled(SearchIcon)`
 export const SearchBarInput = styled.input`
     padding: 4px;
     height: 30px;
-    width: 350px;
+    width: ${props => (props.showResultsModal ? '850px' : '350px')};
     border-radius: 3px;
     border: none;
     outline: none;

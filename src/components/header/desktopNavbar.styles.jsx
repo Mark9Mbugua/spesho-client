@@ -12,6 +12,14 @@ export const DesktopNavbarContainer = styled.nav`
     height: 8vh;
 `;
 
+export const CloseIcon = styled.img`
+    height: 15px;
+    width: 15px;
+    margin-left: 10px;
+    margin-top: 7px;
+    cursor: pointer;
+`;
+
 export const Logo = styled.div`
     font-size: 5vh;
     font-weight: bold;
@@ -45,7 +53,7 @@ export const RightNav = styled.div`
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-evenly;
-    margin-left: 25%;
+    margin-left: ${props => (props.showResultsModal ? '-20px' : '25%')};
 
     @media screen and (max-width: 768px) {
         margin-left: 0;
@@ -53,7 +61,7 @@ export const RightNav = styled.div`
 `;
 
 export const AuthButtons = styled.div`
-    display: flex;
+    display: ${props => (props.showResultsModal ? 'none' : 'flex')};
     flex-flow: row nowrap;
     justify-content: space-evenly;
     width: 12vw;
