@@ -35,7 +35,12 @@ const DesktopNavbar = ({isAuth, user, displayMobileNavbar, toggleMobileNavbar, g
     const filteredItems = items.filter(item => {
         if (input.length == 0) {
             return '';
-        } else return item.deal_title.toLowerCase().includes(input.toLowerCase())
+        } else {
+            let title = item.deal_title.toLowerCase().includes(input.toLowerCase());
+            let category = item.category.category_name.toLowerCase().includes(input.toLowerCase());
+            let store = item.store.store_name.toLowerCase().includes(input.toLowerCase());
+            return title || category || store;
+        }
     });
 
     const guestLinks = (
@@ -98,6 +103,7 @@ const DesktopNavbar = ({isAuth, user, displayMobileNavbar, toggleMobileNavbar, g
                     <SearchResultsModal
                         input={input}
                         filteredItems={filteredItems}
+                        closeSearchResultsModal={closeSearchResultsModal}
                     />
                 :
                     null

@@ -10,10 +10,10 @@ const SearchBar = ({ openResultsModal, showResultsModal, input, setInput }) => {
 
   return (
     <Search>
-      <SearchGlass />
+      <SearchGlass input={input} />
       <SearchBarInput 
         type="search" 
-        placeholder="Search.." 
+        placeholder="Search items, categories & stores.." 
         aria-label="Search"
         onClick={openResultsModal} 
         showResultsModal={showResultsModal}

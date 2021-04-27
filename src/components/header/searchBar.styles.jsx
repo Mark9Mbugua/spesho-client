@@ -11,7 +11,7 @@ export const Search = styled.div`
 `;
 
 export const SearchGlass = styled(SearchIcon)`
-    padding: 0 2px;
+    margin: 0 2rem 0 0;
     cursor: pointer;
     position: absolute;
     color: grey;
