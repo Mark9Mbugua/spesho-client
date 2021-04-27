@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getAllItems } from '../../actions/items';
-import Card from '../common/Card'; 
+import ItemCard from '../common/Card'; 
+import ItemsContainer from './ItemsContainer';
 
 export class Items extends Component {
     static propTypes = {
@@ -14,25 +15,9 @@ export class Items extends Component {
     };
 
     render() {
-        let { items } = this.props
-        items = items.filter(item => item.front_page === true)
-        return (
-            <div className="container">
-                <div className="row">
-                    {items.map(item => (
-                        <div class="col-xs-6 m-2">
-                           <Card 
-                                imageSrc={item.src} 
-                                title={item.deal_title}
-                                price={item.price}
-                                description={item.description}
-                                dealUrl={item.deal_url}
-                           />
-                        </div>
-                    ))}
-                </div>
-            </div>
-        );    
+        const { items } = this.props
+        
+        return <ItemsContainer items={items} />    
     }
 }
 

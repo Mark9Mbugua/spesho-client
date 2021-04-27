@@ -1,11 +1,15 @@
-import { 
-    GET_ITEMS_BY_CATEGORY, 
+import {  
     GET_ALL_ITEMS,
-    GET_ITEMS_BY_STORE 
+    GET_ITEM,
+    GET_ITEMS_BY_CATEGORY,
+    GET_ITEMS_BY_STORE,
+    ITEMS_LOADING 
 } from "../actions/types.js";
 
 const initialState = {
-    items: []
+    items: [],
+    item: {},
+    loading: false
 };
 
 export default function(state = initialState, action) {
@@ -16,16 +20,36 @@ export default function(state = initialState, action) {
                 items: action.payload
             };
 
+        case GET_ITEM:
+            return {
+                ...state,
+                item: action.payload
+            };
+
         case GET_ITEMS_BY_CATEGORY:
             return {
                 ...state,
-                items: action.payload
+                items: state.items.map(item =>
+                    item.category.id === action.payload.category.id
+                        ? (item = action.payload)
+                        : item
+                    )
             };
                 
         case GET_ITEMS_BY_STORE:
             return {
                 ...state,
-                items: action.payload
+                items: state.items.map(item =>
+                    item.store.id === action.payload.store.id
+                        ? (item = action.payload)
+                        : item
+                    )
+            };
+        
+        case ITEMS_LOADING:
+            return {
+                ...state,
+                loading: true
             };
 
         default:

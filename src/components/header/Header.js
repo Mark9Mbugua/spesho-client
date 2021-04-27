@@ -1,53 +1,71 @@
-import React, { Component, Fragment } from 'react';
-import Categories from '../categories/Categories';
-import Stores from '../stores/Stores';
-import { NavItem } from 'reactstrap';
+import React, { Component } from 'react';
+import DesktopNavbar from './DesktopNavbar';
+import MobileNavbar from './MobileNavbar';
+import AuthNavbar from './AuthNavbar';
+import { NavbarContainer } from './header.styles';
 
 
-const categories = (
-    <Fragment>
-      <NavItem>
-        <Categories />
-      </NavItem>
-    </Fragment>
-  );
-
-  const stores = (
-    <Fragment>
-      <NavItem>
-        <Stores />
-      </NavItem>
-    </Fragment>
-  );
-
-export default class Header extends Component {  
-
-    render() {
-        return (
-            <div>
-                <nav className="navbar navbar-expand-sm navbar-light bg-light">
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" 
-                        data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" 
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-                        <a className="navbar-brand" href="/">Dealie</a>
-                        <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-                          <li className="nav-item">
-                              <a className="nav-link" href="#">{categories}</a>
-                          </li>
-                          <li className="nav-item">
-                              <a className="nav-link" href="#">{stores}</a>
-                          </li>
-                        </ul>
-                        <form className="form-inline my-2 my-lg-0">
-                            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                    </div>
-                </nav>
-            </div>
-        )
+class Header extends Component { 
+  constructor(props){
+    super(props);
+    this.state = {
+      displayMobileNavbar: false,
+      isLoaded: false
     }
+  } 
+
+
+  //event listener that is going to listen to resize events
+  componentDidMount = () => {
+    window.addEventListener('resize', this.checkAndAutoHideMobileNavbar);
+  }
+
+  //clean up after component mounts
+  componentWillUnmount = () => {
+    window.removeEventListener('resize', this.checkAndAutoHideMobileNavbar)
+  }
+
+  toggleMobileNavbar = () => {
+    this.setState({
+      displayMobileNavbar: !this.state.displayMobileNavbar 
+    })
+  }
+
+  checkAndAutoHideMobileNavbar = () => {
+    const screenWidth = window.innerWidth
+
+    if (this.state.displayMobileNavbar && screenWidth > 768) {
+      this.setState({
+        displayMobileNavbar: false
+      })
+    }
+  }
+
+  render() {
+    let { isAuth, user } = this.props;
+    if (window.location.pathname === '/signup' || window.location.pathname === '/signin') 
+      return (
+        <NavbarContainer>
+          <AuthNavbar />
+        </NavbarContainer>
+      );
+    return (
+      <NavbarContainer>
+        <DesktopNavbar
+          isAuth={isAuth} 
+          user={user}
+          displayMobileNavbar={this.state.displayMobileNavbar}
+          toggleMobileNavbar={this.toggleMobileNavbar} 
+        />
+        <MobileNavbar
+          isAuth={isAuth}
+          user={user}  
+          displayMobileNavbar={this.state.displayMobileNavbar}
+          toggleMobileNavbar={this.toggleMobileNavbar} 
+        />
+      </NavbarContainer>
+    );
+  }
 }
+
+export default Header

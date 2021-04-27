@@ -1,13 +1,14 @@
 import React, { Component, Fragment } from "react";
-import {
-    Modal,
-    ModalHeader,
-    ModalBody,
-    NavLink
-  } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { getStores } from '../../actions/stores';
+import { 
+    MenuList,
+    MenuItem 
+} from '../common/menu-list.styles';
+import { NavLinkItem } from '../header/desktopNavbar.styles';
 
 export class Stores extends Component {
     state = {
@@ -15,38 +16,30 @@ export class Stores extends Component {
     };
 
     static propTypes = {
-        categories: PropTypes.array.isRequired
+        stores: PropTypes.array.isRequired
     };
 
     componentDidMount() {
         this.props.getStores();
     }
 
-    toggle = () => {
-        this.setState({
-            modal: !this.state.modal
-        });
-    };
-
     render() {
         return (
-            <Fragment>
-                <NavLink onMouseOver={this.toggle} href='#'>
-                    Stores
-                </NavLink>
-
-                <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>Stores</ModalHeader>
-                    <ModalBody>
+            <MenuList>
+                <MenuItem>
+                    <NavLinkItem to="#">stores</NavLinkItem> 
+                    <ul>
                         { this.props.stores.map(store =>(
-                                <NavLink key={store.id} href={`/items/store/${store.id}`}>
-                                    {store.store_name}
-                                </NavLink>      
+                            <li key={store.id}>
+                                <NavLinkItem to ={`/items/store/${store.id}`}>
+                                    {store.store_name}    
+                                </NavLinkItem>      
+                            </li>
                         )) }
-                    </ModalBody>
-                </Modal>
-            </Fragment>
-        );    
+                    </ul>
+                </MenuItem>     
+            </MenuList>
+        );
     }
 }
 
@@ -54,5 +47,5 @@ const mapStateToProps = state => ({
     stores: state.stores.stores
 });
 
-export default connect(mapStateToProps, { getStores })
-(Stores);  
+export default withRouter(connect(mapStateToProps, { getStores })
+(Stores));  

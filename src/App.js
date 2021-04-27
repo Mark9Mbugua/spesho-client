@@ -1,28 +1,29 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
-import Header from './components/header/Header';
-import SingleCategory from './pages/SingleCategory';
-import SingleStore from './pages/SingleStore';
-import Home from './pages/Home';
+import AppContainer from './components/appContainer/AppContainer';
 
+import './App.css';
+import { loadCurrentUser } from './actions/auth';
 
 class App extends Component {
+    componentDidMount(){
+        store.dispatch(loadCurrentUser());
+    }
+    
     render() {
         return (
             <Provider store={store}>
-                <Header />
-                <Switch>
-                    <Route path="/items/category/:id" component=
-                    {SingleCategory} />
-                    <Route path="/items/store/:id" component=
-                    {SingleStore} />
-                    <Route path="/" component={Home} />
-                </Switch>
+                <AppContainer />
             </Provider>
         );
     }
 }
 
 export default App;
+
+
+
+
+
+
