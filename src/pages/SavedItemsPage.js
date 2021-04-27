@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadUserProfile } from '../actions/auth';
-import SavedItems from '../components/auth/userProfile/savedItems/SavedItems';
+import SavedItems from '../components/auth/user-profile/saved-items/saved-items';
 import Footer from '../components/common/Footer';
-import ProfileHeader from '../components/auth/userProfile/profileHeader/ProfileHeader';
+import ProfileHeader from '../components/auth/user-profile/profile-header/profile-header';
 
 
 class SavedItemsPage extends Component {

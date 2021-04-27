@@ -3,11 +3,11 @@ import {
     MobileNavbarContainer, 
     MenuLink 
 } from './mobileNavbar.styles'
-import { ItemLink } from '../auth/userProfile/profileMenu.styles';
+import { ItemLink } from '../auth/user-profile/profile-menu/profile-menu.styles';
 import MobileNavLinks from './MobileNavLinks';
 import SignUp from '../signUp/SignUp';
 import SignIn from '../signIn/SignIn';
-import Logout from '../auth/Logout';
+import Logout from '../auth/logout/logout.component';
 
 const MobileNavbar = ({ isAuth, toggleMobileNavbar, displayMobileNavbar }) => {
     const guestLinks = (
