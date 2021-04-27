@@ -5,16 +5,16 @@ import { loadCurrentUser } from '../../actions/auth';
 import Header from '../header/Header';
 import SignUpForm from '../auth/sign-up-form/sign-up-form';
 import SignInForm from '../auth/sign-in-form/sign-in-form.component';
-import ItemsPerCategoryPage from '../../pages/ItemsPerCategoryPage';
-import ItemsPerStorePage from '../../pages/ItemsPerStorePage';
-import ItemDetailPage from '../../pages/ItemDetailPage';
-import ProfilePage from '../../pages/ProfilePage';
-import SavedItemsPage from '../../pages/SavedItemsPage';
-import ProfileSettingsPage from '../../pages/ProfileSettingsPage';
-import MobileCategoriesPage from '../../pages/MobileCategoriesPage';
-import MobileStoresPage from '../../pages/MobileStoresPage';
-import AboutUsPage from '../../pages/AboutUsPage';
-import Home from '../../pages/Home';
+import ItemsPerCategoryPage from '../../pages/items-per-category-page.component';
+import ItemsPerStorePage from '../../pages/items-per-store-page.component';
+import ItemDetailPage from '../../pages/item-detail-page.component';
+import ProfilePage from '../../pages/profile-page.component';
+import SavedItemsPage from '../../pages/saved-items-page.component';
+import ProfileSettingsPage from '../../pages/profile-settings-page.component';
+import MobileCategoriesPage from '../../pages/mobile-categories-page.component';
+import MobileStoresPage from '../../pages/mobile-stores-page.component';
+import AboutUsPage from '../../pages/about-us-page.component';
+import Home from '../../pages/home.component';
 import PrivateRoute from '../common/PrivateRoute';
 
 class AppContainer extends Component {

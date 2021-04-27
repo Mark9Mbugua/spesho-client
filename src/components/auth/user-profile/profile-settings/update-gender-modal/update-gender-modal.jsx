@@ -10,7 +10,7 @@ import {
     Divider,
     ReplyButton,
     CancelButton
-} from '../../../../commentSection/createReplyForm.styles';
+} from '../../../../comment-section/create-reply-form/create-reply-form.styles';
 
 
 const UpdateGenderModal = (props) => {

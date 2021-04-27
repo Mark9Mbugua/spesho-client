@@ -17,9 +17,9 @@ import NavLinks from './NavLinks';
 import mobileNavIcon from '../../images/mobile-nav-icon.svg';
 import closeIcon from '../../images/close.svg';
 import SearchBar from './SearchBar';
-import SignUp from '../signUp/SignUp';
-import SignIn from '../signIn/SignIn';
-import SearchResultsModal from '../searchResultsModal/SearchResultsModal';
+import SignUp from '../sign-up/sign-up.component';
+import SignIn from '../sign-in/sign-in.component';
+import SearchResultsModal from '../searchResultsModal/search-results-modal.components';
 import ProfileMenu from '../auth/user-profile/profile-menu/profile-menu.component';
 import SiteLogo from './SiteLogo';
 
