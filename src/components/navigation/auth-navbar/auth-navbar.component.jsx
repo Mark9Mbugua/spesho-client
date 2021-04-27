@@ -1,10 +1,10 @@
 import React from 'react';
-import { AuthNavbarContainer } from './authNavbar.styles';
+import { AuthNavbarContainer } from './auth-navbar.styles';
 import { 
     Logo,
     LogoLink
-} from './desktopNavbar.styles';
-import SiteLogo from './SiteLogo';
+} from '../desktop-navbar/desktop-navbar.styles';
+import SiteLogo from '../site-logo/site-logo.component';
 
 const AuthNavbar = () => {
     return (

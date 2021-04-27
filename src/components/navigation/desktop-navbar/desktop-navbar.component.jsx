@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 
-import { getAllItems } from '../../actions/items';
+import { getAllItems } from '../../../actions/items';
 
 import { 
     DesktopNavbarContainer,
@@ -11,17 +11,17 @@ import {
     AuthButtons, 
     MyMobileNavButton,
     CloseIcon 
-} from './desktopNavbar.styles';
+} from './desktop-navbar.styles';
 
-import NavLinks from './NavLinks';
-import mobileNavIcon from '../../images/mobile-nav-icon.svg';
-import closeIcon from '../../images/close.svg';
-import SearchBar from './SearchBar';
-import SignUp from '../sign-up/sign-up.component';
-import SignIn from '../sign-in/sign-in.component';
-import SearchResultsModal from '../searchResultsModal/search-results-modal.components';
-import ProfileMenu from '../auth/user-profile/profile-menu/profile-menu.component';
-import SiteLogo from './SiteLogo';
+import NavLinks from '../navlinks/navlinks.component';
+import mobileNavIcon from '../../../images/mobile-nav-icon.svg';
+import closeIcon from '../../../images/close.svg';
+import SearchBar from '../search-bar/search-bar.component';
+import SignUp from '../../sign-up/sign-up.component';
+import SignIn from '../../sign-in/sign-in.component';
+import SearchResultsModal from '../../search-results-modal/search-results-modal.component';
+import ProfileMenu from '../../auth/user-profile/profile-menu/profile-menu.component';
+import SiteLogo from '../site-logo/site-logo.component';
 
 const DesktopNavbar = ({isAuth, user, displayMobileNavbar, toggleMobileNavbar, getAllItems, items}) => {
     useEffect(() => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import DesktopNavbar from './DesktopNavbar';
-import MobileNavbar from './MobileNavbar';
-import AuthNavbar from './AuthNavbar';
+import DesktopNavbar from '../desktop-navbar/desktop-navbar.component';
+import MobileNavbar from '../mobile-navbar/mobile-navbar.component';
+import AuthNavbar from '../auth-navbar/auth-navbar.component';
 import { NavbarContainer } from './header.styles';
 
 

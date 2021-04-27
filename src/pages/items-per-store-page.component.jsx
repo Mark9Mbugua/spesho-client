@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemsPerStore from '../components/items/ItemsPerStore';
+import ItemsPerStore from '../components/items/items-per-store';
 import Footer from '../components/common/Footer';
 
 

@@ -3,39 +3,40 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {  getAllItems } from '../../actions/items';
 import CustomTitle from '../common/CustomTitle';
-import ItemsContainer from './ItemsContainer';
+import ItemsContainer from './items-container.component';
 
 
-class ItemsPerCategory extends Component {   
+class ItemsPerStore extends Component {   
     static propTypes = {
         items: PropTypes.array.isRequired
     };
 
     componentDidMount() {
         this.props.getAllItems();
+
     };
 
     render() {
         let { items, id } = this.props;
-        items = items.filter(item => item.category.id === id)
-        const categoryNames = items.map(item => item.category.category_name)
-        const categoryName = categoryNames[0]
+        items = items.filter(item => item.store.id === id);
+        const storeNames = items.map(item => item.store.store_name);
+        const storeName = storeNames[0];
 
         return (
             <div>
-                <CustomTitle>{ categoryName }</CustomTitle>
+                <CustomTitle>{ storeName }</CustomTitle>
                 <ItemsContainer items={items} />
             </div>
-        );    
+        );
     }
 }
 
 const mapStateToProps = state => ({
-    items: state.items.items,
+    items: state.items.items
 
 });
 
 export default connect(
     mapStateToProps, 
-    { getAllItems})
-(ItemsPerCategory);  
+    { getAllItems })
+(ItemsPerStore);  

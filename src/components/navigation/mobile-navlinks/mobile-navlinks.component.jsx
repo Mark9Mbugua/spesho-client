@@ -3,7 +3,7 @@ import {
     NavLinks, 
     MenuLinks,
     MenuLink
-} from './mobileNavbar.styles';
+} from '../mobile-navbar/mobile-navbar.styles';
 
 const MobileNavLinks = ({ isMobileLink, toggleMobileNavbar }) => { 
     let tempTabIndex
