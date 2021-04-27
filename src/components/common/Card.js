@@ -16,17 +16,19 @@ import { ItemCardContainer } from './itemCard.styles';
 
 const useStyles = makeStyles(theme => ({
     root: {
-      maxWidth: 245,
-      maxHeight: 360,
+      maxWidth: 500,
+      maxHeight: 400,
     },
     media: {
-      height: 0,
+      height: 180,
       paddingTop: '75%', // 16:9
+      objectFit: 'contain',
     },
     buttons: {
         paddingTop: 0,
-        marginTop: 0,
+        marginTop: -30,
         width: '100%',
+        marginLeft: 0,
     },
     icon: {
         paddingTop: 0,
@@ -35,6 +37,9 @@ const useStyles = makeStyles(theme => ({
     divider: {
         paddingRight: '10%',
         width: '70%',
+    },
+    content: {
+        marginTop: -15,
     },
   }));
 
