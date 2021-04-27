@@ -4,11 +4,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { getStores } from '../../actions/stores';
+
 import { 
     MenuList,
     MenuItem 
 } from '../common/menu-list.styles';
-import { NavLinkItem } from '../header/desktopNavbar.styles';
+
+import { NavLinkItem } from '../navigation/desktop-navbar/desktop-navbar.styles';
 
 export class Stores extends Component {
     state = {

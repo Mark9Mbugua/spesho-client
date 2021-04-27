@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LogoContainer } from './siteLogo.styles';
-import logoIcon from '../../images/logo-icon.svg';
+import { LogoContainer } from './site-logo.styles';
+import logoIcon from '../../../images/logo-icon.svg';
 
 const SiteLogo = () => {
     return (

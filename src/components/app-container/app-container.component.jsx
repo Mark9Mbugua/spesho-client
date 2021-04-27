@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { loadCurrentUser } from '../../actions/auth';
-import Header from '../header/Header';
+import Header from '../navigation/header/header.component';
 import SignUpForm from '../auth/sign-up-form/sign-up-form';
 import SignInForm from '../auth/sign-in-form/sign-in-form.component';
 import ItemsPerCategoryPage from '../../pages/items-per-category-page.component';

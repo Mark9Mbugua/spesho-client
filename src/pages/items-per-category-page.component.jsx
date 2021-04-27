@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemsPerCategory from '../components/items/ItemsPerCategory';
+import ItemsPerCategory from '../components/items/items-per-category.component';
 import Footer from '../components/common/Footer';
 
 

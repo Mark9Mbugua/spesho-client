@@ -7,7 +7,7 @@ import {
 import { 
     NavbarLinks, 
     NavLinkItem
-} from '../../../header/desktopNavbar.styles';
+} from '../../../navigation/desktop-navbar/desktop-navbar.styles';
 import Logout from '../../logout/logout.component';
 
 const ProfileMenu = ({ user }) => {

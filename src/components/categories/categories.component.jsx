@@ -7,7 +7,7 @@ import {
      MenuList,
      MenuItem 
 } from '../common/menu-list.styles';
-import { NavLinkItem } from '../header/desktopNavbar.styles';
+import { NavLinkItem } from '../navigation/desktop-navbar/desktop-navbar.styles';
 
 export class Categories extends Component {
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import store from './store';
-import AppContainer from './components/app-container/app-container';
+import store from './redux/store';
+import AppContainer from './components/app-container/app-container.component';
 
 import './App.css';
 import { loadCurrentUser } from './actions/auth';
