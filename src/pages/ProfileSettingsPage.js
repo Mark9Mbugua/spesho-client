@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadUserProfile } from '../actions/auth';
 import Footer from '../components/common/Footer';
-import ProfileHeader from '../components/auth/userProfile/profileHeader/ProfileHeader';
-import ProfileSettings from '../components/auth/userProfile/profileSettings/ProfileSettings';
+import ProfileHeader from '../components/auth/user-profile/profile-header/profile-header';
+import ProfileSettings from '../components/auth/user-profile/profile-settings/main-profile-settings/profile-settings.component';
 
 class ProfileSettingsPage extends Component {
     componentDidMount() {

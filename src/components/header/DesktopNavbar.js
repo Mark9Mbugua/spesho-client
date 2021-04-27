@@ -12,6 +12,7 @@ import {
     MyMobileNavButton,
     CloseIcon 
 } from './desktopNavbar.styles';
+
 import NavLinks from './NavLinks';
 import mobileNavIcon from '../../images/mobile-nav-icon.svg';
 import closeIcon from '../../images/close.svg';
@@ -19,7 +20,7 @@ import SearchBar from './SearchBar';
 import SignUp from '../signUp/SignUp';
 import SignIn from '../signIn/SignIn';
 import SearchResultsModal from '../searchResultsModal/SearchResultsModal';
-import ProfileMenu from '../auth/userProfile/ProfileMenu';
+import ProfileMenu from '../auth/user-profile/profile-menu/profile-menu.component';
 import SiteLogo from './SiteLogo';
 
 const DesktopNavbar = ({isAuth, user, displayMobileNavbar, toggleMobileNavbar, getAllItems, items}) => {
