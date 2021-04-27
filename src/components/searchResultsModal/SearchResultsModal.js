@@ -1,27 +1,48 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { ResultsContainer } from './SearchResultsModal.styles';
+import { 
+    ResultsContainer,
+    EmptySearch,
+    CardContainer,
+    ResultsImage,
+    ImageContainer,
+    ResultDetailsContainer,
+    SearchItemLink
+} from './SearchResultsModal.styles';
 
-const SearchResultsModal = ({input, filteredItems}) => {
+const SearchResultsModal = ({input, filteredItems, closeSearchResultsModal}) => {
     return (
-        <ResultsContainer>
+        <ResultsContainer
+            filteredItems={filteredItems}
+        >
             {
                 filteredItems.length == 0 && input.length == 0 ?
-                    <p>Start typing to search.</p>
+                    <EmptySearch>Start typing to search.</EmptySearch>
                 :
                     filteredItems.length == 0 && input.length > 0 ?
-                    <p>No search results found.</p>
+                    <EmptySearch>No search results found.</EmptySearch>
                 :
                     filteredItems.map((val, key) =>{
                         return (
-                            <div className='item' key={key}>
-                                <p>{val.deal_title}</p>
-                                <p>Price: {val.price}</p>
-                                <p>Original price: {val.original_price}</p>
-                                <p>Discount: {val.discount}%</p>
-                                <p>Category: {val.category.category_name}</p>
-                                <p>Store: {val.store.store_name}</p>
-                            </div>
+                            <SearchItemLink 
+                                to={`/items/${val.id}`}
+                                onClick={closeSearchResultsModal}
+                            >
+                                <CardContainer key={key}>
+                                    <ImageContainer>
+                                        <ResultsImage src={val.src} />
+                                    </ImageContainer>
+                                    <ResultDetailsContainer>
+                                        <p>{val.deal_title}</p>
+                                        <p>Price: {val.price}</p>
+                                        <p>Original price: {val.original_price}</p>
+                                        <p>Discount: {val.discount}%</p>
+                                        <p>Category: {val.category.category_name}</p>
+                                        <p>Store: {val.store.store_name}</p>
+                                    </ResultDetailsContainer>
+                                </CardContainer>
+                            </SearchItemLink>
                         );
                     })
             }
