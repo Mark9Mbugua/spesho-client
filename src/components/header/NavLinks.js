@@ -1,6 +1,6 @@
 import React from 'react';
-import Categories from '../categories/Categories';
-import Stores from '../stores/Stores';
+import Categories from '../categories/categories.component';
+import Stores from '../stores/stores.component';
 import { NavbarLinks } from './desktopNavbar.styles';
 
 
