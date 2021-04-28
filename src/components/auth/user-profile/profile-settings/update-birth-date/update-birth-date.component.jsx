@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DatePicker from 'react-datepicker';
-import { updateUserProfile } from '../../../../../actions/auth';
+import { updateUserProfile } from '../../../../../redux/actions/auth';
 import { 
     DateForm,
     DateButton,

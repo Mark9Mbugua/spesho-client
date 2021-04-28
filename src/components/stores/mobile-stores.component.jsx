@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getStores } from '../../actions/stores';
+import { getStores } from '../../redux/actions/stores';
 import { 
     ListContainer,
     MobileMenuList,

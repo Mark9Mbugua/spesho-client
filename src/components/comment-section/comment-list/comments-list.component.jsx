@@ -5,10 +5,10 @@ import { Alert } from 'reactstrap';
 import ArrowDropDownTwoToneIcon from '@material-ui/icons/ArrowDropDownTwoTone';
 import ArrowDropUpTwoToneIcon from '@material-ui/icons/ArrowDropUpTwoTone';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { getComments } from '../../../actions/comments';
+import { getComments } from '../../../redux/actions/comments';
 import CreateLikeVote from '../../votes-section/create-dislike-vote/create-dislike-vote';
 import CreateDislikeVote from '../../votes-section/create-like-vote/create-like-vote.component';
-import { getItemVotes } from '../../../actions/votes';
+import { getItemVotes } from '../../../redux/actions/votes';
 import { 
     CommentsListContainer,
     MainSection,

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getAllItems } from '../../actions/items';
+import { getAllItems } from '../../redux/actions/items';
 import ItemsContainer from './items-container.component'; 
 
 class HomePageItems extends Component {

@@ -2,8 +2,8 @@ import React , {Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { Alert } from 'reactstrap';
-import { register } from '../../../actions/auth';
-import { clearErrors } from '../../../actions/errors';
+import { register } from '../../../redux/actions/auth';
+import { clearErrors } from '../../../redux/actions/errors';
 import { 
     SignUpFormContainer,
     MainHeader,

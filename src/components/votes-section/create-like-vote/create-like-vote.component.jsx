@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
-import { getItem } from '../../../actions/items';
-import { getItemVotes, createItemVote, deleteItemVote } from '../../../actions/votes';
+import { getItem } from '../../../redux/actions/items';
+import { getItemVotes, createItemVote, deleteItemVote } from '../../../redux/actions/votes';
 
 
 const CreateLikeVote = ({ id, getItem, getItemVotes, votes, user, createItemVote, deleteItemVote, likes, modelType }) => {

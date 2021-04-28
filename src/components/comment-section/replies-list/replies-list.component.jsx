@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from 'react-redux';
-import { getReplies } from '../../../actions/comments';
-import { getItemVotes } from '../../../actions/votes';
+import { getReplies } from '../../../redux/actions/comments';
+import { getItemVotes } from '../../../redux/actions/votes';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
