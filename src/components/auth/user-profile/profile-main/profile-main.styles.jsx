@@ -15,7 +15,7 @@ export const UpperSection = styled.div`
     grid-gap: 15px;
     justify-items: center;
 
-    @media (max-width: 767px) {
+    @media (max-width: 480px) {
         grid-gap: 30px;
         width: 100%;
         justify-items: start;
@@ -29,7 +29,7 @@ export const PageTitle = styled.h1`
     margin-bottom: 25px;
     padding-left: 50px;
 
-    @media (max-width: 767px) {
+    @media (max-width: 480px) {
         grid-template-columns: 1fr;
         font-size: 3.8vh;
         justify-items: start;

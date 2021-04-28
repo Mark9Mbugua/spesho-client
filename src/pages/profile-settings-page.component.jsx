@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadUserProfile } from '../redux/actions/auth';
-import Footer from '../components/common/Footer';
 import ProfileHeader from '../components/auth/user-profile/profile-header/profile-header';
 import ProfileSettings from '../components/auth/user-profile/profile-settings/main-profile-settings/profile-settings.component';
 
@@ -21,7 +20,6 @@ class ProfileSettingsPage extends Component {
                     isAuth={isAuthenticated}
                     getProfile={profile}
                 />
-                <Footer />
             </div>
         );
     }

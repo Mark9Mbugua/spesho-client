@@ -23,7 +23,6 @@ class ProfilePage extends Component {
                     isAuth={isAuthenticated}
                     profile={profile}
                 />
-                <Footer />
             </div>
         );
     }

@@ -6,7 +6,6 @@ const MobileStoresPage = () => {
     return (
         <div>
             <MobileStores />
-            <Footer />
         </div>
     )
 }

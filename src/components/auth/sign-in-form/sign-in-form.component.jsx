@@ -17,7 +17,6 @@ import {
     FormFields,
     Terms
 } from '../sign-up-form/sign-up-form.styles';
-import Footer from '../../common/Footer';
 
 class SignUpForm extends Component{
     state = {
@@ -120,7 +119,6 @@ class SignUpForm extends Component{
                         </Terms>
                     </SignUpFormContainer>
                 </SignInFormContainer>
-                <Footer />
             </div>
         );
     }

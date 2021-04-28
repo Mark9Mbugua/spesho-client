@@ -16,6 +16,7 @@ import MobileStoresPage from '../../pages/mobile-stores-page.component';
 import AboutUsPage from '../../pages/about-us-page.component';
 import Home from '../../pages/home.component';
 import PrivateRoute from '../common/PrivateRoute';
+import Footer from '../common/Footer';
 
 class AppContainer extends Component {
 
@@ -67,6 +68,7 @@ class AppContainer extends Component {
                         component={ProfileSettingsPage} 
                     />
                 </Switch>
+                <Footer />
             </div>
         )
     }

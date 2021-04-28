@@ -7,7 +7,6 @@ const AboutUsPage = () => {
     return (
         <div>
             <AboutUs />
-            <Footer />
         </div>
     );
 }
