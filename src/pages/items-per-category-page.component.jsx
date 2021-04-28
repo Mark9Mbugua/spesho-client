@@ -8,7 +8,6 @@ const ItemsPerCategoryPage = (props) => {
     return (
         <div>
             <ItemsPerCategory id={id} />
-            <Footer />
         </div>
     )
 }

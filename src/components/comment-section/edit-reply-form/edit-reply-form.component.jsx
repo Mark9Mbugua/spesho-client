@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import autosize from "autosize";
-import { editReply } from '../../../actions/comments';
+import { editReply } from '../../../redux/actions/comments';
 // import { EditCommentFormContainer } from './edit-comment-form/edit-comment-form.styles.styles';
 import CommonEditForm from '../common-edit-form/common-edit-form';
 

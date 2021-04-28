@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { verifyCode } from '../../../../../actions/auth';
+import { verifyCode } from '../../../../../redux/actions/auth';
 import {
     Button,
     Modal,

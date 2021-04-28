@@ -9,7 +9,7 @@ export const ReplyForm = styled.form`
     display: grid;
     grid-template-columns: 450px;
 
-    @media (max-width: 767px) {
+    @media (max-width: 480px) {
         grid-template-columns: 1fr;
     }
 `;

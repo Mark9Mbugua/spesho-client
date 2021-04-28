@@ -8,7 +8,6 @@ const ItemsPerStorePage = (props) => {
     return (
         <div>
             <ItemsPerStore id={id} />
-            <Footer />
         </div>
     )
 }

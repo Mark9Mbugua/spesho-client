@@ -4,7 +4,7 @@ import store from './redux/store';
 import AppContainer from './components/app-container/app-container.component';
 
 import './App.css';
-import { loadCurrentUser } from './actions/auth';
+import { loadCurrentUser } from './redux/actions/auth';
 
 class App extends Component {
     componentDidMount(){

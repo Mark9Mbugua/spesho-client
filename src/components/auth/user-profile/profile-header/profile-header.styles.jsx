@@ -23,7 +23,7 @@ export const UserDetails = styled.div`
     flex-flow: row nowrap;
     justify-content: center;
 
-    @media (max-width: 767px) {
+    @media (max-width: 480px) {
         flex-flow: column nowrap;
         align-items: center;
     }
@@ -32,7 +32,7 @@ export const UserDetails = styled.div`
 export const ProfileIcon = styled.div`
     width: 25%;
     
-    @media (max-width: 767px) {
+    @media (max-width: 480px) {
         width: 50%;
         padding: 5px;
     } 
@@ -46,7 +46,7 @@ export const Username = styled.div`
     font-size: 3.5vh;
     padding-top: 20px;
 
-    @media (max-width: 767px) {
+    @media (max-width: 480px) {
         font-size: 2.7vh;
         padding-top: 5px;
     }
@@ -57,7 +57,7 @@ export const ProfileItems = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     justify-items: center;
 
-    @media (max-width: 767px) {
+    @media (max-width: 480px) {
         grid-gap: 15px;
         justify-items: start;
         align-items: center;
@@ -74,7 +74,7 @@ export const ItemIcon = styled.div`
     width: 25px;
     padding-right: 2px;
     
-    @media (max-width: 767px) {
+    @media (max-width: 480px) {
         width: 20px;
     }
 

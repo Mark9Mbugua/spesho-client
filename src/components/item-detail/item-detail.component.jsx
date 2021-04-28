@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ThumbDownAltOutlinedIcon from '@material-ui/icons/ThumbDownAltOutlined';
 import InsertCommentTwoToneIcon from '@material-ui/icons/InsertCommentTwoTone';
-import { getItem } from '../../actions/items';
-import { getItemVotes } from '../../actions/votes';
+import { getItem } from '../../redux/actions/items';
+import { getItemVotes } from '../../redux/actions/votes';
 import { 
     ItemDetailContainer,
     ItemSection,

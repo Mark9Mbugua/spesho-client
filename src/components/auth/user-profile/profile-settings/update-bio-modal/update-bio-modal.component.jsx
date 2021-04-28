@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { connect, useSelector } from 'react-redux';
 import autosize from "autosize";
-import { updateUserProfile } from '../../../../../actions/auth';
+import { updateUserProfile } from '../../../../../redux/actions/auth';
 import { 
     CreateReplyFormContainer,
     ReplyForm,

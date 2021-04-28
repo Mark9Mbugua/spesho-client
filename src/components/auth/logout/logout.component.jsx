@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { logout } from '../../../actions/auth';
+import { logout } from '../../../redux/actions/auth';
 import { LogoutContainer } from './logout.styles';
 import { ItemLink } from '../user-profile/profile-menu/profile-menu.styles';
 

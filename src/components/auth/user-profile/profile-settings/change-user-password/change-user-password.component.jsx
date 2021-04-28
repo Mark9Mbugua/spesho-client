@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeUserPassword } from '../../../../../actions/auth';
+import { changeUserPassword } from '../../../../../redux/actions/auth';
 import {
     Button,
     Modal,

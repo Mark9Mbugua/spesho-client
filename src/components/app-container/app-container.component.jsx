@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
-import { loadCurrentUser } from '../../actions/auth';
+import { loadCurrentUser } from '../../redux/actions/auth';
 import Header from '../navigation/header/header.component';
 import SignUpForm from '../auth/sign-up-form/sign-up-form';
 import SignInForm from '../auth/sign-in-form/sign-in-form.component';
@@ -16,6 +16,7 @@ import MobileStoresPage from '../../pages/mobile-stores-page.component';
 import AboutUsPage from '../../pages/about-us-page.component';
 import Home from '../../pages/home.component';
 import PrivateRoute from '../common/PrivateRoute';
+import Footer from '../common/Footer';
 
 class AppContainer extends Component {
 
@@ -67,6 +68,7 @@ class AppContainer extends Component {
                         component={ProfileSettingsPage} 
                     />
                 </Switch>
+                <Footer />
             </div>
         )
     }

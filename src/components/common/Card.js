@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ShareIcon from '@material-ui/icons/Share';
 import { Link } from 'react-router-dom';
-import { getItemVotes } from '../../actions/votes';
+import { getItemVotes } from '../../redux/actions/votes';
 
 import { ItemCardContainer } from './itemCard.styles';
 

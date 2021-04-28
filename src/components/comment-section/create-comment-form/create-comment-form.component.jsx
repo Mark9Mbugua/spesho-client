@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import autosize from "autosize";
 import { Alert } from 'reactstrap';
-import { createComment } from '../../../actions/comments';
+import { createComment } from '../../../redux/actions/comments';
 import { 
     CreateReplyFormContainer,
     ReplyForm,

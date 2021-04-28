@@ -8,7 +8,6 @@ export default function Home() {
         <div>
             <CustomTitle>Featured Deals</CustomTitle>
             <HomePageItems />
-            <Footer />
         </div>
     )
 }

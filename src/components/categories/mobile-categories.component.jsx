@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getCategories } from '../../actions/categories';
+import { getCategories } from '../../redux/actions/categories';
 import { 
     ListContainer,
     MobileMenuList,

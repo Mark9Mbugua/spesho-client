@@ -9,7 +9,7 @@ export const ProfileSettingsContainer = styled.div`
     margin: 0 auto;
     width: 50%;
 
-    @media (max-width: 767px) {
+    @media (max-width: 480px) {
         width: 100%;
     }
 `;
@@ -18,13 +18,13 @@ export const PageTitle = styled.h1`
     text-align: start;
     margin-bottom: 30px;
 
-    @media (max-width: 767px) {
+    @media (max-width: 480px) {
         font-size: 4vh;
     }
 `;
 
 export const Attribute = styled.div`
-    @media (max-width: 767px) {
+    @media (max-width: 480px) {
         h3 {
             font-size: 3.5vh;
         }
@@ -73,7 +73,7 @@ export const EditDate = styled.div`
     overflow: hidden;
     margin-top: 18px;
 
-    @media (max-width: 767px) {
+    @media (max-width: 480px) {
         flex-flow: column wrap;
         justify-content: center;
         align-items: start;

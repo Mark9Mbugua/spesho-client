@@ -6,7 +6,6 @@ const MobileCategoriesPage = () => {
     return (
         <div>
             <MobileCategories />
-            <Footer />
         </div>
     )
 }

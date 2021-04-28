@@ -16,7 +16,7 @@ export const MainSection = styled.div`
     grid-template-areas:
         'user-details comment-details more-icon';
 
-    @media (max-width: 767px) {
+    @media (max-width: 480px) {
         grid-template-columns: 1fr;
         grid-template-areas:
             'more-icon'
@@ -107,7 +107,7 @@ export const MoreIcon = styled.div`
     margin-left: auto;
     padding-top: 35px;
 
-    @media (max-width: 767px) {
+    @media (max-width: 480px) {
         padding-top: 0;
     }
 `;

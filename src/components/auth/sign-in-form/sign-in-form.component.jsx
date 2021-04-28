@@ -2,8 +2,8 @@ import React , {Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { Alert } from 'reactstrap';
-import { login } from '../../../actions/auth';
-import { clearErrors } from '../../../actions/errors';
+import { login } from '../../../redux/actions/auth';
+import { clearErrors } from '../../../redux/actions/errors';
 import { SignInFormContainer } from './sign-in-form.styles';
 import { 
     SignUpFormContainer,
@@ -17,7 +17,6 @@ import {
     FormFields,
     Terms
 } from '../sign-up-form/sign-up-form.styles';
-import Footer from '../../common/Footer';
 
 class SignUpForm extends Component{
     state = {
@@ -120,7 +119,6 @@ class SignUpForm extends Component{
                         </Terms>
                     </SignUpFormContainer>
                 </SignInFormContainer>
-                <Footer />
             </div>
         );
     }

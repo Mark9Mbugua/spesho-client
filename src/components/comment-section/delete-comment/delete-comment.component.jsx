@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { EditContainer } from '../edit-comment/edit-comment.styles';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { deleteComment } from '../../../actions/comments';
+import { deleteComment } from '../../../redux/actions/comments';
 
 class DeleteComment extends Component {
     constructor(props) {
