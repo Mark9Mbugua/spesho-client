@@ -10,7 +10,8 @@ import {
     RightNav,
     AuthButtons, 
     MyMobileNavButton,
-    CloseIcon 
+    CloseIcon,
+    CompanyName 
 } from './desktop-navbar.styles';
 
 import NavLinks from '../navlinks/navlinks.component';
@@ -23,7 +24,9 @@ import SearchResultsModal from '../../search-results-modal/search-results-modal.
 import ProfileMenu from '../../auth/user-profile/profile-menu/profile-menu.component';
 import SiteLogo from '../site-logo/site-logo.component';
 
-const DesktopNavbar = ({isAuth, user, displayMobileNavbar, toggleMobileNavbar, getAllItems, items}) => {
+const DesktopNavbar = (props) => {
+    const { isAuth, user, displayMobileNavbar, toggleMobileNavbar, getAllItems, items } = props;
+
     useEffect(() => {
         getAllItems();
     }, []);
@@ -62,12 +65,18 @@ const DesktopNavbar = ({isAuth, user, displayMobileNavbar, toggleMobileNavbar, g
 
     return (
         <>
-            <DesktopNavbarContainer>
-                <SiteLogo />
+            <DesktopNavbarContainer
+                showResultsModal={showSearchResultsModal}
+            >
                 <Logo>
-                    <LogoLink to="/">Dealie</LogoLink>
+                    <LogoLink to="/">
+                        <SiteLogo />
+                        <CompanyName>Dealie</CompanyName>
+                    </LogoLink>
                 </Logo>  
-                <NavLinks />
+                <NavLinks 
+                    showResultsModal={showSearchResultsModal} 
+                />
                 <RightNav
                     showResultsModal={showSearchResultsModal}
                 >
@@ -93,6 +102,7 @@ const DesktopNavbar = ({isAuth, user, displayMobileNavbar, toggleMobileNavbar, g
                     {isAuth ? authLinks : guestLinks}  
                 </AuthButtons>
                 <MyMobileNavButton
+                    showResultsModal={showSearchResultsModal}
                     displayMobileNavbar={displayMobileNavbar}
                     onClick={toggleMobileNavbar}
                 >

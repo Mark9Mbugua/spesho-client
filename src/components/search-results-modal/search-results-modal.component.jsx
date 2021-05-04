@@ -9,7 +9,7 @@ import {
     ImageContainer,
     ResultDetailsContainer,
     SearchItemLink
-} from './search-results-modal.stylesjsx';
+} from './search-results-modal.styles.jsx';
 
 const SearchResultsModal = ({input, filteredItems, closeSearchResultsModal}) => {
     return (

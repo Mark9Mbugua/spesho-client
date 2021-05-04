@@ -2,9 +2,6 @@ import styled from 'styled-components';
 import SearchIcon from '@material-ui/icons/Search';
 
 export const Search = styled.div`
-    margin-bottom: 5px;
-    flex-flow: row nowrap;
-    justify-content: right;
     display: flex;
     position: relative;
     align-items: center;
@@ -15,27 +12,52 @@ export const SearchGlass = styled(SearchIcon)`
     cursor: pointer;
     position: absolute;
     color: grey;
-    height: 30px;
-    z-index: 10;
+    height: 1.8rem;
 `;
 
 export const SearchBarInput = styled.input`
-    padding: 4px;
-    height: 30px;
-    width: ${props => (props.showResultsModal ? '850px' : '350px')};
+    height: 1.8rem;
+    width: ${props => (props.showResultsModal ? '70rem' : '18rem')};
     border-radius: 3px;
     border: none;
     outline: none;
+
     &::placeholder {
-        padding-left: 25px;
+        padding-left: 1.5rem;
     }
 
     &:focus {
         opacity: 0.9;
         outline: none;
-        padding-left: 25px; 
+        padding-left: 1.5rem;
+         
         &::placeholder {
-            padding-left: 5px;
+            padding-left: 0.3rem;
         }
+    }
+
+    @media screen and (max-width: 1024px) {
+        width: ${props => (props.showResultsModal ? '43rem' : '15rem')};
+    }
+
+    @media screen and (max-width: 768px) {
+        width: ${props => (props.showResultsModal ? '32rem' : '20rem')};
+    }
+
+    @media screen and (max-width: 600px) {
+        width: ${props => (props.showResultsModal ? '25rem' : '15rem')};
+    }
+
+    @media screen and (max-width: 550px) {
+        width: ${props => (props.showResultsModal ? '23rem' : '15rem')};
+    }
+
+
+    @media screen and (max-width: 480px) {
+        width: ${props => (props.showResultsModal ? '18rem' : '15rem')};
+    }
+
+    @media screen and (max-width: 320px) {
+        width: ${props => (props.showResultsModal ? '15rem' : '12rem')};
     }
 `;

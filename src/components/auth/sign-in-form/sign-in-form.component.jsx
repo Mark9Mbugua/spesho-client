@@ -56,70 +56,68 @@ class SignUpForm extends Component{
             return <Redirect to="/" />
         }
 
-        return(
-            <div>
-                <SignInFormContainer>
-                    <SignUpFormContainer>
-                        <FormFields onSubmit={this.handleSubmit}>
-                            <MainHeader>Sign In</MainHeader>
-                            <SubHeader>Enter your details below to continue</SubHeader>
-                            {error.msg.non_field_errors ?
-                                <Alert color="danger">
-                                    {error.msg.non_field_errors}
-                                </Alert>
-                                :null
-                            }
-                            <FormInput 
-                                type="text" 
-                                id="username"  
-                                placeholder="Username" 
-                                name="username"
-                                onChange={this.handleChange} 
-                            />
-                            {error.msg.username ?
-                                <Alert color="danger">
-                                    <span>Username: {error.msg.username}</span>
-                                </Alert>
-                                : null
-                            }          
-                            <FormInput 
-                                type="password" 
-                                id="password"  
-                                placeholder="Password" 
-                                name="password" 
-                                onChange={this.handleChange} 
-                            />
-                            {error.msg.password ?
-                                <Alert color="danger">
-                                    <span>Password: {error.msg.password}</span>
-                                </Alert>
-                                : null
-                            }         
-                            <PasswordReset>
-                                <a 
-                                    href="http://localhost:8000/api/v1/accounts/reset/password_reset/" 
-                                    className="password-link">
-                                        Forgot password?
-                                </a>
-                            </PasswordReset>
-                            <ButtonFields>
-                                <FormButton>
-                                    Sign In
-                                </FormButton> 
-                                <AuthLink to="/signup">Not a member? Sign Up</AuthLink>
-                            </ButtonFields>
-                        </FormFields>
-                        <Terms>
-                            <p>
-                                By clicking Sign In, you have read and agree to the
-                                <a href=""> Dealie Terms of Service </a> 
-                                and 
-                                <a href=""> Acceptable Use Policies.</a>
-                            </p>
-                        </Terms>
-                    </SignUpFormContainer>
-                </SignInFormContainer>
-            </div>
+        return (
+            <SignInFormContainer>
+                <SignUpFormContainer>
+                    <FormFields onSubmit={this.handleSubmit}>
+                        <MainHeader>Sign In</MainHeader>
+                        <SubHeader>Enter your details below to continue</SubHeader>
+                        {error.msg.non_field_errors ?
+                            <Alert color="danger">
+                                {error.msg.non_field_errors}
+                            </Alert>
+                            :null
+                        }
+                        <FormInput 
+                            type="text" 
+                            id="username"  
+                            placeholder="Username" 
+                            name="username"
+                            onChange={this.handleChange} 
+                        />
+                        {error.msg.username ?
+                            <Alert color="danger">
+                                <span>Username: {error.msg.username}</span>
+                            </Alert>
+                            : null
+                        }          
+                        <FormInput 
+                            type="password" 
+                            id="password"  
+                            placeholder="Password" 
+                            name="password" 
+                            onChange={this.handleChange} 
+                        />
+                        {error.msg.password ?
+                            <Alert color="danger">
+                                <span>Password: {error.msg.password}</span>
+                            </Alert>
+                            : null
+                        }         
+                        <PasswordReset>
+                            <a 
+                                href="http://localhost:8000/api/v1/accounts/reset/password_reset/" 
+                                className="password-link">
+                                    Forgot password?
+                            </a>
+                        </PasswordReset>
+                        <ButtonFields>
+                            <FormButton>
+                                Sign In
+                            </FormButton> 
+                            <AuthLink to="/signup">Not a member? Sign Up</AuthLink>
+                        </ButtonFields>
+                    </FormFields>
+                    <Terms>
+                        <p>
+                            By clicking Sign In, you have read and agree to the
+                            <a href=""> Dealie Terms of Service </a> 
+                            and 
+                            <a href=""> Acceptable Use Policies.</a>
+                        </p>
+                    </Terms>
+                </SignUpFormContainer>
+            </SignInFormContainer>
         );
     }
 }

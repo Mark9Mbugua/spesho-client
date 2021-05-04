@@ -40,5 +40,9 @@ export const ButtonContainer = styled.button`
         background: inherit;
         margin-top: 0;
         font-size: 2.5vh;
+        width: 100%;
+        padding: 0;
+        height: 4.4rem;
+        border: 1px solid #6F6B5D;
     }    
 `;
