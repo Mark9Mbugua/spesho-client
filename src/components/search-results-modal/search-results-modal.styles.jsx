@@ -8,10 +8,15 @@ export const ResultsContainer = styled.div`
     position: absolute;
     background: ${ props => props.theme.primary };
     height: 100vh;
-    width: 80%;
-    left: 10%;
+    width: 90%;
+    left: 5%;
     top: 8%;
     z-index: 2;
+
+    @media screen and (max-width: 1024px) {
+        width: 100%;
+        left: 0;
+    }
 `;
 
 export const EmptySearch = styled.p`

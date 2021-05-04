@@ -4,37 +4,51 @@ import { Link } from 'react-router-dom';
 export const DesktopNavbarContainer = styled.nav`
     display: flex;
     flex-flow: row nowrap;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
     overflow: hidden;
     background: ${ props => props.theme.primary };
     color: white;
     height: 8vh;
+
+    @media screen and (max-width: 768px) {
+        justify-content: space-between;
+    }
+
+    @media screen and (max-width: 320px) {
+        height: 10vh;
+    }
 `;
 
 export const CloseIcon = styled.img`
-    height: 15px;
-    width: 15px;
-    margin-left: 10px;
-    margin-top: 7px;
+    height: 1rem;
+    width: 1rem;
+    margin: 1rem 0.5rem;
     cursor: pointer;
 `;
 
 export const Logo = styled.div`
-    font-size: 5vh;
-    font-weight: bold;
-    text-shadow: 3px 3px 3px ${ props => props.theme.accent };
-    margin-left: 0;
 
     @media screen and (max-width: 768px) {
-        display: none;
+        margin-left: 1.5rem;
+    }
+
+    @media screen and (max-width: 600px) {
+        margin-left: 1rem;
+    }
+
+    @media screen and (max-width: 480px) {
+        margin-left: 0.5rem;
     }
 `;
 
 export const LogoLink = styled(Link)`
-    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-decoration: none;
-    padding: 0 1rem;  
+    /* padding: 1rem; */
+      
     
     &:hover {
         outline: none;
@@ -47,15 +61,45 @@ export const LogoLink = styled(Link)`
         outline: none;
         text-decoration: none;
     }
+
+    @media screen and (max-width: 1280px) {
+        padding: 0;
+    }
+`;
+
+export const CompanyName = styled.h1`
+    font-size: 2.85rem;
+    font-weight: bold;
+    text-shadow: 3px 3px 3px ${ props => props.theme.accent };
+    color: white;
+    margin: 0.2rem;
+
+    @media screen and (max-width: 1280px) {
+        font-size: 2.3rem;
+        margin: 0.1rem;
+    }
+
+    @media screen and (max-width: 768px) {
+        font-size: 2.2rem;
+    }
+
+    @media screen and (max-width: 550px) {
+        font-size: 1.8rem;
+        margin: 0.05rem;
+    }
+
+    @media screen and (max-width: 480px) {
+        display: none;
+    }
 `;
 
 export const RightNav = styled.div`
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-evenly;
-    margin-left: ${props => (props.showResultsModal ? '-20px' : '25%')};
+    margin-left: ${props => (props.showResultsModal ? '-15%' : '25%')};
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 480px) {
         margin-left: 0;
     }
 `;
@@ -64,7 +108,15 @@ export const AuthButtons = styled.div`
     display: ${props => (props.showResultsModal ? 'none' : 'flex')};
     flex-flow: row nowrap;
     justify-content: space-evenly;
-    width: 12vw;
+    min-width: 13%;
+
+    @media screen and (max-width: 1366px) {
+        min-width: 15%;
+    }
+
+    @media screen and (max-width: 1024px) {
+        min-width: 19%;
+    }
     
     @media screen and (max-width: 768px) {
         display: none;
@@ -79,7 +131,7 @@ export const NavLinkItem = styled(Link)`
     height: 12vh;
     color: white;
     padding: 0 1rem;
-    font-size: 2.7vh;
+    font-size: 1.3rem;
     text-decoration: none;
     border-radius: 10px;
 
@@ -109,16 +161,16 @@ export const NavLinkItem = styled(Link)`
 `;
 
 export const NavbarLinks = styled.ul`
-    display: flex;
+    display: ${props => (props.showResultsModal ? 'none' : 'flex')};
     flex-flow: row nowrap;
     justify-content: space-evenly;
     align-items: left;
-    margin-top: 13px;
-    width: 20vw;
+    margin-top: 0.8rem;
+    min-width: 18%;
     list-style: none;
 
     @media screen and (max-width: 768px) {
-        display:none;
+        display: none;
     }
 `;
 
@@ -128,8 +180,6 @@ export const MyMobileNavButton = styled.button`
     width: 6vh;
     border: none;
     display: none;
-    margin-right: 3%;
-
     transition: transform 1s ease-in-out;
     transform: rotate(${ props => props.displayMobileNavbar ? ("180deg"):("0deg") });
     
@@ -138,6 +188,6 @@ export const MyMobileNavButton = styled.button`
     }
 
     @media screen and (max-width: 768px) {
-        display:block;
+        display: ${props => (props.showResultsModal ? 'none' : 'block')};
     }
 `;

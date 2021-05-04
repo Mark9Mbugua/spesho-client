@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const SignInFormContainer = styled.div`
     margin-top: -4%;
@@ -6,4 +6,4 @@ export const SignInFormContainer = styled.div`
     @media (max-width: 480px) {
         margin-top: 0;
     }
-`
+`;

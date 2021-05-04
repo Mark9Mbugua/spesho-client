@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { 
-    MobileNavbarContainer, 
+    MobileNavbarContainer,
+    AuthLinks, 
     MenuLink 
 } from './mobile-navbar.styles'
 import { ItemLink } from '../../auth/user-profile/profile-menu/profile-menu.styles';
@@ -36,9 +37,9 @@ const MobileNavbar = ({ isAuth, toggleMobileNavbar, displayMobileNavbar }) => {
                 isAuth={isAuth}
                 toggleMobileNavbar={toggleMobileNavbar} 
             />
-            <div>
+            <AuthLinks>
                 {isAuth ? authLinks : guestLinks}
-            </div>
+            </AuthLinks>
         </MobileNavbarContainer>
     )
 }

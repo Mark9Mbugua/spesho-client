@@ -2,10 +2,9 @@ import styled from 'styled-components';
 
 export const LogoContainer = styled.button`
     background: transparent;
-    height: 8vh;
-    width: 7vh;
+    height: auto;
+    width: 3.5vw;
     border: none;
-    margin-left: 4%;
     
     &:focus {
         background: rgba(0, 0, 0, 0.1);
@@ -13,6 +12,14 @@ export const LogoContainer = styled.button`
     }
 
     @media screen and (max-width: 768px) {
-        margin-right: 3%;
+        width: 8vw;
     }
-`
+
+    @media screen and (max-width: 550px) {
+        width: 6.5vw;
+    }
+
+    @media screen and (max-width: 480px) {
+        width: 10vw;
+    }
+`;
